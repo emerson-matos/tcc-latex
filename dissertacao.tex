@@ -92,12 +92,12 @@
 \pretextual
 
 % Capa
-\include{pretextual/capa}
+\include{pretextual/capa/capa}
 
 % Folha de rosto (o * indica que haverá a ficha bibliográfica)
 \imprimirfolhaderosto*
 
- \begin{comment}
+\begin{comment}
 
 % Imprimir Ficha Catalografica
 \include{pretextual/catalografica/catalografica}
@@ -115,7 +115,7 @@
 \include{pretextual/epigrafe/epigrafe}
 
 % Resumo e Abstract
-\include{pretextual/resumos/resumos}
+\include{pretextual/resumos}
 
 % Lista de ilustrações
 \pdfbookmark[0]{\listfigurename}{lof}
@@ -129,23 +129,23 @@
 
 % Lista de abreviaturas e siglas
 \begin{siglas}
-  \item[ABNT] Associação Brasileira de %Normas Técnicas
-  \item[abnTeX] Normas para TeX
+	\item[ABNT] Associação Brasileira de %Normas Técnicas
+	\item[abnTeX] Normas para TeX
 \end{siglas}
 
 % Lista de símbolos
 \begin{simbolos}
-  \item[$ \Gamma $] Letra grega Gama
-  \item[$ \Lambda $] Lambda
-  \item[$ \zeta $] Letra grega minúscula zeta
-  \item[$ \in $] Pertence
+	\item[$ \Gamma $] Letra grega Gama
+	\item[$ \Lambda $] Lambda
+	\item[$ \zeta $] Letra grega minúscula zeta
+	\item[$ \in $] Pertence
 \end{simbolos}
 
 % Inserir o SUMÁRIO
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents
 \cleardoublepage
-\end{comment} 
+\end{comment}
 
 % Inserir Folha de Aprovação
 % \include{pretextual/assinaturas}
