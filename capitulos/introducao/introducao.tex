@@ -6,9 +6,9 @@
 \chapter[Introdução]{Introdução}
 \label{cap:intro}
 % \addcontentsline{toc}{chapter}{Introdução}
+% pesquisa https://agenciabrasil.ebc.com.br/geral/noticia/2020-05/brasil-tem-134-milhoes-de-usuarios-de-internet-aponta-pesquisa#:~:text=Os%20recursos%20mais%20utilizados%20s%C3%A3o,eletr%C3%B4nico%20(39%25)%20e%20participa%C3%A7%C3%A3o
 
-JUSTIFICATIVA
-
+\begin{comment}
 Neste capítulo precisamos:
 \begin{itemize}
     \item Introduzir o contexto
@@ -18,8 +18,28 @@ Neste capítulo precisamos:
     \item Descrever a estrutura do relatório
 \end{itemize}
 
+\end{comment}
+
+Atualmente estamos caminhando para a realidade onde o acesso a informação está ficando muito fácil, antigamente para obter algum tipo de informação precisariamos recorrer ao conhecimento de algum ancião ou então recorrer aos itens impressos, porém com o avanço da tecnologia esses costumes tornaram-se ultrapassados, de modo que nos dias atuais 3 em cada 4 brasileiros acessa a internet, a pesquisa do cetic em 2021 apresenta que 28\% da população entrevistada fez alguma procura por informações referentes a viagens e acomodações, ainda temos um número muito baixo se realizarmos a comparação com procura de informações sobre produtos e serviços em que 57\% dos entrevistados responderam ter realizado alguma consulta.
+% https://blog.buscaonibus.com.br/melhores-sites-de-hospedagem-para-sua-viagem/
+
+Sites de viagem como por exemplo TripAdvisor, Trivago, Booking, AirBnb, são a principal fontes de informação quando temos interresse em realizar uma viagem para um local ainda desconhecido, nesses sites buscamos informações de pessoas que já frequentaram esses locais, essas informações são preenchidas pelos usuários da plataforma e cada plataforma tem o seu modelo de avaliação, que partem de avaliação objetivas por categorias, onde o usuário é questionado por área de interesse de modo a atribuir um valor número como nota para aquela experiência que ele passou, ou mesmo um bloco de texto disponivel para que o usuário possa escrever o que bem quiser sobre a sua estadia no local. Essas plataformas costumam ter alem das avaliações dos usuários, informações que a propria plataforma preenche que customam ser informações de preço por diárias, distâncias de atrações.
+
+Essas informações costumam direcionar o internauta de modo a auxilia-lo na sua escolha, porém qual a validade dessas informações? como essas avaliações variam durante o tempo? esse hotel está tendo avaliações melhores agora do que no mesmo periodo no ano passado? esse local esta sendo avaliado de forma negativa por conta de algum evento atipico? mesmo registrando uma avaliação ruim, o usuário que a submeteu possui outra avaliação registrada no passado? 
+
+Existem diversas questões que as plataformas hoje não expõe de maneira clara o que dificulta a tomada de decisão do internalta, que tem como objetivo escolher um local para usufruir de uma estadia agradavel durante o seu periodo de viagem, ninguém gostaria de reservar um quarto em um hotel e derrepente ser surpreendido e acabar descobrindo que o conteúdo das avaliações estava completamente equivocado, e que na verdade a plataforma estava ocultando as avaliações mais recentes que tinham tendência mais negativa por conta de sua popularidade na plataforma.
+
+\begin{comment}
 O presente relatório está estruturado da seguinte forma: o capítulo~\ref{cap:justificativa} apresenta..., o capítulo~\ref{cap:fund_teorica}... O capítulo~\ref{cap:metodologia} ..., o capítulo~\ref{cap:resultados} .... O capítulo~\ref{cap:conclusao} 
 
 Demonstração de citação: o software de análise foi desenvolvido na linguagem Python~\cite{van1995python}, usando as bibliotecas Pandas~\cite{mckinney2010data} e Scikit-learn~\cite{scikit-learn}.
+\end{comment}
+
+\section{Objectivo}
+
 
 O presente trabalho tem como objetivo fazer analise de avaliações de hoteis que foram realizadas e disponibilizadas publicamente em plataformas online, utilizaremos como fonte de dados as avaliações disponiveis no google maps, afim de observar e tentar entender a variação das avaliações realizadas pelos usuários da plataforma durante o tempo
+
+\section{Justificativa}
+
+O presente trabalho procura elaborar uma ferramenta que possa auxiliar o internalta que esta procurando informações de hospedagem, de modo a explicitar e mostrar como as avaliações do recinto em questão evoluem conforme o tempo, como o sentimento dos usuários evoluiu conforme o tempo, se o recinto está recebendo avaliações com sentimentos mais positivos ou se a tendência é de que as avaliações continuem com sentimentos cada vez mais negativos, e identificiar possiveis mudanças de comportamento, que para esses cenários podem ser justificados por mudanças de equipe, mudanças de politicas internas da empresa ou por uma simples manutenção ou evolução das instalações. 
