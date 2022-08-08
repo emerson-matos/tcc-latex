@@ -4,10 +4,13 @@
 
 \section{Conjunto de dados}
 
-Utilizaremos unicamente como fonte de dados as avaliações disponíveis na api do google maps, com o objetivo de simplificar a etapa de tratamento e uniformização dos dados
+Utilizaremos unicamente como fonte de dados as avaliações disponíveis na plataforma do Google Maps, visando simplificar a etapa de tratamento e uniformização dos dados.
 
+Utilizaremos a Google Places API para automatizar o processo de identificação de hotéis por região. A API exposta tem por objetivo fornecer uma lista de locais com suas respectivas informações de forma simplificada e recebe como entrada um texto que será utilizado na busca.
 
-Analisar a utilização da API Google Places...
+A princípio realizaremos buscas de hotéis por região no modelo frase + região, como por exemplo na frase "hotéis próximos à Santo André", a API irá retornar informações básicas de hotéis cadastrados na plataforma que se encontram nessa região.
+
+Posteriormente essa lista irá servir como entrada para um web scraping para buscar as informações de avaliações disponiveis no Google Maps, realizadas pelos Local Guides\cite{localguides}
 
 Também deve ser considerado a utilização de Web Scraping...
 
