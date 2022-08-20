@@ -3,13 +3,15 @@
 
 \section{Conjunto de Dados}
 
-Utilizaremos unicamente como fonte de dados as avaliações disponíveis na plataforma do Google Maps, visando simplificar a etapa de tratamento e uniformização dos dados.
+Será utilizado como fonte de dados as avaliações disponíveis online no idioma português na plataforma do Google Maps, visando simplificar a etapa de tratamento e uniformização dos dados.
 
-Utilizaremos a \emph{Google Places API} para automatizar o processo de identificação de hotéis por região. A API exposta tem por objetivo fornecer uma lista de locais com suas respectivas informações de forma simplificada e recebe como entrada um texto que será utilizado na busca.
+A lista de hoteis será obtida através da \emph{Google Places API} buscando por região. A consulta a API terá a função de fornecer uma lista de locais com suas respectivas informações simplificadas, como entrada recebe o texto que será utilizado para realizar a busca.
 
-A princípio realizaremos buscas de hotéis por região no modelo “frase + região”, por exemplo, na frase “hotéis próximos à Santo André”, a API irá retornar informações básicas de hotéis cadastrados na plataforma próximos de Santo André.
+O texto utilizado para a busca dos hotéis é definida no seguinte modelo “frase + região”, por exemplo, na frase “hotéis próximos ao Cristo Redentor”, a API deverá retornar informações básicas de hotéis cadastrados na plataforma próximos a região do Cristo Redentor.
 
-Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as informações de avaliações disponíveis no Google Maps, realizadas pelos Local Guides\cite{google2022localguides} registrados na plataforma.
+A lista de hotéis será obtida pelas regiões das principais atrações do Brasil segundo \cite{googleFlights2022destinos}. Essa lista é composta com base nas analises feitas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma.
+
+Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos Local Guides\cite{google2022localguides} registrados na plataforma.
 
 \section{Pré-processamento dos Dados}
 
@@ -17,7 +19,9 @@ Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} p
 
 \section{Análise de Sentimentos}
 
-
+% documento -> review
+% sentenca -> cada frase
+% topicos -> sentimentos por topicos
 
 \section{Análise Temporal dos Dados}
 
