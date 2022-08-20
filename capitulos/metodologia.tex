@@ -3,7 +3,7 @@
 
 \section{Conjunto de Dados}
 
-Será utilizado como fonte de dados as avaliações disponíveis online no idioma português na plataforma do Google Maps, visando simplificar a etapa de tratamento e uniformização dos dados.
+Será utilizado como fonte de dados as avaliações disponíveis online no idioma português brasileiro na plataforma do Google Maps, visando simplificar a etapa de tratamento e uniformização dos dados.
 
 A lista de hoteis será obtida através da \emph{Google Places API} buscando por região. A consulta a API terá a função de fornecer uma lista de locais com suas respectivas informações simplificadas, como entrada recebe o texto que será utilizado para realizar a busca.
 
@@ -11,20 +11,34 @@ O texto utilizado para a busca dos hotéis é definida no seguinte modelo “fra
 
 A lista de hotéis será obtida pelas regiões das principais atrações do Brasil segundo \cite{googleFlights2022destinos}. Essa lista é composta com base nas analises feitas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma.
 
-Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos Local Guides\cite{google2022localguides} registrados na plataforma.
+Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos Local Guides\cite{google2022localguides} registrados na plataforma, somente utilizaremos as avaliações que possuirem texto, e os dados obtidos serão exportados para um arquivo do tipo CSV.
 
 \section{Pré-processamento dos Dados}
 
+Nessa etapa utilizaremos o BERT, que é um modelo de representaçaão de linguagem desenvolvido por pesquisadores do google e que teve seu código aberto em 2018 \cite{hugoZanini2021mediu}. O texto será tokenizado utilizando a bilbioteca e um modelo pré treinado BERTimbau Base \cite{souza2020bertimbau}.
 
+Será realizado também o emparelhamento de Adjetivo-Substantivo com o objetivo de identificar o sentimento por tópicos contidos na avaliação analisada, para essa funçao a biblioteca spaCy \cite{montani2022spacy} será utilizada. 
 
 \section{Análise de Sentimentos}
 
-% documento -> review
-% sentenca -> cada frase
-% topicos -> sentimentos por topicos
+
+Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificaçao da seguinte forma:
+\begin{itemize}
+    \item Uma classificação para o nosso documento, que aqui consideramos cada avaliação de forma indivudial
+    \item Uma classificação para sentença, que será cada frase da nossa avaliação
+    \item Uma classificação para cada tópico identificado
+\end{itemize}
 
 \section{Análise Temporal dos Dados}
 
-
+Depois de realizada a análise de sentimentos utilizaremos os resultados agrupados por periodos de modo a conseguir visualizar em modo grafico as avaliações dividias conforme explicitado na seção anterior para um grupo de hotéis com uma grande variação e os que possuem uma pequena variação no tempo, bem como uma comparação dos dados das agrupados por região.  
 
 \section{Cronograma}
+
+Inicialmente será montado o corpus para análise com conteúdo suficiente para obter variação significativa nos sentimentos com o avanço do tempo, para que seja possivel identificar visualmente essas variações por hotel, tópico e por região.
+
+Após essa etapa será necessario realizar o tratamento dos dados e o treinamento do modelo BERT para que sejá possivel realizar a classificação do corpus.
+
+Com o treinamento concluido espera-se realizar o emparelhamento de adjetivo-substantivo e a avaliação de sentimento deles e de todo o corpus
+
+Com os resultados em mãos será realizada um agrupamento por região e hoteis com o objetivo de mostrar de forma gráfica como essas avaliações tem variado ao longo do tempo
