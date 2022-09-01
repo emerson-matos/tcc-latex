@@ -7,46 +7,27 @@
 \label{cap:intro}
 % \addcontentsline{toc}{chapter}{Introdução}
 
-\begin{comment}
-Neste capítulo precisamos:
-\begin{itemize}
-    \item Introduzir o contexto
-    \item Definir o que entendemos como avaliação de hotéis
-    \item Apresentar em linhas gerais quais métodos são usados para detectar fake news, qual o estado da arte atual e quais são suas limitações.
-    \item Descrever a nossa proposta e objetivos
-    \item Descrever a estrutura do relatório.
-\end{itemize}
+Com os avanços da tecnologia, o acesso à informação tem sido cada vez mais facilitado entre a população geral. Antes, as fontes de informações mais frequentes eram o conhecimento de prévio de indivíduos mais experientes ou conteúdos impressos \cite{jayathilake2021critical}. Uma pesquisa feita pela \citeonline{cetic2019pesquisa} indica que 3 entre cada 4 brasileiros possuem acesso à Internet e esses entrevistados também responderam que realizaram algum tipo de consulta online, sendo que 28\% procuraram por informações referentes a viagens e acomodações, um índice baixo se comparado aos 57\% que responderam ter buscado por informações sobre produtos e serviços. O acesso pelo meio digital tende a aumentar quando o foco é a população da Geração Z, sendo a geração que tende a possuir uma maior facilidade com a tecnologia \cite{sfodera2022technology}.
 
-\end{comment}
+Quando surge o interesse em realizar viagens, sites como Booking.com, Tripadvisor e AirBnb, são algumas das referências em relação à reserva de hospedagem em hotel~\citeonline{best2022HostSites}. É feita uma busca por informações disponibilizadas por pessoas que já frequentaram os locais, sendo que cada usuário da plataforma preenche as avaliações conforme o modelo disponível, partindo de uma avaliação objetiva dividida por categorias, em que o usuário é questionado por área de interesse de modo a atribuir um valor numérico como nota para aquela experiência. Em muitos casos, também há um bloco de texto disponível para relatar a experiência em sua estadia. As plataformas citadas costumam ter, além das avaliações dos usuários, informações próprias, tais como preços por diárias e distâncias de atrações.
 
-Com os avanços da tecnologia, o acesso à informação tem sido cada vez mais facilitado entre a população geral. Antes, as fontes de informações mais frequentes eram o conhecimento de prévio de indivíduos mais experientes ou conteúdos impressos \cite{jayathilake2021critical}. Uma pesquisa feita pela \citeonline{cetic2019pesquisa} indica que 3 entre cada 4 brasileiros possuem acesso à internet e esses entrevistados também responderam que realizaram algum tipo de consulta online, onde 28\% procurou por informações referentes a viagens e acomodações, um índice baixo se comparado aos 57\% que respondeu ter buscado por informações sobre produtos e serviços, esse acesso pelo meio digital tende a ser aumentar quando o foco é a população da Geração Z, sendo a geração que tende a possuir uma maior facilidade com a tecnologia \cite{sfodera2022technology}.
+As informações disponíveis nessas plataformas costumam direcionar o usuário e o auxilia em sua tomada de decisão. Avaliações online são a segunda fonte mais confiável de informações, logo atrás das recomendações de familiares e amigos~\cite{chatterjee2020drivers}. Porém, qual a qualidade dessas informações? Essas avaliações variam durante o tempo? Um hotel está tendo avaliações melhores agora do que no mesmo período no ano passado? Esse local está sendo avaliado negativamente por conta de algum evento atípico? Mesmo registrando uma avaliação ruim, o usuário que a submeteu possui outra avaliação registrada no passado?
+Além disso, as plataformas nem sempre expõem as informações de forma clara e objetiva, dificultando a tomada de decisões para o usuário, que possui o objetivo de escolher um local que contemple suas necessidades durante seu período de viagem. Afinal, o usuário não tem interesse em ser surpreendido por avaliações equivocadas ou que as informações mais recentes tenham sido ocultadas devido às tendências negativas por conta da organização por nível de popularidade nas plataformas.
 
-Quando surge o interesse em realizar viagens, sites como Booking.com, Tripadvisor e AirBnb, são alguns dos sites referencia em relação à reserva de hospedagem em hotel \citeonline{best2022HostSites} relacionadas a hospedagem. É feita uma busca de informações de pessoas que já frequentaram os locais, onde cada usuário da plataforma preenche as avaliações conforme o modelo disponível em cada plataforma, partindo de uma avaliação objetiva dividida por categorias, onde o usuário é questionado por área de interesse de modo a atribuir um valor número como nota para aquela experiência, em muitos casos, existindo um bloco de texto disponível para relatar a experiência em sua estadia local. As plataformas citadas costumam ter, além das avaliações dos usuários, informações próprias onde a plataforma preenche, incluindo informações de preços por diárias e distâncias de atrações.
-
-Essas informações costumam direcionar o internauta e o auxiliam em sua tomada de decisão, avaliações online são a segunda fonte mais confiável de informações, logo atrás das recomendações de familiares e amigos \cite{chatterjee2020drivers}, porém qual a validade dessas informações? como essas avaliações variam durante o tempo? esse hotel está tendo avaliações melhores agora do que no mesmo período no ano passado? esse local está sendo avaliado negativamente por conta de algum evento atípico? mesmo registrando uma avaliação ruim, o usuário que a submeteu possui outra avaliação registrada no passado?
-
-Contudo, as plataformas nem sempre expõem as informações claras e objetivas, dificultando a tomada de decisões para o internauta, que possui o objetivo de escolher um local que contemple suas necessidades durante seu período de viagem, afinal, o internauta não tem interesse em ser surpreendido que as avaliações dispostas estavam equivocadas e as informações mais recentes tenham sido ocultadas devido às tendências negativas por conta da organização por nível de popularidade nas plataformas.
-
-Atualmente o Google possui uma ferramenta de busca muito popular, presente em diversos aparelhos celulares, e a frase "restaurantes próximos a mim" é a frase mais utilizada para busca de locais nos últimos cinco anos \cite{li20213}, ela também dispõe de uma funcionalidade de avaliação de locais \cite[Google Maps]{googleMaps2022Blog}, conforme descrito no próprio blog deles:
+Atualmente, o Google possui uma ferramenta de busca muito popular, presente nos mais diversos aparelhos celulares, e a frase "restaurantes próximos a mim" é a frase mais utilizada para busca de locais nos últimos cinco anos~\cite{li20213}. No Google Maps também há uma funcionalidade de avaliação de locais~\cite{googleMaps2022Blog}, conforme descrito no próprio blog deles:
 
 \begin{quote}
     Para quem quer conhecer lugares novos, as avaliações deixadas por usuários do Google são uma rica fonte de conhecimento e informações locais. Elas ajudam a encontrar estabelecimentos e empresas que se encaixam no gosto de cada um — seja uma padaria com o melhor bolo de laranja sem glúten da cidade ou um restaurante de bairro com deliciosa música ao vivo.
 \end{quote}
 
-As avaliações do Google Maps podem ser escritas por qualquer usuário do Google Maps, o que pode ser um ponto negativo se for considerado que algumas das plataformas supracitadas exigem que o internauta necessariamente tenha se hospedado no hotel que deseja avaliar.
-
-\begin{comment}
-O presente relatório está estruturado da seguinte forma: o capítulo~\ref{cap:justificativa} apresenta… o capítulo~\ref{cap:fund_teorica} ... O capítulo~\ref{cap:metodologia} ..., o capítulo~\ref{cap:resultados} ... O capítulo~\ref{cap:conclusao}
-
-Demonstração de citação: o software de análise foi desenvolvido na linguagem Python~\cite{van1995python}, usando as bibliotecas Pandas~\cite{mckinney2010data} e Scikit-learn~\cite{scikit-learn}.
-\end{comment}
+As avaliações do Google Maps podem ser escritas por qualquer usuário da ferramenta, o que pode ser um ponto negativo se for considerado que algumas das plataformas supracitadas exigem que o internauta necessariamente tenha se hospedado no hotel que deseja avaliar.
 
 \section{Justificativa}
 
-Vivemos em um mundo com muitas informações disponíveis e que são de fácil acesso, porém esta cada vez mais difícil interpretar e filtrar as informações que irão agregar maior conhecimento de modo a enriquecê-lo sobre um determinado assunto.
+Vivemos em um mundo com muitas informações disponíveis e que são de fácil acesso. Porém, está cada vez mais difícil interpretar e filtrar as informações que irão agregar maior conhecimento de modo a enriquecê-lo sobre um determinado assunto.
 
-No cenário em que procuramos informações sobre possíveis estadias é importante saber selecionar as avaliações com as informações mais próximas da realidade atual do estabelecimento, queremos diminuir o viés intrínseco contido individualmente nas avaliações de modo a obter a informação necessária para conseguir selecionar uma estadia que irá fornecer o maior valor para o internauta.
+No cenário em que procuramos informações sobre possíveis estadias é importante saber selecionar as avaliações online com as informações mais próximas da realidade atual do estabelecimento. Neste projeto, queremos diminuir o viés intrínseco contido individualmente nas avaliações de modo a obter a informação necessária para conseguir selecionar uma estadia que irá fornecer o maior valor para o usuário final.
 
 \section{Estrutura da Monografia}
 
-O trabalho está dividido contendo o capítulo~\ref{cap:objetivos} que apresentará o objetivo geral e os objetivos específicos, no capítulo~\ref{cap:metodologia} apresentamos informações sobre a metodologia utilizada e as ferramentas que serão utilizadas na análise.
+A monografia está organizada da seguinte maneira: no Capítulo~\ref{cap:objetivos} serão apresentados o objetivo geral e os objetivos específicos e no Capítulo~\ref{cap:metodologia} serão apresentadas informações sobre a metodologia, destacando as ferramentas que serão utilizadas na análise.
