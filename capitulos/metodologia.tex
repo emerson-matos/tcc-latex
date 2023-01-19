@@ -3,6 +3,7 @@
 
 \section{Conjunto de Dados}
 
+\subsection{Coleta de dados}
 Será utilizada como fonte de dados as avaliações disponíveis online no idioma português brasileiro na plataforma do Google Maps.
 
 A lista de hotéis será obtida através da \emph{Google Places API} buscando por região. A consulta a API terá a função de fornecer uma lista de locais com suas respectivas informações simplificadas, como entrada recebe o texto que será utilizado para realizar a busca.
@@ -13,13 +14,15 @@ A lista de hotéis será obtida pelas regiões das principais atrações do Bras
 
 Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Serão consideradas apenas as avaliações que possuírem texto, e os dados obtidos serão exportados para um arquivo do tipo CSV.
 
-\section{Pré-processamento dos Dados}
+\subsection{Pré-processamento dos Dados}
 
 Nessa etapa utilizaremos o BERT (\emph{Bidirectional Encoder Representations from Transformers}), sendo este um modelo de representação de linguagem desenvolvido por pesquisadores do Google e que teve seu código aberto em 2018~\cite{hugoZanini2021mediu}. O texto será tokenizado utilizando a biblioteca e um modelo pré treinado denominado "BERTimbau Base"~\cite{souza2020bertimbau}.
 
 Será realizado também o emparelhamento de Adjetivo-Substantivo visando identificar o sentimento por tópicos contidos na avaliação analisada. Para isso será utilizada a biblioteca spaCy~\cite{montani2022spacy}. 
 
-\section{Análise de Sentimentos}
+\section{Análise dos dados}
+
+\subsection{Análise de Sentimentos}
 
 Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificação da seguinte forma:
 \begin{itemize}
@@ -28,42 +31,6 @@ Com o modelo treinado e os dados prontos para serem classificados, o modelo irá
     \item Uma classificação para cada tópico identificado.
 \end{itemize}
 
-\section{Análise Temporal dos Dados}
+\subsection{Análise Temporal dos Dados}
 
-Após a análise de sentimentos, utilizaremos os resultados agrupados por períodos de modo a conseguir visualizar em modo gráfico as avaliações divididas conforme explicitado na seção anterior para um grupo de hotéis.  
-
-\section{Cronograma}
-
-Inicialmente, será criado um corpus para análise com conteúdo suficiente para obter variação significativa nos sentimentos com o avanço do tempo, para ser possível identificar visualmente essas variações por hotel, tópico e por região.
-
-Após essa etapa será necessário realizar o tratamento dos dados e o treinamento do modelo BERT para realizar a classificação do corpus.
-
-Com o treinamento concluído, espera-se realizar o emparelhamento de adjetivo-substantivo e a avaliação de sentimento deles e de todo o corpus.
-
-Com os resultados em mãos, será realizada um agrupamento por região e hotéis, visando mostrar de forma gráfica como essas avaliações têm variado temporalmente.
-
-De forma resumida, o seguinte cronograma de atividades deverá ser considerado:
-
-\begin{table}[H]
-\centering
-{\footnotesize
-\doublespacing
-\begin{tabular}{|p{6.1cm}|l|l|l|l|l|l|l|l|l|}
-\hline
-\multirow{}{}{ATIVIDADES}
-& \multicolumn{4}{c|}{PGC II} & \multicolumn{5}{c|}{PGC III} \\ \cline{2-10}
-& Set  & Out  & Nov  & Dez & Jan & Fev & Mar & Abr & Mai \\ \hline
-1. Conjunto de Dados                   & X  & X &  &  &   &   &   &  &       \\ \hline
-2. Pré-processamento dos Dados                         &   & X  & X  &   &  &  &  &    &         \\ \hline
-3. Análise de Sentimentos               
- &  &   & X & X & X & X &  &  &  \\ 
- \hline
-4. Análise Temporal dos Dados                                   &     &     &     &     & X   & X   & X    &  X  &       \\ \hline
-5. Escrita de Relatórios                                    &     &     &  X  &  X  &    &    & X   & X   &      \\ \hline
-6. Defesa                                    &     &     &    &    &    &    &    &    & X     \\ \hline
-
-\end{tabular}}
-\caption{Cronograma de Atividades}
-\label{tab:cronograma}
-\end{table}
-
+Após a análise de sentimentos, utilizaremos os resultados agrupados por períodos de modo a conseguir visualizar em modo gráfico as avaliações divididas conforme explicitado na seção anterior para um grupo de hotéis.

@@ -1,15 +1,36 @@
-\chapter{Objetivos}
+\chapter{Cronograma}
+\label{cap:Cronograma}
 
-\label{cap:objetivos}
+Inicialmente, será criado um corpus para análise com conteúdo suficiente para obter variação significativa nos sentimentos com o avanço do tempo, para ser possível identificar visualmente essas variações por hotel, tópico e por região.
 
-\section{Objetivo Geral}
+Após essa etapa será necessário realizar o tratamento dos dados e o treinamento do modelo BERT para realizar a classificação do corpus.
 
-O objetivo geral deste projeto é implementar um método para análise de sentimentos temporal de avaliações online de hotéis disponíveis no Google Maps. Com isso, espera-se facilitar o entendimento dessas avaliações para os usuários que estiverem procurando informações de hospedagem, explicitando como as avaliações variam ao longo do tempo.
+Com o treinamento concluído, espera-se realizar o emparelhamento de adjetivo-substantivo e a avaliação de sentimento deles e de todo o corpus.
 
-\section{Objetivos Específicos}
+Com os resultados em mãos, será realizada um agrupamento por região e hotéis, visando mostrar de forma gráfica como essas avaliações têm variado temporalmente.
 
-\begin{itemize}
-    \item Criar um corpus com as avaliações online de hotéis disponíveis no Google Maps.
-    \item Interpretar o sentimento dessas avaliações individualmente.
-    \item Analisar a variação do sentimento das avaliações dos hotéis ao longo do tempo.
-\end{itemize}
+De forma resumida, o seguinte cronograma de atividades deverá ser considerado:
+
+\begin{table}[H]
+\centering
+{\footnotesize
+\doublespacing
+\begin{tabular}{|p{6.1cm}|l|l|l|l|l|l|l|l|l|}
+\hline
+\multirow{}{}{ATIVIDADES}
+& \multicolumn{4}{c|}{PGC II} & \multicolumn{5}{c|}{PGC III} \\ \cline{2-10}
+& Set  & Out  & Nov  & Dez & Jan & Fev & Mar & Abr & Mai \\ \hline
+1. Conjunto de Dados                   & X  & X &  &  &   &   &   &  &       \\ \hline
+2. Pré-processamento dos Dados                         &   & X  & X  &   &  &  &  &    &         \\ \hline
+3. Análise de Sentimentos               
+ &  &   & X & X & X & X &  &  &  \\ 
+ \hline
+4. Análise Temporal dos Dados                                   &     &     &     &     & X   & X   & X    &  X  &       \\ \hline
+5. Escrita de Relatórios                                    &     &     &  X  &  X  &    &    & X   & X   &      \\ \hline
+6. Defesa                                    &     &     &    &    &    &    &    &    & X     \\ \hline
+
+\end{tabular}}
+\caption{Cronograma de Atividades}
+\label{tab:cronograma}
+\end{table}
+
