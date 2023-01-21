@@ -3,7 +3,35 @@
 
 \section{Conjunto de Dados}
 
+\subsection{Escolha do conjunto}
+
+O conjunto de dados foi selecionado utilizando informações disponiveis no Google Maps e considerando hotéis em todo o território brasileiro.
+
+Inicialmente foi realizada busca por hotéis no territorio buscando por estado, utilizando o serviço exposto do Google Maps, utilizando a biblioteca escrita em java, \citeonline{javaGoogleMapsService2023} que está disponivel publicamente no repositório no \citeonline{github2023}.
+
+Para identificar os diversos hotéis o primeiro passo foi escrever um script kotlin \citeonline{scriptKotlinBuscarHoteis} que utiliza a biblioteca citada anteriormente para realizar a busca da lista de hotéis localizados nos estados brasileiros e armazenar os dados para posterior consulta, o objetivo nesta etapa é de simplesmente obter as informações comuns dos hotéis que estão disponiveis para consulta, como nome, classificação na plataforma, endereço, quantidade de avaliações, entre outros. Dessa foram obtidos 815 hotéis distribuidos em todo o territorio nacional, desde hotéis de grandes redes e com disponibilidade de reservas do tipo \emph{All Inclusive} até hotéis pouco conhecidos com menos de 10 avaliações na plataforma.
+
+% TODO adicionar analise da lista de hoteis graficos ou meta informações
+
+Por conta da grande variedade de hotéis o objetivo foi restringir a analise a um grupo de 70 dentre os disponiveis, distribuidos da seguinte forma:
+
+\begin{itemize}
+  \item 10 com nota menor ou igual à 4, independente da sua classificação
+  \item 10 com mais de 2000 avaliações
+  \item 10 com nota igual ou superior a 4,8 e com mais de 2000 avaliações
+  \item 20 com notas próximas a 4 e com mais de 2000 avaliações
+  \item 20 outros com pacote \emph{all inclusive}
+\end
+
+% A lista de hotéis será obtida pelas regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma.
+
+
 \subsection{Coleta de dados}
+
+Após definida a lista de hotéis agora passamos para a etapa de coleta das avaliações deles.
+
+Já existe um script escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do Google Maps, utilizando selenium, obtem um determinado número de avaliações, o script porém estava defasado e pendente de atualização, e possue um fork pouco \citeonline{ryuuzakescrapper2023} mais atualizado porém ainda não funcional.
+
 Será utilizada como fonte de dados as avaliações disponíveis online no idioma português brasileiro na plataforma do Google Maps.
 
 A lista de hotéis será obtida através da \emph{Google Places API} buscando por região. A consulta a API terá a função de fornecer uma lista de locais com suas respectivas informações simplificadas, como entrada recebe o texto que será utilizado para realizar a busca.
