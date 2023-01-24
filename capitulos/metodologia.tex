@@ -1,19 +1,64 @@
 \chapter{Metodologia}
 \label{cap:metodologia}
 
+Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{subsec:escolha_conjunto} descreve o processo de escolha dos dados; a seção \ref{subsec:coleta} descreve como foi realizada a coleta dos dados.
+% ; a seção \ref{subsec:pre_processamento} descreve // TODO; a seção \ref{subsec:analise_sentimentos} descreve // TODO; a seção \ref{subsec:analise_temporal} descreve // TODO
+
+
 \section{Conjunto de Dados}
 
+
 \subsection{Escolha do conjunto}
+\label{subsec:escolha_conjunto}
 
 O conjunto de dados foi selecionado utilizando informações disponiveis no Google Maps e considerando hotéis em todo o território brasileiro.
 
 Inicialmente foi realizada busca por hotéis no territorio buscando por estado, utilizando o serviço exposto do Google Maps, utilizando a biblioteca escrita em java, \citeonline{javaGoogleMapsService2022} que está disponivel publicamente no repositório no \citeonline{github2023}.
 
-Para identificar os diversos hotéis o primeiro passo foi escrever um script kotlin \citeonline{scriptKotlinBuscarHoteis} que utiliza a biblioteca citada anteriormente para realizar a busca da lista de hotéis localizados nos estados brasileiros e armazenar os dados para posterior consulta, o objetivo nesta etapa é de simplesmente obter as informações comuns dos hotéis que estão disponiveis para consulta, como nome, classificação na plataforma, endereço, quantidade de avaliações, entre outros. Dessa foram obtidos 815 hotéis distribuidos em todo o territorio nacional, desde hotéis de grandes redes e com disponibilidade de reservas do tipo \emph{All Inclusive} até hotéis pouco conhecidos com menos de 10 avaliações na plataforma.
+Para identificar os diversos hotéis o primeiro passo foi escrever um script kotlin \citeonline{scriptKotlinBuscarHoteis} que utiliza a biblioteca citada anteriormente para realizar a busca da lista de hotéis localizados nos estados brasileiros e armazenar os dados para posterior consulta.
+
+O objetivo nesta etapa é de simplesmente identificar e obter as informações comuns de hotéis que estão disponiveis para consulta no Google Maps. Informações como nome do hotéis, classificação na plataforma, endereço de localização, quantidade de avaliações e outras são obtidas nessa etapa.
+
+
+\lstinputlisting[language=java,caption= Interface Google Maps]{extras/code/googlemaps-place-details.kt}
+
+\lstinputlisting[language=java,caption= Interface Google Maps]{extras/code/googlemaps-place-search.kt}
+
+Foi possível identificar 815 hotéis distribuidos em todo o territorio nacional, desde hotéis de grandes redes e com disponibilidade de reservas do tipo \emph{All Inclusive} até hotéis pouco conhecidos com menos de 10 avaliações na plataforma.
+
+% Estados com a maior quantidade de hoteis
+% \begin{itemize}
+%    \item RJ: 71
+%    \item SP: 67
+%    \item PA: 62
+%    \item MG: 61
+%    \item RR/PI/MS: 60
+% \end{itemize}
+
+% Estados com a maior quantidade de reviews
+
+% \begin{itemize}
+% 	\item RJ: 231947 (4,22 com 71 hotéis)
+% 	\item SP: 169586 (4,21 com 67 hotéis)
+% 	\item BA: 107716 (4,34 com 22 hotéis)
+% 	\item MG: 107067 (4,35 com 61 hotéis)
+% 	\item PB: 68188 (4,36 com 54 hotéis)
+% \end{itemize}
+
+
+% Média da classificação dos hoéis por Estado
+
+% \begin{itemize}
+% 	\item RS: 4,70 com 9493 avaliações no total (2 hotéis)
+% 	\item AL: 4,64 com 33345 avaliações no total (8 hotéis)
+% 	\item AC: 4,60 com 1696 avaliações no total (1 hotel)
+% 	\item AM: 4,53 com 45509 avaliações no total (46 hotéis)
+% 	\item SC: 4,50 com 32621 avaliações no total (7 hotéis)
+% \end{itemize}
 
 % TODO adicionar analise da lista de hoteis graficos ou meta informações
 
-Por conta da grande variedade de hotéis o objetivo foi restringir a analise a um grupo de 70 dentre os disponiveis, distribuidos da seguinte forma:
+Por conta da grande variedade de hotéis o objetivo foi restringir a analise a um grupo de 70 hotéis dentre os disponiveis, distribuidos da seguinte forma:
 
 \begin{itemize}
   \item 10 com nota menor ou igual à 4, independente da sua classificação
@@ -27,13 +72,17 @@ Por conta da grande variedade de hotéis o objetivo foi restringir a analise a u
 % A lista de hotéis será obtida pelas regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma.
 
 
-\subsection{Coleta de dados}
+\subsection{Coleta}
+\label{subsec:coleta}
 
-Após definida a lista de hotéis agora passamos para a etapa de coleta das avaliações deles.
+Após definida a lista de hotéis seguimos para a de coleta das avaliações.
 
-Já existe um script escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do Google Maps, utilizando selenium, obtem um determinado número de avaliações, o script porém estava defasado e pendente de atualização, e possue um fork pouco \citeonline{ryuuzakescrapper2023} mais atualizado porém ainda não funcional.
+Já existe um script escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do Google Maps, utilizando selenium, obtem um determinado número de avaliações, o script porém estava defasado e pendente de atualização, um dos \emph{forks} existentes \citeonline{ryuuzakescrapper2023} estava também pouco mais atualizado porém ainda não funcional.
 
-Será utilizada como fonte de dados as avaliações disponíveis online no idioma português brasileiro na plataforma do Google Maps.
+Utilizando esses projetos como base escrevi então um script para realizar o trabalho de obter as avaliações dos hóteis, o script era escrito em python e as suas principais dependencias eram de \cite{selenium2023}, \citeonline{numpy2023}, \citeonline{pandas2023} e \citeonline{beautifulsoup2023}. Utilizando \citeonline{docker2023} para executar o script era possivel rodar o script de forma concorrente, utilizan psdo selenium executando diversos drivers de chrome, porém a performance não era muito agradavel, uma execução demorava aproximadamente 3h para executar com metade para metade dos hotéis e o sucesso da execução do script dependia diretamente da imutabilidade da interface do Google Maps, por conta da forma com que o script estava escrito e da estrutura das páginas do Google Maps.
+
+O script tinha uma dependencia muito forte com tags HTML e classes CSS da página dos locais no Google Maps
+Seráa utilizada como fonte de dados as avaliações disponíveis online no idioma português brasileiro na plataforma do Google Maps.
 
 A lista de hotéis será obtida através da \emph{Google Places API} buscando por região. A consulta a API terá a função de fornecer uma lista de locais com suas respectivas informações simplificadas, como entrada recebe o texto que será utilizado para realizar a busca.
 
@@ -43,7 +92,10 @@ A lista de hotéis será obtida pelas regiões das principais atrações do Bras
 
 Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Serão consideradas apenas as avaliações que possuírem texto, e os dados obtidos serão exportados para um arquivo do tipo CSV.
 
-\subsection{Pré-processamento dos Dados}
+
+\subsection{Pré-processamento}
+\label{subsec:pre_processamento}
+
 
 Nessa etapa utilizaremos o BERT (\emph{Bidirectional Encoder Representations from Transformers}), sendo este um modelo de representação de linguagem desenvolvido por pesquisadores do Google e que teve seu código aberto em 2018~\cite{hugoZanini2021mediu}. O texto será tokenizado utilizando a biblioteca e um modelo pré treinado denominado "BERTimbau Base"~\cite{souza2020bertimbau}.
 
@@ -52,6 +104,7 @@ Será realizado também o emparelhamento de Adjetivo-Substantivo visando identif
 \section{Análise dos dados}
 
 \subsection{Análise de Sentimentos}
+\label{subsec:analise_sentimentos}
 
 Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificação da seguinte forma:
 \begin{itemize}
@@ -60,6 +113,6 @@ Com o modelo treinado e os dados prontos para serem classificados, o modelo irá
     \item Uma classificação para cada tópico identificado.
 \end{itemize}
 
-\subsection{Análise Temporal dos Dados}
-
+\subsection{Análise Temporal}
+\label{subsec:analise_temporal}
 Após a análise de sentimentos, utilizaremos os resultados agrupados por períodos de modo a conseguir visualizar em modo gráfico as avaliações divididas conforme explicitado na seção anterior para um grupo de hotéis.
