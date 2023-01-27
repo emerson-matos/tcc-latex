@@ -1,28 +1,29 @@
 \chapter{Metodologia}
 \label{cap:metodologia}
 
-Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{subsec:escolha_conjunto} descreve o processo de escolha dos dados; a seção \ref{subsec:coleta} descreve como foi realizada a coleta dos dados.
+Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto} descreve o processo de escolha dos dados; a seção \ref{cap:metodologia:sec:conjunto_dados:sec:coleta} descreve como foi realizada a coleta dos dados.
 % ; a seção \ref{subsec:pre_processamento} descreve // TODO; a seção \ref{subsec:analise_sentimentos} descreve // TODO; a seção \ref{subsec:analise_temporal} descreve // TODO
 
 
 \section{Conjunto de Dados}
-
+\label{cap:metodologia:sec:conjunto_dados}
 
 \subsection{Escolha do conjunto}
-\label{subsec:escolha_conjunto}
+\label{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto}
 
-O conjunto de dados foi selecionado utilizando informações disponíveis no Google Maps e considerando hotéis em todo o território brasileiro.
+O conjunto de dados foi selecionado considerando os hoteis com informações disponíveis no Google Maps e considerando todo o território brasileiro.
 
-Inicialmente foi realizada busca por hotéis no território buscando por estado, utilizando o serviço exposto do Google Maps, utilizando a biblioteca escrita em java, \citeonline{javaGoogleMapsService2022} que está disponível publicamente no repositório no \citeonline{github2023}.
+A primera etapa consiste em identificar os hotéis distribuidos no território brasileiro agrupados por estado, por meio do serviço exposto do Google Maps, a iteração foi realizada utilizando a biblioteca escrita em java, \citeonline{javaGoogleMapsService2022} que está disponível publicamente no repositório no \citeonline{github2023}.
 
-Para identificar os diversos hotéis, o primeiro passo foi escrever um \emph{script} Kotlin \citeonline{scriptKotlinBuscarHoteis} que utiliza a biblioteca citada anteriormente para realizar a busca da lista de hotéis localizados nos estados brasileiros e armazenar os dados para posterior consulta.
+Para identificar os diversos hotéis, o primeiro passo foi escrever um \emph{script} Kotlin \citeonline{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e armazenando os dados obtidos.
 
-O objetivo nesta etapa é de simplesmente identificar e obter as informações comuns de hotéis que estão disponíveis para consulta no Google Maps. Informações como nome dos hotéis, classificação na plataforma, endereço de localização, quantidade de avaliações e outras são obtidas nessa etapa.
+O objetivo nesta etapa é identificar e obter informações dos hotéis que estão disponíveis para consulta, e para essa tarefa utilizaremos a interface de \emph{Text Search Query}, informações como o nome do hotel, localização e identificador do hotel na plataforma são disponibilizadas por essa interface. Nessa interface conseguimos realizar a busca passando informações que servirão para polarizar a busca, como idioma de interesse, coordenadas e diâmetro limite para ser considerado e dessa forma obter uma busca com viés dos parametros fornecidos \cite{placesSearchText2023}.
 
+\lstinputlisting[language=java,caption=Interface Google Maps para realizar busca na plataforma]{extras/code/googlemaps-place-search.kt}
+
+Após obter a lista com as informações basicas o segundo momento é obter informações mais detalhadas do estabelecimento, para isso utilizaremos a interface de \emph{Place Details} para poder obter informações classificação na plataforma, dentre as informações expostas por esta interface possuimos algumas que são de nosso interesse como por exemplo número de avaliações disponiveis, classificação atual na plataforma e quantidade de avaliações, entre outras são obtidas nessa etapa.
 
 \lstinputlisting[language=java,caption= Interface Google Maps]{extras/code/googlemaps-place-details.kt}
-
-\lstinputlisting[language=java,caption= Interface Google Maps]{extras/code/googlemaps-place-search.kt}
 
 Foi possível identificar 815 hotéis distribuídos em todo o território nacional, desde hotéis de grandes redes e com disponibilidade de reservas do tipo \emph{All Inclusive} até hotéis pouco conhecidos com menos de 10 avaliações na plataforma.
 
@@ -72,8 +73,8 @@ Por conta da grande variedade de hotéis, o objetivo foi restringir a análise a
 % A lista de hotéis será obtida pelas regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma.
 
 
-\subsection{Coleta}
-\label{subsec:coleta}
+\subsection{Coleta das avaliações}
+\label{cap:metodologia:sec:conjunto_dados:sec:coleta}
 
 Após definida a lista de hotéis seguimos para a de coleta das avaliações.
 
