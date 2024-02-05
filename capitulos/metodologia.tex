@@ -11,17 +11,17 @@ Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{ca
 \subsection{Escolha do conjunto}
 \label{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto}
 
-O conjunto de dados foi selecionado considerando os hoteis com informações disponíveis no Google Maps e considerando todo o território brasileiro.
+O conjunto de dados foi selecionado considerando os hotéis com informações disponíveis no Google Maps e considerando todo o território brasileiro.
 
-A primera etapa consiste em identificar os hotéis distribuidos no território brasileiro agrupados por estado, por meio do serviço exposto do Google Maps, a iteração foi realizada utilizando a biblioteca escrita em java, \citeonline{javaGoogleMapsService2022} que está disponível publicamente no repositório no \citeonline{github2023}.
+A primeira etapa consiste em identificar os hotéis distribuídos no território brasileiro agrupados por estado, por meio do serviço exposto do Google Maps, a iteração foi realizada utilizando a biblioteca escrita em java, \citeonline{javaGoogleMapsService2022} que está disponível publicamente no repositório no \citeonline{github2023}.
 
 Para identificar os diversos hotéis, o primeiro passo foi escrever um \emph{script} Kotlin \citeonline{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e armazenando os dados obtidos.
 
-O objetivo nesta etapa é identificar e obter informações dos hotéis que estão disponíveis para consulta, e para essa tarefa utilizaremos a interface de \emph{Text Search Query}, informações como o nome do hotel, localização e identificador do hotel na plataforma são disponibilizadas por essa interface. Nessa interface conseguimos realizar a busca passando informações que servirão para polarizar a busca, como idioma de interesse, coordenadas e diâmetro limite para ser considerado e dessa forma obter uma busca com viés dos parametros fornecidos \cite{placesSearchText2023}.
+O objetivo nesta etapa é identificar e obter informações dos hotéis que estão disponíveis para consulta, e para essa tarefa utilizaremos a interface de \emph{Text Search Query}, informações como o nome do hotel, localização e identificador do hotel na plataforma são disponibilizadas por essa interface. Nessa interface conseguimos realizar a busca passando informações que servirão para polarizar a busca, como idioma de interesse, coordenadas e diâmetro limite para ser considerado e dessa forma obter uma busca com viés dos parâmetros fornecidos \cite{placesSearchText2023}.
 
 \lstinputlisting[language=java,caption=Interface Google Maps para realizar busca na plataforma]{extras/code/googlemaps-place-search.kt}
 
-Após obter a lista com as informações basicas o segundo momento é obter informações mais detalhadas do estabelecimento, para isso utilizaremos a interface de \emph{Place Details} para poder obter informações classificação na plataforma, dentre as informações expostas por esta interface possuimos algumas que são de nosso interesse como por exemplo número de avaliações disponiveis, classificação atual na plataforma e quantidade de avaliações, entre outras são obtidas nessa etapa.
+Após obter a lista com as informações básicas o segundo momento é obter informações mais detalhadas do estabelecimento, para isso utilizaremos a interface de \emph{Place Details} para poder obter essas informações na plataforma, dentre as informações expostas por esta interface possuímos algumas que são de nosso interesse como, por exemplo, número de avaliações disponíveis, classificação atual na plataforma e quantidade de avaliações, entre outras são obtidas nessa etapa.
 
 \lstinputlisting[language=java,caption= Interface Google Maps]{extras/code/googlemaps-place-details.kt}
 
