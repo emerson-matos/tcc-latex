@@ -11,89 +11,85 @@ Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{ca
 \subsection{Escolha do conjunto}
 \label{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto}
 
-O conjunto de dados foi selecionado considerando os hotéis com informações disponíveis no Google Maps e considerando todo o território brasileiro.
+O conjunto de dados foi selecionado considerando os hotéis com informações disponíveis no Google Maps e em todo o território brasileiro.
 
-A primeira etapa consiste em identificar os hotéis distribuídos no território brasileiro agrupados por estado, por meio do serviço exposto do Google Maps, a iteração foi realizada utilizando a biblioteca escrita em java, \citeonline{javaGoogleMapsService2022} que está disponível publicamente no repositório no \citeonline{github2023}.
+A primeira etapa consiste em identificar os hotéis distribuídos no território brasileiro por estado, por meio da utilização do serviço(https://developers.google.com/maps/apis-by-platform?hl=pt-br#web_service_apis) exposto do Google Maps, a iteração foi realizada utilizando a biblioteca oficial do Google Maps escrita em java, que está disponível publicamente no repositório \citeonline{javaGoogleMapsService2022}.
 
-Para identificar os diversos hotéis, o primeiro passo foi escrever um \emph{script} Kotlin \citeonline{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e armazenando os dados obtidos.
+Para identificar os diversos hotéis, o primeiro passo foi escrever um \emph{script} Kotlin \citeonline{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e persistindo os dados obtidos.
 
-O objetivo nesta etapa é identificar e obter informações dos hotéis que estão disponíveis para consulta, e para essa tarefa utilizaremos a interface de \emph{Text Search Query}, informações como o nome do hotel, localização e identificador do hotel na plataforma são disponibilizadas por essa interface. Nessa interface conseguimos realizar a busca passando informações que servirão para polarizar a busca, como idioma de interesse, coordenadas e diâmetro limite para ser considerado e dessa forma obter uma busca com viés dos parâmetros fornecidos \cite{placesSearchText2023}.
+O objetivo nesta etapa é identificar e obter informações do maior número possivel de hotéis que estão disponíveis para consulta na plataforma para posteriormente em posse de informações especificas que serão discutidas posteriormente, de cada hotel realizar escolha dos hotéis candidatos para o estudo.
+
+Para essa tarefa utilizaremos a interface de \emph{Text Search Query}, informações como o nome do hotel, localização e identificador do hotel na plataforma são disponibilizadas por essa interface. Nessa interface conseguimos realizar a busca passando informações que servirão para limitar a busca, como idioma de interesse, coordenadas e diâmetro limite para ser considerado e dessa forma obter uma busca com viés dos parâmetros fornecidos \cite{placesSearchText2023}.
 
 \lstinputlisting[language=java,caption=Interface Google Maps para realizar busca na plataforma]{extras/code/googlemaps-place-search.kt}
 
-Após obter a lista com as informações básicas o segundo momento é obter informações mais detalhadas do estabelecimento, para isso utilizaremos a interface de \emph{Place Details} para poder obter essas informações na plataforma, dentre as informações expostas por esta interface possuímos algumas que são de nosso interesse como, por exemplo, número de avaliações disponíveis, classificação atual na plataforma e quantidade de avaliações, entre outras são obtidas nessa etapa.
+O texto utilizado para a busca dos hotéis é definida no seguinte modelo “frase + região”. Por exemplo, na frase “hotéis próximos ao Cristo Redentor”, a API deverá retornar informações básicas de hotéis cadastrados na plataforma próximos à região do Cristo Redentor.
+
+Após obter a lista com as informações básicas o segundo momento é obter informações mais detalhadas do estabelecimento, para isso utilizaremos a interface de \emph{Place Details} para poder obter essas informações na plataforma, dentre as informações expostas por esta interface possuímos algumas que são de nosso interesse como, por exemplo, número de avaliações disponíveis, classificação atual na plataforma e quantidade de avaliações, essas serão informações importantes no momento de escolha dos hoteis que serão utilizados no estudo, essas e outras são obtidas nessa etapa.
 
 \lstinputlisting[language=java,caption= Interface Google Maps]{extras/code/googlemaps-place-details.kt}
 
 Foi possível identificar 815 hotéis distribuídos em todo o território nacional, desde hotéis de grandes redes e com disponibilidade de reservas do tipo \emph{All Inclusive} até hotéis pouco conhecidos com menos de 10 avaliações na plataforma.
 
-% Estados com a maior quantidade de hoteis
-% \begin{itemize}
-%    \item RJ: 71
-%    \item SP: 67
-%    \item PA: 62
-%    \item MG: 61
-%    \item RR/PI/MS: 60
-% \end{itemize}
+Dessa lista temos como destaque os seguintes números:
 
-% Estados com a maior quantidade de reviews
+Estados com a maior quantidade de hoteis
+\begin{itemize}
+   \item RJ: 71
+   \item SP: 67
+   \item PA: 62
+   \item MG: 61
+   \item RR/PI/MS: 60
+\end{itemize}
 
-% \begin{itemize}
-% 	\item RJ: 231947 (4,22 com 71 hotéis)
-% 	\item SP: 169586 (4,21 com 67 hotéis)
-% 	\item BA: 107716 (4,34 com 22 hotéis)
-% 	\item MG: 107067 (4,35 com 61 hotéis)
-% 	\item PB: 68188 (4,36 com 54 hotéis)
-% \end{itemize}
-
-
-% Média da classificação dos hoéis por Estado
-
-% \begin{itemize}
-% 	\item RS: 4,70 com 9493 avaliações no total (2 hotéis)
-% 	\item AL: 4,64 com 33345 avaliações no total (8 hotéis)
-% 	\item AC: 4,60 com 1696 avaliações no total (1 hotel)
-% 	\item AM: 4,53 com 45509 avaliações no total (46 hotéis)
-% 	\item SC: 4,50 com 32621 avaliações no total (7 hotéis)
-% \end{itemize}
-
-% TODO adicionar analise da lista de hoteis graficos ou meta informações
-
-Por conta da grande variedade de hotéis, o objetivo foi restringir a análise a um grupo de 70 hotéis dentre os disponíveis, distribuídos da seguinte forma:
+Estados com a maior quantidade de reviews
 
 \begin{itemize}
-  \item 10 com nota menor ou igual à 4, independente da sua classificação.
-  \item 10 com mais de 2000 avaliações.
-  \item 10 com nota igual ou superior a 4,8 e com mais de 2000 avaliações.
-  \item 20 com notas próximas a 4 e com mais de 2000 avaliações.
-  \item 20 outros com pacote \emph{All Inclusive}.
+	\item RJ: 231947 (4,22 com 71 hotéis)
+	\item SP: 169586 (4,21 com 67 hotéis)
+	\item BA: 107716 (4,34 com 22 hotéis)
+	\item MG: 107067 (4,35 com 61 hotéis)
+	\item PB: 68188 (4,36 com 54 hotéis)
 \end{itemize}
 
 
+Média da classificação dos hotéis por Estado
+
+\begin{itemize}
+	\item RS: 4,70 com 9493 avaliações no total (2 hotéis)
+	\item AL: 4,64 com 33345 avaliações no total (8 hotéis)
+	\item AC: 4,60 com 1696 avaliações no total (1 hotel)
+	\item AM: 4,53 com 45509 avaliações no total (46 hotéis)
+	\item SC: 4,50 com 32621 avaliações no total (7 hotéis)
+\end{itemize}
+
+% TODO adicionar analise da lista de hoteis graficos ou meta informações
+
+Por conta da grande variedade de hotéis, o criterio de escolha foi limitar a hotéis com disponibilidade de pacote All Inclusive e na região nordeste, com o primeiro criterio definido temos então uma lista com um grupo de 15 hotéis dentre os disponíveis após o filtro da região temos então 11.
 % A lista de hotéis será obtida pelas regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma.
 
+%% A lista de hotéis será obtida através da \emph{Google Places API} buscando por região. A consulta a API terá a função de fornecer uma lista de locais com suas respectivas informações simplificadas, como entrada recebe o texto que será utilizado para realizar a busca.
+
+Também foram adicionados manualmente a lista outros hotéis não foram listados nas consultas à API porém que estavam indicados na lista de regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma. 2 novos hoteis foram adicionados e atendiam os criterios já definidos e foram adicionados à nossa lista.
+
+Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Serão consideradas apenas as avaliações que possuírem texto, e os dados obtidos serão exportados para um arquivo do tipo CSV.
+
+A lista então foi composta de 13 hotéis todos localizados na região nordeste do brasil e com a disponibilidade de pacotes all inclusive no momento de consulta na plataforma do google maps, é valido notar que todos os hoteis da lista no momento da escolha possuiam uma avaliação na plataforma do google maps com nota superior a 4.20 e são todos hotéis de 4 ou 5 estrelas.
 
 \subsection{Coleta das avaliações}
 \label{cap:metodologia:sec:conjunto_dados:sec:coleta}
 
-Após definida a lista de hotéis seguimos para a de coleta das avaliações.
-
 Já existe um script escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do Google Maps, utilizando Selenium, obtém um determinado número de avaliações, o \emph{script} porém estava defasado e pendente de atualização, um dos \emph{forks} existentes \citeonline{ryuuzakescrapper2023} estava também pouco mais atualizado, porém ainda não funcional.
 
-Utilizando esses projetos como base escrevi então um script para realizar o trabalho de obter as avaliações dos hotéis, o script era escrito em Python e as suas principais dependências eram de \cite{selenium2023}, \citeonline{harris2020array}, \citeonline{jeffreback20226702671} e \citeonline{richardson2007beautiful}. Utilizando \citeonline{merkel2014docker} para executar o script era possível rodar o script de forma concorrente, utilizando Selenium executando diversos drivers do Google Chrome, porém o desempenho não era muito agradável, uma execução demorava aproximadamente 3h para executar com metade para metade dos hotéis e o sucesso da execução do script dependia diretamente da imutabilidade da interface do Google Maps, por conta da forma com que o script estava escrito e da estrutura das páginas do Google Maps.
+Utilizando esses projetos como base escrevi então um script para realizar o trabalho de obter as avaliações dos hotéis, o script era escrito em Python e as suas principais dependências eram de \cite{selenium2023}, \citeonline{harris2020array}, \citeonline{jeffreback20226702671} e \citeonline{richardson2007beautiful}. Utilizando \citeonline{merkel2014docker} para executar o script era possível rodar o script de forma concorrente, utilizando Selenium executando diversos drivers do Google Chrome, porém o desempenho do selenium para esse tipo de tarefa não é rápido e efeciente, a busca das avaliações para apenas um hotel demorava aproximadamente 3h para executar e o sucesso da execução do script com a utilização do selenium depende diretamente da imutabilidade da interface visual do Google Maps, o que torna esse formato não escalavel dado a velocidade com que a interface do Google Maps recebe atualizações. Durante a adaptação do script para conseguir extrair corretamente as avaliações foram realizadas 10 tentativas de execução, no periodo de 09/2022 à 11/2022, com periodicidade semanal, aproximadamente a cada duas semanas a interface visual do Google Maps mudava e o script precisava passar por nova atualização.
 
-O script tinha uma dependência muito forte com tags HTML e classes CSS da página dos locais no Google Maps ...
+O script tinha uma dependência muito forte com tags HTML e classes CSS da página dos locais no Google Maps, caracteriscas de um WebScrapper o que dificulta a sua manutenção e limita a sua capacidade de reutilização.
 
-% todo
+%todo
 Será utilizada como fonte de dados as avaliações disponíveis online no idioma português brasileiro na plataforma do Google Maps.
+% falar sobre a estrutura dos dados
+%
 
-A lista de hotéis será obtida através da \emph{Google Places API} buscando por região. A consulta a API terá a função de fornecer uma lista de locais com suas respectivas informações simplificadas, como entrada recebe o texto que será utilizado para realizar a busca.
-
-O texto utilizado para a busca dos hotéis é definida no seguinte modelo “frase + região”. Por exemplo, na frase “hotéis próximos ao Cristo Redentor”, a API deverá retornar informações básicas de hotéis cadastrados na plataforma próximos à região do Cristo Redentor.
-
-A lista de hotéis será obtida pelas regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma.
-
-Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Serão consideradas apenas as avaliações que possuírem texto, e os dados obtidos serão exportados para um arquivo do tipo CSV.
 
 
 \subsection{Pré-processamento}
@@ -109,12 +105,7 @@ Será realizado também o emparelhamento de Adjetivo-Substantivo visando identif
 \subsection{Análise de Sentimentos}
 \label{subsec:analise_sentimentos}
 
-Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificação da seguinte forma:
-\begin{itemize}
-    \item Uma classificação para o nosso documento, que aqui consideramos cada avaliação individualmente.
-    \item Uma classificação para sentença, que será cada frase da  avaliação.
-    \item Uma classificação para cada tópico identificado.
-\end{itemize}
+Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificação geral para documento, ou seja, cada avaliação individualmente recebera uma classificação do modelo, sendo ela positiva, neutra ou negativa.
 
 \subsection{Análise Temporal}
 \label{subsec:analise_temporal}
