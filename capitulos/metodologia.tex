@@ -4,7 +4,6 @@
 Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto} descreve o processo de escolha dos dados; a seção \ref{cap:metodologia:sec:conjunto_dados:sec:coleta} descreve como foi realizada a coleta dos dados.
 % ; a seção \ref{subsec:pre_processamento} descreve // TODO; a seção \ref{subsec:analise_sentimentos} descreve // TODO; a seção \ref{subsec:analise_temporal} descreve // TODO
 
-
 \section{Conjunto de Dados}
 \label{cap:metodologia:sec:conjunto_dados}
 
@@ -13,7 +12,8 @@ Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{ca
 
 O conjunto de dados foi selecionado considerando os hotéis com informações disponíveis no Google Maps e em todo o território brasileiro.
 
-A primeira etapa consiste em identificar os hotéis distribuídos no território brasileiro por estado, por meio da utilização do serviço(https://developers.google.com/maps/apis-by-platform?hl=pt-br#web_service_apis) exposto do Google Maps, a iteração foi realizada utilizando a biblioteca oficial do Google Maps escrita em java, que está disponível publicamente no repositório \citeonline{javaGoogleMapsService2022}.
+% https://developers.google.com/maps/apis-by-platform?hl=pt-br#web_service_apis
+A primeira etapa consiste em identificar os hotéis distribuídos no território brasileiro por estado, por meio da utilização do serviço exposto do Google Maps, a iteração foi realizada utilizando a biblioteca oficial do Google Maps escrita em java, que está disponível publicamente no repositório \citeonline{javaGoogleMapsService2022}.
 
 Para identificar os diversos hotéis, o primeiro passo foi escrever um \emph{script} Kotlin \citeonline{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e persistindo os dados obtidos.
 
@@ -35,11 +35,11 @@ Dessa lista temos como destaque os seguintes números:
 
 Estados com a maior quantidade de hoteis
 \begin{itemize}
-   \item RJ: 71
-   \item SP: 67
-   \item PA: 62
-   \item MG: 61
-   \item RR/PI/MS: 60
+	\item RJ: 71
+	\item SP: 67
+	\item PA: 62
+	\item MG: 61
+	\item RR/PI/MS: 60
 \end{itemize}
 
 Estados com a maior quantidade de reviews
@@ -63,18 +63,36 @@ Média da classificação dos hotéis por Estado
 	\item SC: 4,50 com 32621 avaliações no total (7 hotéis)
 \end{itemize}
 
-% TODO adicionar analise da lista de hoteis graficos ou meta informações
-
-Por conta da grande variedade de hotéis, o criterio de escolha foi limitar a hotéis com disponibilidade de pacote All Inclusive e na região nordeste, com o primeiro criterio definido temos então uma lista com um grupo de 15 hotéis dentre os disponíveis após o filtro da região temos então 11.
-% A lista de hotéis será obtida pelas regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma.
-
-%% A lista de hotéis será obtida através da \emph{Google Places API} buscando por região. A consulta a API terá a função de fornecer uma lista de locais com suas respectivas informações simplificadas, como entrada recebe o texto que será utilizado para realizar a busca.
+Por conta da grande variedade de hotéis, o criterio de escolha foi limitar a hotéis com disponibilidade de pacote \emph{All Inclusive} e na região nordeste, com o primeiro criterio definido temos então uma lista com um grupo de 15 hotéis dentre os disponíveis após o filtro da região temos então 11.
 
 Também foram adicionados manualmente a lista outros hotéis não foram listados nas consultas à API porém que estavam indicados na lista de regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma. 2 novos hoteis foram adicionados e atendiam os criterios já definidos e foram adicionados à nossa lista.
 
 Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Serão consideradas apenas as avaliações que possuírem texto, e os dados obtidos serão exportados para um arquivo do tipo CSV.
 
-A lista então foi composta de 13 hotéis todos localizados na região nordeste do brasil e com a disponibilidade de pacotes all inclusive no momento de consulta na plataforma do google maps, é valido notar que todos os hoteis da lista no momento da escolha possuiam uma avaliação na plataforma do google maps com nota superior a 4.20 e são todos hotéis de 4 ou 5 estrelas.
+A lista então foi composta de 13 hotéis todos localizados na região nordeste do brasil e com a disponibilidade de pacotes \emph{All Inclusive} no momento de consulta na plataforma do google maps, é valido notar que todos os hoteis da lista no momento da escolha possuiam uma avaliação na plataforma do google maps com nota superior a 4.20 e são todos hotéis de 4 ou 5 estrelas.
+
+% TODO adicionar analise da lista de hoteis graficos ou meta informações
+A lista de hotéis então obtida é composta da seguinte forma:
+\begin{table}[H]
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{llrrlr}
+			\textbf{Nome}                                 & \textbf{Estado} & \textbf{Nota} & \textbf{Estrelas} & \textbf{Região} & \textbf{N.º de avaliações} \\
+			Cana Brava All Inclusive Resort               & BA              & 4.60          & 4                 & NORDESTE        & 10987                      \\
+			Grand Oca Maragogi                            & AL              & 4.30          & 5                 & NORDESTE        & 4613                       \\
+			Hotel Marsol Beach Resort                     & RN              & 4.20          & 4                 & NORDESTE        & 3269                       \\
+			Hotel Vila Galé - Touros                      & RN              & 4.60          & 5                 & NORDESTE        & 5619                       \\
+			Hotel Vila Galé Marés                         & BA              & 4.50          & 5                 & NORDESTE        & 8516                       \\
+			Hotel Vila Galé: Eco Resort - Cabo            & PE              & 4.50          & 5                 & NORDESTE        & 5370                       \\
+			Iberostar Bahia                               & BA              & 4.70          & 5                 & NORDESTE        & 16109                      \\
+			La Torre Resort All Inclusive                 & BA              & 4.70          & 4                 & NORDESTE        & 6140                       \\
+			Makai Resort Aracaju - All Inclusive          & SE              & 4.30          & 4                 & NORDESTE        & 5276                       \\
+			Nauticomar Resort All Inclusive \& Beach Club & BA              & 4.30          & 4                 & NORDESTE        & 4258                       \\
+			Salinas Maceió All Inclusive Resort           & AL              & 4.70          & 4                 & NORDESTE        & 4663                       \\
+			Salinas Maragogi All Inclusive Resort         & AL              & 4.80          & 5                 & NORDESTE        & 7111                       \\
+			Transamerica Comandatuba                      & BA              & 4.80          & 4                 & NORDESTE        & 3179
+		\end{tabular}%
+	}
+\end{table}
 
 \subsection{Coleta das avaliações}
 \label{cap:metodologia:sec:conjunto_dados:sec:coleta}
@@ -85,20 +103,236 @@ Utilizando esses projetos como base escrevi então um script para realizar o tra
 
 O script tinha uma dependência muito forte com tags HTML e classes CSS da página dos locais no Google Maps, caracteriscas de um WebScrapper o que dificulta a sua manutenção e limita a sua capacidade de reutilização.
 
-%todo
-Será utilizada como fonte de dados as avaliações disponíveis online no idioma português brasileiro na plataforma do Google Maps.
-% falar sobre a estrutura dos dados
-%
+% https://github.com/emerson-matos/maps-reviews-api-scraper
+Baseado no \emph{script} do \emph{WebScrapper} existe um repositorio que utiliza diretamente uma API do Google chamada reviewDialog, sem a necessidade de utilizar o selenium, que era em grande parte responsavel pela baixa performance, dessa forma a coleta das avaliações ocorre de forma bem mais rápida, em um periodo de ~1h foi possivel obter um total de 86.291 avaliações dos hotéis da lista.
 
-
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l|l}
+		\textbf{Ano} & \textbf{Quantidade} \\
+		2023         & 11925               \\
+		2022         & 16364               \\
+		2021         & 8104                \\
+		2020         & 12489               \\
+		2019         & 18963               \\
+		2018         & 12625               \\
+		2017         & 4426                \\
+		2016         & 940                 \\
+		2015         & 247                 \\
+		2014         & 106                 \\
+		2013         & 88                  \\
+		2011         & 5                   \\
+		2012         & 9
+	\end{tabular}%
+\end{table}
 
 \subsection{Pré-processamento}
 \label{subsec:pre_processamento}
 
+Após possuir as avaliações precisamos realizar alguns filtros para que a analise de sentimentos consiga resultar em algo concreto, dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideraçõa na analise.
+
+O primeiro críterio é que a avaliação precisa possuir conteudo textual e este por sua vez precisa então possuir 3 ou mais caracteres. Como podemos observar na tabela anterior temos uma discrepancia no número de avaliações perceptivel com divisão no periodo de 2017/2018, então apenas levaremos em consideração avaliações realizadas em 2018 ou posteriores a essa data e o ultimo criterio a ser levado em consideração é que a avaliação precisa estar escrita no idioma português, e não ter sido traduzida pelo Google.
+
+Considerando todas as avaliações obtidas, temos:
+
+\begin{itemize}
+	\item 80470(93.25\%) enviadas depois de 2017 e 5821(6.75\%) enviadas em 2017 ou antes
+	\item 56893(65.93\%) com texto e 3 ou mais caracteres, 29386(34.05\%) sem texto e 12(0.01\%) avaliações com 1 ou 2 caracteres
+	\item 4184(4.85\%) avaliações traduzidas
+\end{itemize}
+
+E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas. Assim as avaliações que seram coinsideradas estão então distribuidas da seguinte forma:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l|l}
+		\textbf{Ano} & \textbf{Quantidade} \\
+		2023         & 9444                \\
+		2022         & 11866               \\
+		2021         & 5350                \\
+		2020         & 6236                \\
+		2019         & 9645                \\
+		2018         & 6678
+	\end{tabular}
+\end{table}
+% TODO
+
+\begin{table}[]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|c|c|c|c|c|r|r|}
+			\hline
+			\multicolumn{1}{|r|}{\textbf{Hotel}}                            &
+			\multicolumn{1}{r|}{\textbf{Estado}}                            &
+			\multicolumn{1}{r|}{\textbf{Estrelas}}                          &
+			\multicolumn{1}{r|}{\textbf{Nota}}                              &
+			\multicolumn{1}{r|}{\textbf{Analisar?}}                         &
+			\textbf{Quantidade}                                             &
+			\textbf{\%}                                                       \\ \hline
+			\multirow{2}{*}{\textbf{Cana Brava All Inclusive Resort}}       &
+			\multirow{2}{*}{BA}                                             &
+			\multirow{2}{*}{4}                                              &
+			\multirow{2}{*}{4.6}                                            &
+			False                                                           &
+			3028                                                            &
+			27.16                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			8119                                                            &
+			72.84                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Grand Oca Maragogi}}                    &
+			\multirow{2}{*}{AL}                                             &
+			\multirow{2}{*}{5}                                              &
+			\multirow{2}{*}{4.3}                                            &
+			False                                                           &
+			2427                                                            &
+			52.34                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			2210                                                            &
+			47.66                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Hotel Marsol Beach Resort}}             &
+			\multirow{2}{*}{RN}                                             &
+			\multirow{2}{*}{4}                                              &
+			\multirow{2}{*}{4.2}                                            &
+			False                                                           &
+			1470                                                            &
+			44.10                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			1863                                                            &
+			55.90                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Hotel Vila Galé - Touros}}              &
+			\multirow{2}{*}{RN}                                             &
+			\multirow{2}{*}{5}                                              &
+			\multirow{2}{*}{4.6}                                            &
+			False                                                           &
+			1433                                                            &
+			24.70                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			4369                                                            &
+			75.30                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Hotel Vila Galé Marés}}                 &
+			\multirow{2}{*}{BA}                                             &
+			\multirow{2}{*}{5}                                              &
+			\multirow{2}{*}{4.5}                                            &
+			False                                                           &
+			3550                                                            &
+			41.36                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			5033                                                            &
+			58.64                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Iberostar Bahia}}                       &
+			\multirow{2}{*}{BA}                                             &
+			\multirow{2}{*}{5}                                              &
+			\multirow{2}{*}{4.7}                                            &
+			False                                                           &
+			7830                                                            &
+			48.29                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			8383                                                            &
+			51.71                                                             \\ \hline
+			\multirow{2}{*}{\textbf{La Torre Resort All Inclusive}}         &
+			\multirow{2}{*}{BA}                                             &
+			\multirow{2}{*}{4}                                              &
+			\multirow{2}{*}{4.7}                                            &
+			False                                                           &
+			3164                                                            &
+			50.84                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			3060                                                            &
+			49.16                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Makai Resort Aracaju - All Inclusive}}  &
+			\multirow{2}{*}{SE}                                             &
+			\multirow{2}{*}{4}                                              &
+			\multirow{2}{*}{4.3}                                            &
+			False                                                           &
+			2448                                                            &
+			46.24                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			2846                                                            &
+			53.76                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Salinas Maceió All Inclusive Resort}}   &
+			\multirow{2}{*}{AL}                                             &
+			\multirow{2}{*}{4}                                              &
+			\multirow{2}{*}{4.7}                                            &
+			False                                                           &
+			2140                                                            &
+			45.72                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			2541                                                            &
+			54.28                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Salinas Maragogi All Inclusive Resort}} &
+			\multirow{2}{*}{AL}                                             &
+			\multirow{2}{*}{5}                                              &
+			\multirow{2}{*}{4.8}                                            &
+			False                                                           &
+			3539                                                            &
+			47.46                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			3917                                                            &
+			52.54                                                             \\ \hline
+			\multirow{2}{*}{\textbf{Transamerica Comandatuba}}              &
+			\multirow{2}{*}{BA}                                             &
+			\multirow{2}{*}{4}                                              &
+			\multirow{2}{*}{4.8}                                            &
+			False                                                           &
+			1294                                                            &
+			39.95                                                             \\ \cline{5-7}
+			                                                                &
+			                                                                &
+			                                                                &
+			                                                                &
+			True                                                            &
+			1945                                                            &
+			60.05                                                             \\ \hline
+		\end{tabular}%
+	}
+\end{table}%
+%
+% falar sobre a estrutura dos dados
+
+
 
 Nessa etapa utilizaremos o BERT (\emph{Bidirectional Encoder Representations from Transformers}), sendo este um modelo de representação de linguagem desenvolvido por pesquisadores do Google e que teve seu código aberto em 2018~\cite{hugoZanini2021mediu}. O texto será tokenizado utilizando a biblioteca e um modelo pré-treinado denominado "BERTimbau Base"~\cite{souza2020bertimbau}.
 
-Será realizado também o emparelhamento de Adjetivo-Substantivo visando identificar o sentimento por tópicos contidos na avaliação analisada. Para isso será utilizada a biblioteca spaCy~\cite{montani2022spacy}. 
+Será realizado também o emparelhamento de Adjetivo-Substantivo visando identificar o sentimento por tópicos contidos na avaliação analisada. Para isso será utilizada a biblioteca spaCy~\cite{montani2022spacy}.
 
 \section{Análise dos dados}
 
