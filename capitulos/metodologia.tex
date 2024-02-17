@@ -17,7 +17,7 @@ A primeira etapa consiste em identificar os hotéis distribuídos no território
 
 Para identificar os diversos hotéis, o primeiro passo foi escrever um \emph{script} Kotlin \citeonline{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e persistindo os dados obtidos.
 
-O objetivo nesta etapa é identificar e obter informações do maior número possivel de hotéis que estão disponíveis para consulta na plataforma para posteriormente em posse de informações especificas que serão discutidas posteriormente, de cada hotel realizar escolha dos hotéis candidatos para o estudo.
+O objetivo nesta etapa é identificar e obter informações do maior número possível de hotéis que estão disponíveis para consulta na plataforma para posteriormente em posse de informações especificas que serão discutidas posteriormente, de cada hotel realizar escolha dos hotéis candidatos para o estudo.
 
 Para essa tarefa utilizaremos a interface de \emph{Text Search Query}, informações como o nome do hotel, localização e identificador do hotel na plataforma são disponibilizadas por essa interface. Nessa interface conseguimos realizar a busca passando informações que servirão para limitar a busca, como idioma de interesse, coordenadas e diâmetro limite para ser considerado e dessa forma obter uma busca com viés dos parâmetros fornecidos \cite{placesSearchText2023}.
 
@@ -25,7 +25,7 @@ Para essa tarefa utilizaremos a interface de \emph{Text Search Query}, informaç
 
 O texto utilizado para a busca dos hotéis é definida no seguinte modelo “frase + região”. Por exemplo, na frase “hotéis próximos ao Cristo Redentor”, a API deverá retornar informações básicas de hotéis cadastrados na plataforma próximos à região do Cristo Redentor.
 
-Após obter a lista com as informações básicas o segundo momento é obter informações mais detalhadas do estabelecimento, para isso utilizaremos a interface de \emph{Place Details} para poder obter essas informações na plataforma, dentre as informações expostas por esta interface possuímos algumas que são de nosso interesse como, por exemplo, número de avaliações disponíveis, classificação atual na plataforma e quantidade de avaliações, essas serão informações importantes no momento de escolha dos hoteis que serão utilizados no estudo, essas e outras são obtidas nessa etapa.
+Após obter a lista com as informações básicas o segundo momento é obter informações mais detalhadas do estabelecimento, para isso utilizaremos a interface de \emph{Place Details} para poder obter essas informações na plataforma, dentre as informações expostas por esta interface possuímos algumas que são de nosso interesse como, por exemplo, número de avaliações disponíveis, classificação atual na plataforma e quantidade de avaliações, essas serão informações importantes no momento de escolha dos hotéis que serão utilizados no estudo, essas e outras são obtidas nessa etapa.
 
 \lstinputlisting[language=java,caption= Interface Google Maps]{extras/code/googlemaps-place-details.kt}
 
@@ -33,7 +33,7 @@ Foi possível identificar 815 hotéis distribuídos em todo o território nacion
 
 Dessa lista temos como destaque os seguintes números:
 
-Estados com a maior quantidade de hoteis
+Estados com a maior quantidade de hotéis
 \begin{itemize}
 	\item RJ: 71
 	\item SP: 67
@@ -42,7 +42,7 @@ Estados com a maior quantidade de hoteis
 	\item RR/PI/MS: 60
 \end{itemize}
 
-Estados com a maior quantidade de reviews
+Estados com a maior quantidade de avaliações
 
 \begin{itemize}
 	\item RJ: 231947 (4,22 com 71 hotéis)
@@ -63,13 +63,13 @@ Média da classificação dos hotéis por Estado
 	\item SC: 4,50 com 32621 avaliações no total (7 hotéis)
 \end{itemize}
 
-Por conta da grande variedade de hotéis, o criterio de escolha foi limitar a hotéis com disponibilidade de pacote \emph{All Inclusive} e na região nordeste, com o primeiro criterio definido temos então uma lista com um grupo de 15 hotéis dentre os disponíveis após o filtro da região temos então 11.
+Por conta da grande variedade de hotéis, o critério de escolha foi limitar a hotéis com disponibilidade de pacote \emph{All Inclusive} e na região nordeste, com o primeiro critério definido temos então uma lista com um grupo de 15 hotéis dentre os disponíveis após o filtro da região temos então 11.
 
-Também foram adicionados manualmente a lista outros hotéis não foram listados nas consultas à API porém que estavam indicados na lista de regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma. 2 novos hoteis foram adicionados e atendiam os criterios já definidos e foram adicionados à nossa lista.
+Também foram adicionados manualmente a lista outros hotéis não foram listados nas consultas à API porém que estavam indicados na lista de regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma. 2 novos hotéis foram adicionados e atendiam os critérios já definidos e foram adicionados à nossa lista.
 
 Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Serão consideradas apenas as avaliações que possuírem texto, e os dados obtidos serão exportados para um arquivo do tipo CSV.
 
-A lista então foi composta de 13 hotéis todos localizados na região nordeste do brasil e com a disponibilidade de pacotes \emph{All Inclusive} no momento de consulta na plataforma do google maps, é valido notar que todos os hoteis da lista no momento da escolha possuiam uma avaliação na plataforma do google maps com nota superior a 4.20 e são todos hotéis de 4 ou 5 estrelas.
+A lista então foi composta de 13 hotéis todos localizados na região nordeste do brasil e com a disponibilidade de pacotes \emph{All Inclusive} no momento de consulta na plataforma do Google Maps, é valido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do Google Maps com nota superior a 4.20 e são todos hotéis de 4 ou 5 estrelas.
 
 % TODO adicionar analise da lista de hoteis graficos ou meta informações
 A lista de hotéis então obtida é composta da seguinte forma:
@@ -97,14 +97,14 @@ A lista de hotéis então obtida é composta da seguinte forma:
 \subsection{Coleta das avaliações}
 \label{cap:metodologia:sec:conjunto_dados:sec:coleta}
 
-Já existe um script escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do Google Maps, utilizando Selenium, obtém um determinado número de avaliações, o \emph{script} porém estava defasado e pendente de atualização, um dos \emph{forks} existentes \citeonline{ryuuzakescrapper2023} estava também pouco mais atualizado, porém ainda não funcional.
+Já existe um \emph{script} escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do Google Maps, utilizando Selenium, obtém um determinado número de avaliações, o \emph{script} porém estava defasado e pendente de atualização, um dos \emph{forks} existentes \citeonline{ryuuzakescrapper2023} estava também pouco mais atualizado, porém ainda não funcional.
 
-Utilizando esses projetos como base escrevi então um script para realizar o trabalho de obter as avaliações dos hotéis, o script era escrito em Python e as suas principais dependências eram de \cite{selenium2023}, \citeonline{harris2020array}, \citeonline{jeffreback20226702671} e \citeonline{richardson2007beautiful}. Utilizando \citeonline{merkel2014docker} para executar o script era possível rodar o script de forma concorrente, utilizando Selenium executando diversos drivers do Google Chrome, porém o desempenho do selenium para esse tipo de tarefa não é rápido e efeciente, a busca das avaliações para apenas um hotel demorava aproximadamente 3h para executar e o sucesso da execução do script com a utilização do selenium depende diretamente da imutabilidade da interface visual do Google Maps, o que torna esse formato não escalavel dado a velocidade com que a interface do Google Maps recebe atualizações. Durante a adaptação do script para conseguir extrair corretamente as avaliações foram realizadas 10 tentativas de execução, no periodo de 09/2022 à 11/2022, com periodicidade semanal, aproximadamente a cada duas semanas a interface visual do Google Maps mudava e o script precisava passar por nova atualização.
+Utilizando esses projetos como base escrevi então um \emph{script} para realizar o trabalho de obter as avaliações dos hotéis, o \emph{script} era escrito em Python e as suas principais dependências eram de \cite{selenium2023}, \citeonline{harris2020array}, \citeonline{jeffreback20226702671} e \citeonline{richardson2007beautiful}. Utilizando \citeonline{merkel2014docker} para executar o \emph{script} era possível rodar o \emph{script} de forma concorrente, utilizando Selenium executando diversos drivers do Google Chrome, porém o desempenho do Selenium para esse tipo de tarefa não é rápido e eficiente, a busca das avaliações para apenas um hotel demorava aproximadamente 3h para executar e o sucesso da execução do \emph{script} com a utilização do Selenium depende diretamente da imutabilidade da interface visual do Google Maps, o que torna esse formato não escalável dado a velocidade com que a interface do Google Maps recebe atualizações. Durante a adaptação do \emph{script} para conseguir extrair corretamente as avaliações foram realizadas 10 tentativas de execução, no período de 09/2022 à 11/2022, com periodicidade semanal, aproximadamente a cada duas semanas a interface visual do Google Maps mudava e o \emph{script} precisava passar por nova atualização.
 
-O script tinha uma dependência muito forte com tags HTML e classes CSS da página dos locais no Google Maps, caracteriscas de um WebScrapper o que dificulta a sua manutenção e limita a sua capacidade de reutilização.
+O \emph{script} tinha uma dependência muito forte com \emph{tags HTML} e classes \emph{CSS} da página dos locais no Google Maps, características de um \emph{WebScrapper} o que dificulta a sua manutenção e limita a sua capacidade de reutilização.
 
 % https://github.com/emerson-matos/maps-reviews-api-scraper
-Baseado no \emph{script} do \emph{WebScrapper} existe um repositorio que utiliza diretamente uma API do Google chamada reviewDialog, sem a necessidade de utilizar o selenium, que era em grande parte responsavel pela baixa performance, dessa forma a coleta das avaliações ocorre de forma bem mais rápida, em um periodo de ~1h foi possivel obter um total de 86.291 avaliações dos hotéis da lista.
+Baseado no \emph{script} do \emph{WebScrapper} existe um repositório que utiliza diretamente uma API do Google chamada reviewDialog, sem a necessidade de utilizar o Selenium, que era em grande parte responsável pela baixa performance, dessa forma a coleta das avaliações ocorre de forma bem mais rápida, em um período de ~1h foi possível obter um total de 86.291 avaliações dos hotéis da lista.
 
 \begin{table}[H]
 	\centering
@@ -129,9 +129,9 @@ Baseado no \emph{script} do \emph{WebScrapper} existe um repositorio que utiliza
 \subsection{Pré-processamento}
 \label{subsec:pre_processamento}
 
-Após possuir as avaliações precisamos realizar alguns filtros para que a analise de sentimentos consiga resultar em algo concreto, dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideraçõa na analise.
+Após possuir as avaliações precisamos realizar alguns filtros para que a analise de sentimentos consiga resultar em algo concreto, dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideração na analise.
 
-O primeiro críterio é que a avaliação precisa possuir conteudo textual e este por sua vez precisa então possuir 3 ou mais caracteres. Como podemos observar na tabela anterior temos uma discrepancia no número de avaliações perceptivel com divisão no periodo de 2017/2018, então apenas levaremos em consideração avaliações realizadas em 2018 ou posteriores a essa data e o ultimo criterio a ser levado em consideração é que a avaliação precisa estar escrita no idioma português, e não ter sido traduzida pelo Google.
+O primeiro critério é que a avaliação precisa possuir conteúdo textual e este por sua vez precisa então possuir 3 ou mais caracteres. Como podemos observar na tabela anterior temos uma discrepancia no número de avaliações perceptível com divisão no período de 2017/2018, então apenas levaremos em consideração avaliações realizadas em 2018 ou posteriores a essa data e o ultimo critério a ser levado em consideração é que a avaliação precisa estar escrita no idioma português, e não ter sido traduzida pelo Google.
 
 Considerando todas as avaliações obtidas, temos:
 
@@ -141,7 +141,7 @@ Considerando todas as avaliações obtidas, temos:
 	\item 4184(4.85\%) avaliações traduzidas
 \end{itemize}
 
-E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas. Assim as avaliações que seram coinsideradas estão então distribuidas da seguinte forma:
+E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas. Assim as avaliações que foram consideradas estão então distribuídas da seguinte forma:
 \begin{table}[H]
 	\centering
 	\begin{tabular}{l|l}
