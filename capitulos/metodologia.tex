@@ -71,17 +71,18 @@ Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} p
 
 A lista então foi composta de 13 hotéis todos localizados na região nordeste do brasil e com a disponibilidade de pacotes \emph{All Inclusive} no momento de consulta na plataforma do Google Maps, é valido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do Google Maps com nota superior a 4.20 e são todos hotéis de 4 ou 5 estrelas.
 
-A lista de hotéis obtida é composta conforme \ref{table:lista_hoteis}.
+A lista de hotéis obtida é composta conforme~\ref{table:lista_hoteis}.
 
 \begin{table}[]
 	\begin{tabular}{|p{5cm}|l|r|r|l|r|}
 		\hline
 		\textbf{Nome}                                 & \textbf{Estado} & \textbf{Nota} & \textbf{Estrelas} & \textbf{Região} & \textbf{Quantidade} \\\hline
+
 		Cana Brava All Inclusive Resort               & BA              & 4.60          & 4                 & NORDESTE        & 10987               \\\hline
 		Grand Oca Maragogi                            & AL              & 4.30          & 5                 & NORDESTE        & 4613                \\\hline
 		Hotel Marsol Beach Resort                     & RN              & 4.20          & 4                 & NORDESTE        & 3269                \\\hline
 		Hotel Vila Galé - Touros                      & RN              & 4.60          & 5                 & NORDESTE        & 5619                \\\hline
-		Hotel Vila Galé Marés                         & BA              & 4.50          & 5                 & NORDESTE        & 8516                \\\hline
+		Hotel Vila Galé - Marés                       & BA              & 4.50          & 5                 & NORDESTE        & 8516                \\\hline
 		Hotel Vila Galé: Eco Resort - Cabo            & PE              & 4.50          & 5                 & NORDESTE        & 5370                \\\hline
 		Iberostar Bahia                               & BA              & 4.70          & 5                 & NORDESTE        & 16109               \\\hline
 		La Torre Resort All Inclusive                 & BA              & 4.70          & 4                 & NORDESTE        & 6140                \\\hline
@@ -157,6 +158,35 @@ E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49
 
 \begin{table}[]
 	\centering
+	\begin{tabular}{|c|crrrrr|}
+		\hline
+		\multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Estado}}} &
+		\multicolumn{2}{c|}{\textbf{analisar}}                 &
+		\multicolumn{3}{c|}{\textbf{nota}}                     &
+		\multicolumn{1}{c|}{\textbf{estrelas}}                                                                            \\ \cline{2-7}
+		\multicolumn{1}{|l|}{}                                 &
+		\multicolumn{1}{c}{\textbf{rotulo}}                    &
+		\multicolumn{1}{c|}{\textbf{quantidade}}               &
+		\multicolumn{1}{c}{\textbf{média}}                     &
+		\multicolumn{1}{c}{\textbf{min}}                       &
+		\multicolumn{1}{c|}{\textbf{max}}                      &
+		\multicolumn{1}{c|}{\textbf{média}}                                                                               \\ \hline
+		\multirow{2}{*}{\textbf{AL}}                           & \textbf{False} & 8106  & 4.623896 & 4.3 & 4.8 & 4.735998 \\
+		                                                       & \textbf{True}  & 8668  & 4.643205 & 4.3 & 4.8 & 4.706853 \\ \hline
+		\multirow{2}{*}{\textbf{BA}}                           & \textbf{False} & 20970 & 4.617740 & 4.3 & 4.8 & 4.542680 \\
+		                                                       & \textbf{True}  & 28727 & 4.613016 & 4.3 & 4.8 & 4.467017 \\ \hline
+		\multirow{2}{*}{\textbf{PE}}                           & \textbf{False} & 2645  & 4.500000 & 4.5 & 4.5 & 5.000000 \\
+		                                                       & \textbf{True}  & 2746  & 4.500000 & 4.5 & 4.5 & 5.000000 \\ \hline
+		\multirow{2}{*}{\textbf{RN}}                           & \textbf{False} & 2903  & 4.397451 & 4.2 & 4.6 & 4.493627 \\
+		                                                       & \textbf{True}  & 6232  & 4.480424 & 4.2 & 4.6 & 4.701059 \\ \hline
+		\multirow{2}{*}{\textbf{SE}}                           & \textbf{False} & 2448  & 4.300000 & 4.3 & 4.3 & 4.000000 \\
+		                                                       & \textbf{True}  & 2846  & 4.300000 & 4.3 & 4.3 & 4.000000 \\ \hline
+	\end{tabular}\caption{Quantidade de avaliações por estado e por rotulo -- indicando o que será e o que não será analisado}
+	\label{table:distribuicao_review_por_estado}
+\end{table}
+
+\begin{table}[]
+	\centering
 	\begin{tabular}{|l|l|}
 		\textbf{Ano} & \textbf{Quantidade} \\\hline
 		2023         & 9444                \\
@@ -175,98 +205,114 @@ E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49
 	\centering
 	\begin{tabular}{|c|c|r|r|}
 		\hline
-		\multicolumn{1}{|r|}{\textbf{Hotel}}                            &
-		\multicolumn{1}{r|}{\textbf{Analisar?}}                         &
-		\textbf{Quantidade}                                             &
-		\textbf{\%}                                                       \\ \hline
-		\multirow{2}{*}{\textbf{Cana Brava All Inclusive Resort}}       &
-		False                                                           &
-		3028                                                            &
-		27.16                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		8119                                                            &
-		72.84                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Grand Oca Maragogi}}                    &
-		False                                                           &
-		2427                                                            &
-		52.34                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		2210                                                            &
-		47.66                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Hotel Marsol Beach Resort}}             &
-		False                                                           &
-		1470                                                            &
-		44.10                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		1863                                                            &
-		55.90                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Hotel Vila Galé - Touros}}              &
-		False                                                           &
-		1433                                                            &
-		24.70                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		4369                                                            &
-		75.30                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Hotel Vila Galé Marés}}                 &
-		False                                                           &
-		3550                                                            &
-		41.36                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		5033                                                            &
-		58.64                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Iberostar Bahia}}                       &
-		False                                                           &
-		7830                                                            &
-		48.29                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		8383                                                            &
-		51.71                                                             \\ \hline
-		\multirow{2}{*}{\textbf{La Torre Resort All Inclusive}}         &
-		False                                                           &
-		3164                                                            &
-		50.84                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		3060                                                            &
-		49.16                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Makai Resort Aracaju - All Inclusive}}  &
-		False                                                           &
-		2448                                                            &
-		46.24                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		2846                                                            &
-		53.76                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Salinas Maceió All Inclusive Resort}}   &
-		False                                                           &
-		2140                                                            &
-		45.72                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		2541                                                            &
-		54.28                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Salinas Maragogi All Inclusive Resort}} &
-		False                                                           &
-		3539                                                            &
-		47.46                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		3917                                                            &
-		52.54                                                             \\ \hline
-		\multirow{2}{*}{\textbf{Transamerica Comandatuba}}              &
-		False                                                           &
-		1294                                                            &
-		39.95                                                             \\ \cline{2-4}
-		                                                                &
-		True                                                            &
-		1945                                                            &
-		60.05                                                             \\ \hline
+		\multicolumn{1}{|r|}{\textbf{Hotel}}                                    &
+		\multicolumn{1}{r|}{\textbf{Analisar?}}                                 &
+		\textbf{Quantidade}                                                     &
+		\textbf{\%}                                                               \\ \hline
+		\multirow{2}{*}{\textbf{Cana Brava All Inclusive Resort}}               &
+		False                                                                   &
+		3028                                                                    &
+		27.16                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		8119                                                                    &
+		72.84                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Grand Oca Maragogi}}                            &
+		False                                                                   &
+		2427                                                                    &
+		52.34                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		2210                                                                    &
+		47.66                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Hotel Marsol Beach Resort}}                     &
+		False                                                                   &
+		1470                                                                    &
+		44.10                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		1863                                                                    &
+		55.90                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Hotel Vila Galé - Touros}}                      &
+		False                                                                   &
+		1433                                                                    &
+		24.70                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		4369                                                                    &
+		75.30                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Hotel Vila Galé - Marés}}                       &
+		False                                                                   &
+		3550                                                                    &
+		41.36                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		5033                                                                    &
+		58.64                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Hotel Vila Galé: Eco Resort - Cabo}}            &
+		False                                                                   &
+		2645                                                                    &
+		49.06                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		2746                                                                    &
+		50.94                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Iberostar Bahia}}                               &
+		False                                                                   &
+		7830                                                                    &
+		48.29                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		8383                                                                    &
+		51.71                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{La Torre Resort All Inclusive}}                 &
+		False                                                                   &
+		3164                                                                    &
+		50.84                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		3060                                                                    &
+		49.16                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Makai Resort Aracaju - All Inclusive}}          &
+		False                                                                   &
+		2448                                                                    &
+		46.24                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		2846                                                                    &
+		53.76                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Nauticomar Resort All Inclusive \& Beach Club}} &
+		False                                                                   &
+		2104                                                                    &
+		49.03                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		2187                                                                    &
+		50.97                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Salinas Maceió All Inclusive Resort}}           &
+		False                                                                   &
+		2140                                                                    &
+		45.72                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		2541                                                                    &
+		54.28                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Salinas Maragogi All Inclusive Resort}}         &
+		False                                                                   &
+		3539                                                                    &
+		47.46                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		3917                                                                    &
+		52.54                                                                     \\ \hline
+		\multirow{2}{*}{\textbf{Transamerica Comandatuba}}                      &
+		False                                                                   &
+		1294                                                                    &
+		39.95                                                                     \\ \cline{2-4}
+		                                                                        &
+		True                                                                    &
+		1945                                                                    &
+		60.05                                                                     \\ \hline
 	\end{tabular}
 	\caption{Lista de quantidade de avaliações analisadas e descartadas por hotel}
 	\label{tab:lista_review_hoteis}
@@ -299,6 +345,189 @@ Por conta da presença de \emph{mes\_ano\_avaliacao}, em \ref{img:dist_ano_mes_a
 	\caption{Distribuição do número de avaliação por mês e ano}
 	\label{img:dist_ano_mes_avaliacao}
 \end{figure}
+
+Agora estamos considerando apenas avaliações que serão utilizadas na analise, a distribuição das notas atribuidas individualmente a cada avaliação pode ser consultada em \ref{img:dist_review_rating}. É fácil notar que grande maioria das avaliações 38347 (77,91\%) foi realizada e atribuida a maior nota, 5, o que nos leva a acreditar que em grande parte o sentimento geral das avaliações é positivo.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\textwidth]{figs/exploratoria/quantidade_avaliacao_nota_atribuida.png}
+	\caption{Quantidade de avaliações por nota atribuida}
+	\label{img:dist_review_rating}
+\end{figure}
+
+Podemos também observar em \ref{img:dist_review_rating_per_year} a evolução em quantidade númerica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-21 (referências?) e pós flexibilização do confinamento visualizamos um aumento no número de avaliações, levando em consideração que temos apenas 6 meses de avaliação em 2023 então possivelmente seguiremos com a tendencia de aumento de número de avaliações ano após ano.
+
+Com o grafico \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuida tende a diminuir conforme o tempo passa, a quantidade de notas maiores é crescente, mas levando em consideração o grafico acima isso talvez seja causado pela crescete também da quantidade de avaliações com notas entre 4 e 5.
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/quantidade_avaliacao_nota_atribuida_ano.png}
+	\caption{Quantidade de avaliações por ano e nota atribuida}
+	\label{img:dist_review_rating_per_year}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.70\textwidth]{figs/exploratoria/relplot_ano_rating.png}
+	\caption{Variação da nota atribuída ao longo dos anos}
+	\label{img:relplot_ano_rating}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/relplot_ano_rating_source.png}
+	\caption{Variação da nota atribuída ao longo dos anos por hotel}
+	\label{img:relplot_ano_rating_source}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_geral.png}
+	\caption{Wordcloud sem stop words}
+	\label{img:wordcloud_geral}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_substantivos.png}
+	\caption{Wordcloud de substantivos}
+	\label{img:wordcloud_substantivos}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_adjetivos.png}
+	\caption{Wordcloud de Adjetivos}
+	\label{img:wordcloud_adjetivos}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/unigramas.png}
+	\caption{Unigramas}
+	\label{img:unigramas}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/bigramas.png}
+	\caption{Bigramas}
+	\label{img:bigramas}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/trigramas.png}
+	\caption{Trigramas}
+	\label{img:trigramas}
+\end{figure}
+
+
+%TODO ajustar tamano, ta estranho
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/exploratoria/ranking_unigramas_por_ano.png}
+	\caption{Ranking de unigramas por ano}
+	\label{img:rank_unigramas}
+\end{figure}
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
+\begin{table}[]
+	\centering
+	\begin{tabular}{|p{5cm}|l|l|l|l|}
+		\hline
+		\textbf{Hotel}                                      &
+		\textbf{Não vazio}                                  &
+		\textbf{Com texto}                                  &
+		\textbf{Traduzido}                                  &
+		\textbf{Públicos em +2017}                            \\
+		\hline
+		\textbf{Cana Brava All Inclusive Resort}            &
+		8583                                                &
+		8581                                                &
+		141                                                 &
+		10656                                                 \\
+		\hline
+		\textbf{Grand Oca Maragogi}                         &
+		2948                                                &
+		2947                                                &
+		542                                                 &
+		4297                                                  \\
+		\hline
+		\textbf{Hotel Marsol Beach Resort}                  &
+		2150                                                &
+		2150                                                &
+		162                                                 &
+		3128                                                  \\
+		\hline
+		\textbf{Hotel Vila Galé - Touros}                   &
+		4481                                                &
+		4480                                                &
+		111                                                 &
+		5802                                                  \\
+		\hline
+		\textbf{Hotel Vila Galé - Marés}                    &
+		5723                                                &
+		5721                                                &
+		315                                                 &
+		7981                                                  \\
+		\hline
+		\textbf{Hotel Vila Galé Eco Resort - Cabo}          &
+		3219                                                &
+		3217                                                &
+		183                                                 &
+		4934                                                  \\
+		\hline
+		\textbf{Iberostar Bahia}                            &
+		10587                                               &
+		10586                                               &
+		1464                                                &
+		14848                                                 \\
+		\hline
+		\textbf{La Torre Resort - All Inclusive}            &
+		3847                                                &
+		3847                                                &
+		496                                                 &
+		5722                                                  \\
+		\hline
+		\textbf{Makai Resort Aracaju - All Inclusive}       &
+		3180                                                &
+		3180                                                &
+		84                                                  &
+		4917                                                  \\
+		\hline
+		\textbf{Nauticomar Resort All Inclusive Beach Club} &
+		2630                                                &
+		2628                                                &
+		228                                                 &
+		3938                                                  \\
+		\hline
+		\textbf{Salinas Maceió All Inclusive Resort}        &
+		2836                                                &
+		2836                                                &
+		168                                                 &
+		4497                                                  \\
+		\hline
+		\textbf{Salinas Maragogi All Inclusive Resort}      &
+		4572                                                &
+		4572                                                &
+		203                                                 &
+		6700                                                  \\
+		\hline
+		\textbf{Transamerica Comandatuba}                   &
+		2149                                                &
+		2148                                                &
+		87                                                  &
+		3050                                                  \\ \hline
+	\end{tabular}
+	\caption{Quantidade de avaliações em cada filtro pro hotél}
+	\label{table:qtd_review_filtro}
+\end{table}
 
 \begin{table}[]
 	\centering
@@ -347,7 +576,30 @@ Por conta da presença de \emph{mes\_ano\_avaliacao}, em \ref{img:dist_ano_mes_a
 	\label{tab:estrutura_review}
 \end{table}
 
+%% BERT
+%%
+Foram selecionados 5 modelos BERT para serem utilizados, escolhidos com base no ranking disponibilizado pelo hugging faces, sendo eles:
+\begin{itemize}
+	\item philschmid/distilbert-base-multilingual-cased-sentiment
+	\item lxyuan/distilbert-base-multilingual-cased-sentiments-student
+	\item citizenlab/twitter-xlm-roberta-base-sentiment-finetunned
+	\item cardiffnlp/twitter-xlm-roberta-base-sentiment
+	\item ramonmedeiro1/bertimbau-products-reviews-pt-br
+\end{itemize}
 
+Todos executados utilizando a biblioteca transformers, utilizando o AutoTokenizer, AutoModelForSequenceClassification e pipeline, executados usando device Cuda(Nvidia RTX 4070TI com 16gb de VRAM) %% mais detalhes do ambiente de execução?
+
+sendo o tempo de execução médio, após 5 execuções cada, para que a analise de todo o corpos fosse realizada, o seguinte:
+
+\begin{itemize}
+	\item philschmid/distilbert-base-multilingual-cased-sentiment: 3min e 37s
+	\item lxyuan/distilbert-base-multilingual-cased-sentiments-student: 3min e 36s
+	\item citizenlab/twitter-xlm-roberta-base-sentiment-finetunned: 6min e 54s
+	\item cardiffnlp/twitter-xlm-roberta-base-sentiment: 6min e 44s
+	\item ramonmedeiro1/bertimbau-products-reviews-pt-br: 6min e 59s
+\end{itemize}
+
+Nessa etapa cada um dos modelos Berts atribuia a avaliação um score indicando a confiança de uma dada label ser a classificação correta daquele review. Após todas as analises terminarem foi realizado então a união dos resultados e a label escolhida será igual a do modelo bert que atribuir o \emph{score} mais alto.
 
 
 % Nessa etapa utilizaremos o BERT (\emph{Bidirectional Encoder Representations from Transformers}), sendo este um modelo de representação de linguagem desenvolvido por pesquisadores do Google e que teve seu código aberto em 2018~\cite{hugoZanini2021mediu}. O texto será tokenizado utilizando a biblioteca e um modelo pré-treinado denominado "BERTimbau Base"~\cite{souza2020bertimbau}.
