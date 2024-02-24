@@ -114,9 +114,9 @@ Baseado no \emph{script} do \emph{WebScrapper} existe um repositório que utiliz
 \subsection{Pré-processamento}
 \label{cap:metodologia:sec:conjunto_dados:sec:pre_processamento}
 
-Após possuir as avaliações precisamos realizar alguns filtros para que a analise de sentimentos consiga resultar em algo concreto, dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideração na analise.
+Após possuir as avaliações precisamos realizar alguns filtros para que a analise de sentimentos consiga resultar algo concreto, dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideração na analise.
 
-O primeiro critério é que a avaliação precisa possuir conteúdo textual e este por sua vez precisa então possuir 3 ou mais caracteres. Como podemos observar na tabela anterior temos uma discrepancia no número de avaliações perceptível com divisão no período de 2017/2018, então apenas levaremos em consideração avaliações realizadas em 2018 ou posteriores a essa data e o ultimo critério a ser levado em consideração é que a avaliação precisa estar escrita no idioma português, e não ter sido traduzida pelo Google.
+O primeiro critério é que a avaliação precisa possuir conteúdo textual e este por sua vez precisa então possuir 3 ou mais caracteres. Como podemos observar na tabela~\ref{table:review_per_year} temos uma discrepancia no número de avaliações perceptível com divisão no período de 2017/2018, então apenas levaremos em consideração avaliações realizadas após 2017 e o ultimo critério a ser levado em consideração é que a avaliação precisa estar escrita no idioma português, e não ter sido traduzida pelo Google.
 
 \lstinputlisting[language=Python,caption=Filtros aplicados ao dataset de avalições]{extras/code/review_filter.py}
 
@@ -134,6 +134,7 @@ E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49
 \begin{table}[]
 	\centering
 	\begin{tabular}{|l|l|}
+		\hline
 		\textbf{Ano} & \textbf{Quantidade} \\\hline
 		2023         & 11925               \\
 		2022         & 16364               \\
@@ -147,7 +148,8 @@ E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49
 		2014         & 106                 \\
 		2013         & 88                  \\
 		2011         & 5                   \\
-		2012         & 9
+		2012         & 9                   \\
+		\hline
 	\end{tabular}%
 	\caption{Quantidade de avaliações obtidas por ano}
 	\label{table:review_per_year}
@@ -185,13 +187,15 @@ E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49
 \begin{table}[]
 	\centering
 	\begin{tabular}{|l|l|}
+		\hline
 		\textbf{Ano} & \textbf{Quantidade} \\\hline
 		2023         & 9444                \\
 		2022         & 11866               \\
 		2021         & 5350                \\
 		2020         & 6236                \\
 		2019         & 9645                \\
-		2018         & 6678
+		2018         & 6678                \\
+		\hline
 	\end{tabular}
 	\caption{Quantidade de avaliações por ano após filtro}
 	\label{table:distribuicao_review_per_year}
@@ -315,9 +319,9 @@ E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49
 	\label{tab:lista_review_hoteis}
 \end{table}%
 %
-% falar sobre a estrutura dos dados
+% TODO falar sobre a estrutura dos dadosf
 
-A cada um dos reviews é composto por 18 campos com informações, com formatos diferentes e descritos na tabela \ref{tab:estrutura_review}. Dentre os 18 campos, estaremos interessados apenas em alguns deles sendo:
+Cada um dos reviews é composto por 18 campos com informações, com formatos diferentes e descritos na tabela \ref{tab:estrutura_review}. Dentre os 18 campos, estaremos interessados apenas em alguns deles sendo:
 \begin{itemize}
 	\item text: conteúdo que passará pela analise de sentimento
 	\item rating: utilizado na analise de distribuição de notas.
@@ -334,7 +338,19 @@ E adicionaremos algumas novas colunas para:
 	\item mes\_ano\_avaliacao: indica em qual mes-ano a avalição foi submetida, exemplo: '2023-01', '2016-07'
 \end{itemize}
 
-Por conta da presença de \emph{mes\_ano\_avaliacao}, em \ref{img:dist_ano_mes_avaliacao}, nota-se um comportamento estranho com a ausencia de diversos meses por ano, durante o período de 2011 até 2022 temos o registro de apenas avaliações no mês 7, este comportamento é devido ao formato de data relativa utilizada pelo Google Maps ao expor suas avaliações, não foi possivel idenficar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada, por este motivo ao utilizar a data relativa e para as avaliações mais antigas conseguimos apenas identificar o ano no qual a avaliação foi publicada, avaliações com menos de um ano de diferença da data de recuperação utilizando este script poderiam ser utilizadas em uma analise mais detalhada em relação ao periodo, porém este não foi o caminho escolhido, optaremos por restrigir a analise de maneira em que as avaliações passaram a ser agrupadas de forma anual, representando assim o ano de publicação.
+
+Para construir as colunas de tempo (mes\_avaliacao, ano\_avaliacao e mes\ano\_avaliacao) é necessario realizar um tratamento de data relativa de quando a avaliação foi submetida, que é representado por relative\_date, com o retrieval\_date que representa o momento em que a avaliação foi obtida, o seguinte trecho de código foi utilizado para realizar o tratamento:
+%TODO apendice?
+\lstinputlisting[language=Python,caption=Código utilizado para tratar a data relativa]{extras/code/from_relative_date_to_timestamp.py}
+
+Com os dados tratados agora possuimos a nova coluna \emph{mes\_ano\_avaliacao}, em \ref{img:dist_ano_mes_avaliacao}, nota-se um comportamento estranho com a ausência de diversos meses por ano, durante o período de 2011 até 2021 temos o registro de apenas avaliações no mês 7, este comportamento é devido ao formato de data relativa utilizada pelo Google Maps ao expor suas avaliações, não foi possivel idenficar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada, por este motivo ao utilizar a data relativa e para as avaliações mais antigas conseguimos apenas identificar o ano no qual a avaliação foi publicada, as avaliações com menos de um ano de diferença da data de recuperação utilizando este script poderiam ser utilizadas em uma analise mais detalhada em relação ao periodo, porém esta não foi a estrategia escolhida e optaremos por restrigir a analise de modaneira em que as avaliações serão agreupadas em periodos anuais, representando assim o ano de publicação de cada avaliação.
+
+Agora estamos considerando apenas avaliações que serão utilizadas na analise, a distribuição das notas atribuidas individualmente a cada avaliação pode ser consultada em \ref{img:dist_review_rating}. É fácil notar que a grande maioria das avaliações registradas, mais especificamente 38347 (77,91\%), possui a maior nota atribuida, de valor 5, o que nos leva a acreditar que em grande parte das avaliações o sentimento geral que deve ser identificado será positivo.
+
+% possivel referencia? https://riull.ull.es/xmlui/handle/915/26220
+Este comportamento de distribuição desigual das notas ainda é perceptivel também quando olhamos para as avaliações agrupadas por ano de submissão, como pode-se notar em \ref{img:dist_review_rating_per_year}. Podemos também observar em \ref{img:dist_review_rating_per_year} a evolução em quantidade númerica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19 (referências?) e já pós flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então possivelmente seguiremos com a tendencia de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
+
+Com o gráfico \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuida tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores é cresce de forma desproporcional se comparado com as avaliações com notas baixas, como observado em \ref{img:dist_review_rating_per_year}.
 
 \begin{figure}
 	\centering
@@ -343,8 +359,6 @@ Por conta da presença de \emph{mes\_ano\_avaliacao}, em \ref{img:dist_ano_mes_a
 	\label{img:dist_ano_mes_avaliacao}
 \end{figure}
 
-Agora estamos considerando apenas avaliações que serão utilizadas na analise, a distribuição das notas atribuidas individualmente a cada avaliação pode ser consultada em \ref{img:dist_review_rating}. É fácil notar que grande maioria das avaliações 38347 (77,91\%) foi realizada e atribuida a maior nota, 5, o que nos leva a acreditar que em grande parte o sentimento geral das avaliações é positivo.
-
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\textwidth]{figs/exploratoria/quantidade_avaliacao_nota_atribuida.png}
@@ -352,9 +366,6 @@ Agora estamos considerando apenas avaliações que serão utilizadas na analise,
 	\label{img:dist_review_rating}
 \end{figure}
 
-Podemos também observar em \ref{img:dist_review_rating_per_year} a evolução em quantidade númerica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-21 (referências?) e pós flexibilização do confinamento visualizamos um aumento no número de avaliações, levando em consideração que temos apenas 6 meses de avaliação em 2023 então possivelmente seguiremos com a tendencia de aumento de número de avaliações ano após ano.
-
-Com o grafico \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuida tende a diminuir conforme o tempo passa, a quantidade de notas maiores é crescente, mas levando em consideração o grafico acima isso talvez seja causado pela crescete também da quantidade de avaliações com notas entre 4 e 5.
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figs/exploratoria/quantidade_avaliacao_nota_atribuida_ano.png}
@@ -429,11 +440,6 @@ Com o grafico \ref{img:relplot_ano_rating} podemos notar que a variação da not
 	\label{img:rank_unigramas}
 \end{figure}
 
-
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-% \usepackage[table,xcdraw]{xcolor}
-% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
 \begin{table}[]
 	\centering
 	\begin{tabular}{|p{5cm}|l|l|l|l|}
@@ -572,6 +578,12 @@ Com o grafico \ref{img:relplot_ano_rating} podemos notar que a variação da not
 	\caption{estrutura da avaliação}
 	\label{tab:estrutura_review}
 \end{table}
+\section{Análise dos dados}
+
+\subsection{Análise de Sentimentos}
+\label{subsec:analise_sentimentos}
+
+% Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificação geral para documento, ou seja, cada avaliação individualmente recebera uma classificação do modelo, sendo ela positiva, neutra ou negativa.
 
 %% BERT
 %%
@@ -586,7 +598,7 @@ Foram selecionados 5 modelos BERT para serem utilizados, escolhidos com base no 
 
 Todos executados utilizando a biblioteca transformers, utilizando o AutoTokenizer, AutoModelForSequenceClassification e pipeline, executados usando device Cuda(Nvidia RTX 4070TI com 16gb de VRAM) %% mais detalhes do ambiente de execução?
 
-sendo o tempo de execução médio, após 5 execuções cada, para que a analise de todo o corpos fosse realizada, o seguinte:
+Sendo o tempo de execução médio, após 5 execuções cada, para que a analise de todo o corpos fosse realizada, o seguinte:
 
 \begin{itemize}
 	\item philschmid/distilbert-base-multilingual-cased-sentiment: 3min e 37s
@@ -603,12 +615,6 @@ Nessa etapa cada um dos modelos Berts atribuia a avaliação um score indicando 
 
 % Será realizado também o emparelhamento de Adjetivo-Substantivo visando identificar o sentimento por tópicos contidos na avaliação analisada. Para isso será utilizada a biblioteca spaCy~\cite{montani2022spacy}.
 
-\section{Análise dos dados}
-
-\subsection{Análise de Sentimentos}
-\label{subsec:analise_sentimentos}
-
-Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificação geral para documento, ou seja, cada avaliação individualmente recebera uma classificação do modelo, sendo ela positiva, neutra ou negativa.
 
 \subsection{Análise Temporal}
 \label{subsec:analise_temporal}
