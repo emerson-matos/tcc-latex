@@ -339,7 +339,7 @@ E adicionaremos algumas novas colunas para:
 \end{itemize}
 
 
-Para construir as colunas de tempo (mes\_avaliacao, ano\_avaliacao e mes\ano\_avaliacao) é necessario realizar um tratamento de data relativa de quando a avaliação foi submetida, que é representado por relative\_date, com o retrieval\_date que representa o momento em que a avaliação foi obtida, o seguinte trecho de código foi utilizado para realizar o tratamento:
+Para construir as colunas de tempo (mes\_avaliacao, ano\_avaliacao e mes\_ano\_avaliacao) é necessario realizar um tratamento de data relativa de quando a avaliação foi submetida, que é representado por relative\_date, com o retrieval\_date que representa o momento em que a avaliação foi obtida, o seguinte trecho de código foi utilizado para realizar o tratamento:
 %TODO apendice?
 \lstinputlisting[language=Python,caption=Código utilizado para tratar a data relativa]{extras/code/from_relative_date_to_timestamp.py}
 
@@ -385,59 +385,6 @@ Com o gráfico \ref{img:relplot_ano_rating} podemos notar que a variação da no
 	\includegraphics[width=1\textwidth]{figs/exploratoria/relplot_ano_rating_source.png}
 	\caption{Variação da nota atribuída ao longo dos anos por hotel}
 	\label{img:relplot_ano_rating_source}
-\end{figure}
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_geral.png}
-	\caption{Wordcloud sem stop words}
-	\label{img:wordcloud_geral}
-\end{figure}
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_substantivos.png}
-	\caption{Wordcloud de substantivos}
-	\label{img:wordcloud_substantivos}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_adjetivos.png}
-	\caption{Wordcloud de Adjetivos}
-	\label{img:wordcloud_adjetivos}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/unigramas.png}
-	\caption{Unigramas}
-	\label{img:unigramas}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/bigramas.png}
-	\caption{Bigramas}
-	\label{img:bigramas}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/trigramas.png}
-	\caption{Trigramas}
-	\label{img:trigramas}
-\end{figure}
-
-
-%TODO ajustar tamano, ta estranho
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/ranking_unigramas_por_ano.png}
-	\caption{Ranking de unigramas por ano}
-	\label{img:rank_unigramas}
 \end{figure}
 
 \begin{table}[]
@@ -608,7 +555,7 @@ Sendo o tempo de execução médio, após 5 execuções cada, para que a analise
 	\item ramonmedeiro1/bertimbau-products-reviews-pt-br: 6min e 59s
 \end{itemize}
 
-Nessa etapa cada um dos modelos Berts atribuia a avaliação um score indicando a confiança de uma dada label ser a classificação correta daquele review. Após todas as analises terminarem foi realizado então a união dos resultados e a label escolhida será igual a do modelo bert que atribuir o \emph{score} mais alto.
+Nessa etapa cada um dos modelos Berts atribuia a avaliação um score indicando a confiança de uma dada etiqueta ser a classificação correta daquele review. Após todas as analises terminarem foi realizado então a união dos resultados e a etiqueta escolhida será igual a do modelo bert que atribuir o \emph{score} mais alto.
 
 
 % Nessa etapa utilizaremos o BERT (\emph{Bidirectional Encoder Representations from Transformers}), sendo este um modelo de representação de linguagem desenvolvido por pesquisadores do Google e que teve seu código aberto em 2018~\cite{hugoZanini2021mediu}. O texto será tokenizado utilizando a biblioteca e um modelo pré-treinado denominado "BERTimbau Base"~\cite{souza2020bertimbau}.
