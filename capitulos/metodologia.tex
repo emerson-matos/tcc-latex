@@ -530,6 +530,19 @@ Com o gráfico \ref{img:relplot_ano_rating} podemos notar que a variação da no
 \subsection{Análise de Sentimentos}
 \label{subsec:analise_sentimentos}
 
+A análise de sentimentos foi realizada sutilizando modelos de processamento de linguagem natural (PLN), incluindo BERTs pré treinados e foi també explorada a utilização de Large Language Models (LLMs) como GPT, Vicuna e OpenChat para classificar também, porém de forma genérica e similar ao que os modelos BERTs realizam, avaliar o conteúdo textual das avaliações e sem uma análise detalhada das nuances linguísticas ou contextuais.
+
+\subsection{BERT e Transformers}
+\label{subsec:analise_sentimentos:bert}
+
+Para a análise de sentimentos, os textos das avaliações foram alimentados em modelos baseados em BERT já pre treinados, processados utilizando a biblioteca Transformers em Python. Esses modelos foram pre treinados em diferentes conjuntos de dados rotulados, explicitados em suas respectivas páginas referências, e utilizados para classificar o sentimento das avaliações em categorias como positivo, negativo ou neutro.
+
+\subsection{LLMs: GPT, Vicuna e OpenChat}
+\label{subsec:analise_sentimentos:llms}
+
+Além dos modelos baseados em BERT, Large Language Models como GPT, Vicuna e OpenChat foram utilizados para que fosse possivel entender as capacidades desses modelos em relação a simples tarefa de analise de sentimento das avaliações de hotéis e sua eficiência em relação aos BERTs. Esses modelos foram utilizados para gerar respostas, objetivas assim como o BERT para que fosse possivel realizar a comparação dos resultados de forma simples.
+
+
 % Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificação geral para documento, ou seja, cada avaliação individualmente recebera uma classificação do modelo, sendo ela positiva, neutra ou negativa.
 
 %% BERT
@@ -543,7 +556,7 @@ Foram selecionados 5 modelos BERT para serem utilizados, escolhidos com base no 
 	\item ramonmedeiro1/bertimbau-products-reviews-pt-br
 \end{itemize}
 
-Todos executados utilizando a biblioteca transformers, utilizando o AutoTokenizer, AutoModelForSequenceClassification e pipeline, executados usando device Cuda(Nvidia RTX 4070TI com 16gb de VRAM) %% mais detalhes do ambiente de execução?
+Todos executados utilizando a biblioteca transformers \cite{Wolf_Transformers_State-of-the-Art_Natural_2020}, utilizando o AutoTokenizer, AutoModelForSequenceClassification e pipeline, executados usando device Cuda (Nvidia RTX 4070TI com 12gb de VRAM) %% mais detalhes do ambiente de execução?
 
 Sendo o tempo de execução médio, após 5 execuções cada, para que a analise de todo o corpos fosse realizada, o seguinte:
 
@@ -566,3 +579,13 @@ Nessa etapa cada um dos modelos Berts atribuia a avaliação um score indicando 
 \subsection{Análise Temporal}
 \label{subsec:analise_temporal}
 Após a análise de sentimentos, utilizaremos os resultados agrupados por períodos de modo a conseguir visualizar em modo gráfico as avaliações divididas conforme explicitado na seção anterior para um grupo de hotéis.
+
+\label{subsec:avaliacao_resultados}
+%TODO
+Os resultados da análise de sentimentos foram avaliados em termos de sua precisão e sua capacidade de capturar com precisão o sentimento dos usuários nas avaliações de hotéis. Os diferentes modelos utilizados foram comparados.
+\section{Análise de Sentimentos}
+
+
+Os modelos foram treinados em conjuntos de dados rotulados para reconhecer padrões de linguagem que indicam sentimentos positivos, negativos ou neutros. Durante o processo de avaliação, cada avaliação foi passada pelos modelos, que então atribuíam uma etiqueta com base na probabilidade calculada para cada sentimento. Por exemplo, se a probabilidade de um sentimento positivo fosse maior que a de sentimentos negativos ou neutros, a etiqueta "positivo" seria atribuída à avaliação.
+
+Embora essa abordagem simplificada não leve em consideração todos os aspectos sutis da linguagem humana, ela proporciona uma compreensão geral dos sentimentos expressos pelos usuários. Essas etiquetas podem ser úteis para avaliações rápidas e gerais de sentimentos em um grande volume de dados, permitindo uma análise inicial e rápida das tendências gerais de satisfação dos clientes em relação aos hotéis.

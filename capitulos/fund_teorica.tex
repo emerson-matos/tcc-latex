@@ -1,11 +1,52 @@
 \chapter{Fundamentação Teórica}
 \label{cap:fund_teorica}
 
-Neste capítulo abordaremos conceitos, necessários para o desenvolvimento e entendimento do projeto, do campo de estudo de processamento de linguagem natural, mais especificamente a análise de sentimentos. Também iremos discorrer sobre a funcionalidade de avaliação de estabelecimentos exposta pelo Google Maps.
+A análise de sentimentos é uma área da ciência da computação e do processamento de linguagem natural (PLN) que tem como objetivo identificar e extrair informações sobre sentimentos, opiniões e atitudes expressas em textos escritos.
+Neste capítulo abordaremos alguns dos conceitos necessários para o desenvolvimento e entendimento do projeto, do campo de estudo de processamento de linguagem natural, mais especificamente a análise de sentimentos. Também iremos discorrer sobre a funcionalidade de avaliação de estabelecimentos exposta pelo Google Maps.
+
+\section{Google Maps}
+\label{cap:fund_teorica:sec:google_maps}
+
+O Google Maps é uma das ferramentas de mapeamento e navegação mais populares do mundo, desenvolvida e mantida pela Google. Lançado em 2005, o Google Maps rapidamente se tornou uma ferramenta essencial para milhões de pessoas ao redor do mundo, oferecendo mapas detalhados, direções de navegação, informações sobre o tráfego em tempo real e uma ampla gama de recursos adicionais, como visualização de imagens de satélite, avaliações de estabelecimentos comerciais e muito mais.
+
+Um dos recursos interessantes do Google Maps é o programa "Local Guides". Este programa foi introduzido pela Google para incentivar os usuários a contribuir com informações adicionais sobre lugares e estabelecimentos em suas comunidades locais. Os "Local Guides" são usuários voluntários que compartilham avaliações, fotos, informações sobre horários de funcionamento, preços e outros detalhes úteis sobre restaurantes, lojas, atrações turísticas e outros pontos de interesse.
+
+Os "Local Guides" são incentivados pela Google a contribuir com conteúdo de qualidade, e em troca, eles podem ganhar pontos, níveis e até mesmo recompensas, como armazenamento adicional no Google Drive, acesso antecipado a novos recursos do Google Maps e até mesmo convites para eventos exclusivos. Essa gamificação do processo de contribuição ajuda a manter os usuários engajados e motivados a compartilhar informações úteis.
+
+Além disso, os "Local Guides" desempenham um papel importante na melhoria contínua da precisão e da utilidade do Google Maps. Ao fornecer informações atualizadas e detalhadas sobre os locais, eles ajudam outros usuários a tomar decisões informadas sobre onde ir e o que fazer. Essa contribuição colaborativa cria uma comunidade global de usuários que trabalham juntos para tornar o Google Maps uma ferramenta ainda mais poderosa e abrangente.
+
+Em resumo, o Google Maps é uma ferramenta essencial para navegação e descoberta de lugares, enquanto os "Local Guides" são membros voluntários da comunidade que contribuem com informações valiosas para melhorar a precisão e utilidade do serviço. Juntos, eles desempenham um papel crucial na criação de uma experiência de mapeamento e navegação mais rica e envolvente para todos os usuários.
+
+\subsection{Avaliação de estabelecimentos}
+\label{cap:fund_teorica:sec:google_maps:subsec:avaliacao_estabelecimentos}
+
+
+A funcionalidade de avaliação de estabelecimentos no Google Maps é uma ferramenta poderosa que oferece aos usuários uma maneira de compartilhar suas experiências e opiniões sobre diferentes locais, desde restaurantes e cafés até hotéis e pontos turísticos. Essa funcionalidade permite que os usuários forneçam feedback valioso sobre a qualidade do serviço, a atmosfera do local, a qualidade dos produtos e uma infinidade de outros aspectos.
+
+Uma das principais vantagens dessa funcionalidade é a capacidade de ajudar outros usuários a tomar decisões informadas ao escolherem um estabelecimento para visitar. As avaliações e comentários fornecidos por outros usuários podem servir como uma referência confiável, permitindo que as pessoas tenham uma noção melhor do que esperar de um determinado local antes de decidirem visitá-lo.
+
+Além disso, o sistema de avaliação do Google Maps geralmente é muito acessível e fácil de usar. Os usuários podem rapidamente atribuir uma classificação de estrelas e deixar um comentário detalhado sobre sua experiência com apenas alguns cliques, ajudando a manter uma base de dados robusta e atualizada sobre os estabelecimentos locais.
+
+No entanto, é importante reconhecer que nem todas as avaliações podem ser completamente imparciais ou precisas. Algumas podem ser tendenciosas ou baseadas em experiências individuais que podem não refletir a experiência média dos clientes. Portanto, é sempre aconselhável considerar várias avaliações e fontes de informações ao tomar uma decisão.
+
+Em resumo, a funcionalidade de avaliação de estabelecimentos no Google Maps oferece aos usuários uma maneira conveniente de compartilhar e acessar informações sobre locais locais, ajudando a tornar as experiências de viagem e exploração mais informadas e satisfatórias.
+% falar sobre o google maps e as avaliações e que avaliações de idioma diferente são traduzidas. traduzido por google
+% preprocessamento
+% pesquisar sobre os algoritmos de analise de sentimento https://www.lume.ufrgs.br/bitstream/handle/10183/140910/000991520.pdf?sequence=1
+% https://www.teses.usp.br/teses/disponiveis/59/59143/tde-31102018-174346/publico/mateuscorrigida.pdf
+% pesquisar sobre classificação de avaliações
 
 \section{Nuvem de Palavras}
 \label{cap:fund_teorica:sec:word_cloud}
 % TODO
+%
+Uma tecnica bastante popular é o agrupamento dos tokens para que seja posteriormente realizada uma representação visual dos dados, onde o tamanho do token representa sua frenquência em um dado corpus, e sua coloração pode ser util para representar o sentimento do token. Essa representação gráfica é nomeanda \emph{wordcloud}, ou nuvem de palavras.
+
+O modelo de gráfico de nuvens de palavras é uma técnica de visualização frequentemente utilizada na análise de sentimentos para representar as palavras mais frequentes em um conjunto de dados de texto, com o tamanho das palavras proporcional à sua frequência de ocorrência. Neste contexto, as palavras são tipicamente coloridas de acordo com seu sentimento associado, o que facilita a identificação visual das palavras mais relevantes e das tendências sentimentais no texto.
+
+Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida identificação de palavras-chave associadas a diferentes emoções, como positivas, negativas ou neutras. Ao visualizar um gráfico de nuvens de palavras, os analistas podem extrair insights sobre as percepções dos usuários e as principais tendências de sentimentos presentes nos comentários ou avaliações de um determinado produto, serviço ou tópico.
+
+O modelo de gráfico de nuvens de palavras é uma ferramenta poderosa para a visualização e interpretação de dados de texto em análises de sentimentos, proporcionando uma representação intuitiva e acessível das informações linguísticas subjacentes.
 
 \section{Análise de Sentimento}
 \label{cap:fund_teorica:sec:analise_sentimento}
@@ -16,20 +57,38 @@ Uma opinião é composta de dois componentes chaves, formando o par \emph{(g,s)}
 
 
 
-\section{modelos}
+\section{Modelos}
 \label{cap:fund_teorica:sec:modelos}
+
+
+Neste projeto foram utilizados \emph{Large Language Models}(LLM) pré-treinados, como o GPT (Generative Pre-trained Transformer), OpenChat e Vicuna, além de modelos baseados na arquitetura \emph{BERT} (Bidirectional Encoder Representations from Transformers). Esses modelos representam o estado-da-arte em PLN e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
+
+\subsection[Bert]{Bert}
+\label{cap:fund_teorica:sec:modelos:subsec:bert}
+
 % TODO bert
 % % https://arxiv.org/pdf/1909.10649.pdf
+Um modelo baseado em \emph{BERT}(\textit{Bidirectional Encoder Representations from Transformers}) é um tipo de modelo de linguagem pré-treinado desenvolvido pelo Google. \emph{BERT} é um modelo de aprendizado profundo que utiliza a arquitetura de transformers para capturar representações bidirecionais de palavras em um texto. Isso significa que ele é capaz de entender o contexto de uma palavra com base em suas palavras vizinhas, tanto anteriores quanto posteriores, em uma sentença.
+
+Os modelos BERT são uma família de modelos de linguagem baseados em transformers que foram pré-treinados em grandes corpora de texto. Eles são capazes de capturar o contexto bidirecional das palavras em uma frase, o que os torna especialmente eficazes para tarefas de análise de sentimentos, onde o contexto é crucial para determinar o sentimento expresso.
+
+O treinamento de \emph{BERT} é realizado em grandes quantidades de dados de texto, onde o modelo aprende a prever palavras em uma frase ou sentença com base no contexto global da sentença. Como resultado, \emph{BERT} é capaz de capturar nuances e complexidades da linguagem natural de uma maneira mais eficaz do que modelos mais simples.
+
+Depois de pré-treinado em um grande corpus de texto, um modelo \emph{BERT} pode ser ajustado para tarefas específicas, como análise de sentimentos, classificação de texto, resposta a perguntas, entre outras, por meio de um processo chamado de ajuste fino (\textit{fine-tuning}). Durante o ajuste fino, o modelo é treinado em um conjunto de dados rotulado específico para a tarefa em questão, adaptando suas representações aprendidas durante o pré-treinamento para a tarefa específica.
+
+Os modelos baseados em \emph{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade.
+
+\subsection[Large Language Models]{LLM}
+\label{cap:fund_teorica:sec:modelos:subsec:LLM}
 % TODO LLM
 % https://arxiv.org/pdf/2307.06435.pdf
 
-\section{Avaliação de estabelecimentos}
-\label{cap:fund_teorica:sec:avaliacao_estabelecimentos}
-% falar sobre o google maps e as avaliações e que avaliações de idioma diferente são traduzidas. traduzido por google
-% preprocessamento
-% pesquisar sobre os algoritmos de analise de sentimento https://www.lume.ufrgs.br/bitstream/handle/10183/140910/000991520.pdf?sequence=1
-% https://www.teses.usp.br/teses/disponiveis/59/59143/tde-31102018-174346/publico/mateuscorrigida.pdf
-% pesquisar sobre classificação de avaliações
+O GPT é um modelo baseado em transformadores que aprende representações de linguagem generalizadas a partir de grandes quantidades de texto não rotulado. Ele é capaz de gerar texto coerente e relevante, e pode ser adaptado para tarefas específicas, como análise de sentimentos, através do treinamento supervisionado em conjuntos de dados rotulados.
+
+O OpenChat \cite{wang2023openchat}  é um modelo de conversação baseado em transformadores que foi pré-treinado em uma grande quantidade de dados de conversação. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode ser útil para entender o contexto em avaliações de hotéis e extrair sentimentos.
+
+O Vicuna \cite{vicuna2023} é outro modelo baseado em transformadores que foi projetado especificamente para análise de sentimentos. Ele foi treinado em uma grande variedade de conjuntos de dados de sentimentos e é capaz de realizar tarefas de classificação de sentimentos com alta precisão.
+
 % topicos? https://sol.sbc.org.br/livros/index.php/sbc/catalog/download/4/177/354-1?inline=1
 % hugging face?
 % todo
