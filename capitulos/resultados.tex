@@ -103,6 +103,19 @@ Utilizando o modelo GPT 3.5 para realizar a tarefa de analise de sentimentos do 
 	\label{img:gpt_sentimento_nota}
 \end{figure}
 
+\section[Bert]{Bert}
+\label{sec:resultados:subsec:bert}
+
+O tempo de execução médio, após 5 execuções cada, para que a analise de todo o corpos fosse realizada, o seguinte:
+
+\begin{itemize}
+	\item philschmid/distilbert-base-multilingual-cased-sentiment: 3min e 37s
+	\item lxyuan/distilbert-base-multilingual-cased-sentiments-student: 3min e 36s
+	\item citizenlab/twitter-xlm-roberta-base-sentiment-finetunned: 6min e 54s
+	\item cardiffnlp/twitter-xlm-roberta-base-sentiment: 6min e 44s
+	\item ramonmedeiro1/bertimbau-products-reviews-pt-br: 6min e 59s
+\end{itemize}
+
 
 
 % E dentre todas as avaliações obtidas utilizaremos para a analise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas
