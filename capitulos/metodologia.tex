@@ -2,14 +2,14 @@
 \label{cap:metodologia}
 
 %TODO revisar
-Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto} descreve o processo de escolha de hotéis; a seção \ref{cap:metodologia:sec:conjunto_dados:sec:coleta_review} descreve como foi realizada a coleta das avaliações, \ref{cap:metodologia:sec:conjunto_dados:sec:pre_processamento} descreve o preparo e escolha das avaliações pós coleta.
+% Este capítulo apresenta a metodologia adotada neste trabalho. A seção \ref{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto} descreve o processo de escolha de hotéis; a seção \ref{cap:metodologia:sec:conjunto_dados:sec:coleta_review} descreve como foi realizada a coleta das avaliações, \ref{cap:metodologia:sec:conjunto_dados:sec:pre_processamento} descreve o preparo e escolha das avaliações pós coleta.
 % ; a seção \ref{subsec:pre_processamento} descreve // TODO; a seção \ref{subsec:analise_sentimentos} descreve // TODO; a seção \ref{subsec:analise_temporal} descreve // TODO
 
 \section{Conjunto de Dados}
 \label{cap:metodologia:sec:conjunto_dados}
 
-\subsection{Escolha do conjunto}
-\label{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto}
+%\subsection{Escolha do conjunto}
+%\label{cap:metodologia:sec:conjunto_dados:sec:escolha_conjunto}
 
 O conjunto de dados foi selecionado considerando os hotéis localizados em todo o território brasileiro e com informações disponíveis no Google Maps.
 
@@ -97,7 +97,7 @@ A lista de hotéis obtida é composta conforme a tabela~\ref{table:lista_hoteis}
 	\label{table:lista_hoteis}
 \end{table}
 
-\subsection{Coleta das avaliações}
+\subsection{Coleta de dados}
 \label{cap:metodologia:sec:conjunto_dados:sec:coleta_review}
 
 Já existe um \emph{script} escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do Google Maps, utilizando Selenium, obtém um determinado número de avaliações, o \emph{script} porém estava defasado e pendente de atualização, um dos \emph{forks} existentes \citeonline{ryuuzakescrapper2023} estava também pouco mais atualizado, porém ainda não funcional.
@@ -111,7 +111,7 @@ O \emph{script} possui uma dependência muito forte com a parte estrutural da p�
 % https://github.com/emerson-matos/maps-reviews-api-scraper
 Baseado no \emph{script} do \emph{WebScrapper} existe um repositório que utiliza diretamente uma API do Google chamada reviewDialog, sem a necessidade de utilizar o Selenium, que era em grande parte responsável pela baixa performance, dessa forma a coleta das avaliações ocorre de forma bem mais rápida, e em um período de aproximadamente 1h foi possível obter um total de 86.291 avaliações dos hotéis da lista.
 
-\subsection{Pré-processamento}
+\subsection{Pré-processamento dos dados}
 \label{cap:metodologia:sec:conjunto_dados:sec:pre_processamento}
 
 Após possuir as avaliações precisamos realizar alguns filtros para que a analise de sentimentos consiga resultar algo concreto, dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideração na analise.
@@ -343,14 +343,14 @@ Para construir as colunas de tempo (mes\_avaliacao, ano\_avaliacao e mes\_ano\_a
 %TODO apendice?
 \lstinputlisting[language=Python,caption=Código utilizado para tratar a data relativa]{extras/code/from_relative_date_to_timestamp.py}
 
-Com os dados tratados agora possuimos a nova coluna \emph{mes\_ano\_avaliacao}, em \ref{img:dist_ano_mes_avaliacao}, nota-se um comportamento estranho com a ausência de diversos meses por ano, durante o período de 2011 até 2021 temos o registro de apenas avaliações no mês 7, este comportamento é devido ao formato de data relativa utilizada pelo Google Maps ao expor suas avaliações, não foi possivel idenficar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada, por este motivo ao utilizar a data relativa e para as avaliações mais antigas conseguimos apenas identificar o ano no qual a avaliação foi publicada, as avaliações com menos de um ano de diferença da data de recuperação utilizando este script poderiam ser utilizadas em uma analise mais detalhada em relação ao periodo, porém esta não foi a estrategia escolhida e optaremos por restrigir a analise de modaneira em que as avaliações serão agreupadas em periodos anuais, representando assim o ano de publicação de cada avaliação.
+Com os dados tratados agora possuimos a nova coluna \emph{mes\_ano\_avaliacao}, em \ref{img:dist_ano_mes_avaliacao}, nota-se um comportamento estranho com a ausência de diversos meses por ano, durante o período de 2011 até 2021 temos o registro de apenas avaliações no mês 7, este comportamento é devido ao formato de data relativa utilizada pelo Google Maps ao expor suas avaliações, não foi possivel idenficar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada, por este motivo ao utilizar a data relativa e para as avaliações mais antigas conseguimos apenas identificar o ano no qual a avaliação foi publicada, as avaliações com menos de um ano de diferença da data de recuperação utilizando este \textit{script} poderiam ser utilizadas em uma analise mais detalhada em relação ao período, porém esta não foi a estrategia escolhida e optaremos por restringir a análise de maneira em que as avaliações serão agrupadas em períodos anuais, representando assim o ano de publicação de cada avaliação.
 
-Agora estamos considerando apenas avaliações que serão utilizadas na analise, a distribuição das notas atribuidas individualmente a cada avaliação pode ser consultada em \ref{img:dist_review_rating}. É fácil notar que a grande maioria das avaliações registradas, mais especificamente 38347 (77,91\%), possui a maior nota atribuida, de valor 5, o que nos leva a acreditar que em grande parte das avaliações o sentimento geral que deve ser identificado será positivo.
+Agora estamos considerando apenas avaliações que serão utilizadas na analise, a distribuição das notas atribuídas individualmente a cada avaliação pode ser consultada em \ref{img:dist_review_rating}. É fácil notar que a grande maioria das avaliações registradas, mais especificamente 38347 (77,91\%), possui a maior nota atribuída, de valor 5, o que nos leva a acreditar que em grande parte das avaliações o sentimento geral que deve ser identificado será positivo.
 
 % possivel referencia? https://riull.ull.es/xmlui/handle/915/26220
-Este comportamento de distribuição desigual das notas ainda é perceptivel também quando olhamos para as avaliações agrupadas por ano de submissão, como pode-se notar em \ref{img:dist_review_rating_per_year}. Podemos também observar em \ref{img:dist_review_rating_per_year} a evolução em quantidade númerica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19 (referências?) e já pós flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então possivelmente seguiremos com a tendencia de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
+Este comportamento de distribuição desigual das notas ainda é perceptível também quando olhamos para as avaliações agrupadas por ano de submissão, como pode-se notar em \ref{img:dist_review_rating_per_year}. Podemos também observar em \ref{img:dist_review_rating_per_year} a evolução em quantidade numérica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19 (referências?) e já pós flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então possivelmente seguiremos com a tendencia de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
 
-Com o gráfico \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuida tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores é cresce de forma desproporcional se comparado com as avaliações com notas baixas, como observado em \ref{img:dist_review_rating_per_year}.
+Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuída tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores é cresce de forma desproporcional se comparado com as avaliações com notas baixas, como observado em \ref{img:dist_review_rating_per_year}.
 
 \begin{figure}
 	\centering
@@ -485,39 +485,39 @@ Com o gráfico \ref{img:relplot_ano_rating} podemos notar que a variação da no
 		\hline
 		\textbf{Campo}            & \textbf{Descrição}                                                              & \textbf{Tipo}                                                                  \\
 		\hline
-		token                     & token utilizado para buscar a próxima sequencia de avaliações na API            & textual                                                                        \\
+		token                     & \emph{token} utilizado para buscar a próxima sequência de avaliações na API            & textual                                                                        \\
 		\hline
 		review\_id                & identificador da avaliação                                                      & textual                                                                        \\
 		\hline
-		retrieval\_date           & data na qual o script recuperou a avaliação                                     & textual em formato de datetime                                                 \\
+		retrieval\_date           & data na qual o \emph{script} recuperou a avaliação                                     & textual em formato de datetime                                                 \\
 		\hline
-		rating                    & valor númerico de nota que foi atribuido ao estabelecimento                     & númerico                                                                       \\
+		rating                    & valor numérico de nota que foi atribuído ao estabelecimento                     & numérico                                                                       \\
 		\hline
-		rating\_max               & valor númerico máximo de nota que poderia ter sido atribuido ao estabelecimento & númerico                                                                       \\
+		rating\_max               & valor numérico máximo de nota que poderia ter sido atribuído ao estabelecimento & numérico                                                                       \\
 		\hline
-		relative\_date            & data relativa ao retrieval\_date de quando a avaliação foi públicada            & textual formato de data relativa(1 dia atrás, 1 ano atrás, 3 meses atrás, etc) \\
+		relative\_date            & data relativa ao retrieval\_date de quando a avaliação foi publicada            & textual formato de data relativa(1 dia atrás, 1 ano atrás, 3 meses atrás, etc) \\
 		\hline
-		likes                     & quantidade de Likes que a avaliação recebeu de outros usuários da plataforma    & númerico                                                                       \\
+		likes                     & quantidade de Likes que a avaliação recebeu de outros usuários da plataforma    & numérico                                                                       \\
 		\hline
 		other\_ratings            & avaliações de outros aspectos relacionados ao estabelecimento                   & textual                                                                        \\
 		\hline
 		trip\_type\_travel\_group & indicador se a viagem foi realizada em grupo                                    & textual                                                                        \\
 		\hline
-		user\_name                & nome do usuário que realizou a públicação                                       & textual                                                                        \\
+		user\_name                & nome do usuário que realizou a publicação                                       & textual                                                                        \\
 		\hline
 		user\_is\_local\_guide    & identificador para indicar usuários que são local guides                        & textual                                                                        \\
 		\hline
-		user\_reviews             & número para indicar a quantidade de avaliações realizardas pelo usuário         & textual                                                                        \\
+		user\_reviews             & número para indicar a quantidade de avaliações realizadas pelo usuário         & textual                                                                        \\
 		\hline
-		user\_photos              & número de fotos que o usuário postou                                            & númerico                                                                       \\
+		user\_photos              & número de fotos que o usuário postou                                            & numérico                                                                       \\
 		\hline
 		user\_url                 & endereço na web do perfil do usuário                                            & textual                                                                        \\
 		\hline
-		text                      & conteúdo textual da avalição                                                    & textual                                                                        \\
+		text                      & conteúdo textual da avaliação                                                    & textual                                                                        \\
 		\hline
-		response\_text            & conteúdo textual de uma possivel resposta do estabelecimento à avalição         & textual                                                                        \\
+		response\_text            & conteúdo textual de uma possível resposta do estabelecimento à avaliação         & textual                                                                        \\
 		\hline
-		response\_relative\_date  & data relativa ao retrieval\_date de quando a resposta à avaliação foi públicada & string no formato de data relativa                                             \\
+		response\_relative\_date  & data relativa ao retrieval\_date de quando a resposta à avaliação foi publicada & string no formato de data relativa                                             \\
 		\hline
 		errors                    & lista de erros ao tentar fazer o \emph{parse} da avaliação                      & lista textual                                                                  \\
 		\hline
@@ -525,10 +525,14 @@ Com o gráfico \ref{img:relplot_ano_rating} podemos notar que a variação da no
 	\caption{estrutura da avaliação}
 	\label{tab:estrutura_review}
 \end{table}
-\section{Análise dos dados}
+\section{Análise dos Dados}
 
-\subsection{Análise de Sentimentos}
-\label{subsec:analise_sentimentos}
+
+% TODO
+
+
+%\subsection{Análise de Sentimentos}
+%\label{subsec:analise_sentimentos}
 
 A análise de sentimentos foi realizada sutilizando modelos de processamento de linguagem natural (PLN), incluindo BERTs pré treinados e foi també explorada a utilização de Large Language Models (LLMs) como GPT, Vicuna e OpenChat para classificar também, porém de forma genérica e similar ao que os modelos BERTs realizam, avaliar o conteúdo textual das avaliações e sem uma análise detalhada das nuances linguísticas ou contextuais.
 
@@ -538,8 +542,8 @@ Embora essa abordagem simplificada não leve em consideração todos os aspectos
 
 % Com o modelo treinado e os dados prontos para serem classificados, o modelo irá atribuir uma classificação geral para documento, ou seja, cada avaliação individualmente recebera uma classificação do modelo, sendo ela positiva, neutra ou negativa.
 
-\subsection{BERTs}
-\label{subsec:analise_sentimentos:bert}
+%\subsection{BERTs}
+%\label{subsec:analise_sentimentos:bert}
 
 Para a análise de sentimentos, os textos das avaliações foram alimentados em modelos baseados em BERT já pre treinados, processados utilizando a biblioteca Transformers em Python. Esses modelos foram pre treinados em diferentes conjuntos de dados rotulados, explicitados em suas respectivas páginas referências, e utilizados para classificar o sentimento das avaliações em categorias como positivo, negativo ou neutro.
 
@@ -558,10 +562,10 @@ Nessa etapa cada um dos modelos Berts atribui ao conteúdo textual da avaliaçã
 
 Todo o código foi executado utilizando a biblioteca transformers \cite{Wolf_Transformers_State-of-the-Art_Natural_2020}, utilizando o AutoTokenizer, AutoModelForSequenceClassification e pipeline, executados usando device Cuda (Nvidia RTX 4070TI com 12gb de VRAM) %% mais detalhes do ambiente de execução?
 
-\subsection{LLMs: GPT, Vicuna e OpenChat}
-\label{subsec:analise_sentimentos:llms}
+%\subsection{LLMs: GPT, Vicuna e OpenChat}
+%\label{subsec:analise_sentimentos:llms}
 
-Além dos modelos baseados em BERT, Large Language Models como GPT, Vicuna e OpenChat foram utilizados para que fosse possivel entender as capacidades desses modelos em relação a simples tarefa de analise de sentimento das avaliações de hotéis e sua eficiência em relação aos BERTs. Esses modelos foram utilizados para gerar respostas, objetivas assim como o BERT para que fosse possivel realizar a comparação dos resultados de forma simples.
+Além dos modelos baseados em BERT, Large Language Models como GPT, Vicuna e OpenChat foram utilizados para ser possível entender as capacidades desses modelos em relação à simples tarefa de analise de sentimento das avaliações de hotéis e sua eficiência em relação aos BERTs. Esses modelos foram utilizados para gerar respostas, objetivas assim como o BERT para ser possível realizar a comparação dos resultados de forma simples.
 
 
 % Nessa etapa utilizaremos o BERT (\emph{Bidirectional Encoder Representations from Transformers}), sendo este um modelo de representação de linguagem desenvolvido por pesquisadores do Google e que teve seu código aberto em 2018~\cite{hugoZanini2021mediu}. O texto será tokenizado utilizando a biblioteca e um modelo pré-treinado denominado "BERTimbau Base"~\cite{souza2020bertimbau}.
@@ -569,10 +573,10 @@ Além dos modelos baseados em BERT, Large Language Models como GPT, Vicuna e Ope
 % TODO Será realizado também o emparelhamento de Adjetivo-Substantivo visando identificar o sentimento por tópicos contidos na avaliação analisada. Para isso será utilizada a biblioteca spaCy~\cite{montani2022spacy}. $$$$$$$$$$$$ \\  NAO FOI FEITO
 
 
-\subsection{Análise Temporal}
-\label{subsec:analise_temporal}
+%\subsection{Análise Temporal}
+%\label{subsec:analise_temporal}
 Após a análise de sentimentos, utilizaremos os resultados agrupados por períodos de modo a conseguir visualizar em modo gráfico as avaliações divididas conforme explicitado na seção anterior para um grupo de hotéis.
 
-\label{subsec:avaliacao_resultados}
+%\label{subsec:avaliacao_resultados}
 %TODO
-Os resultados da análise de sentimentos foram avaliados em termos da capacidade de capturar com precisão o sentimento dos usuários nas avaliações de hotéis e tempo de processamento do corpus, comparando os diferentes modelos que foram utilizados.
+Os resultados da análise de sentimentos foram avaliados em termos da capacidade de capturar com precisão o sentimento dos usuários nas avaliações de hotéis e tempo de processamento do corpus, comparando os diferentes modelos utilizados.

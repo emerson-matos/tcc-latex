@@ -1,10 +1,10 @@
 \chapter{Fundamentação Teórica}
 \label{cap:fund_teorica}
 
-A análise de sentimentos é uma área da ciência da computação e do processamento de linguagem natural (PLN) que tem como objetivo identificar e extrair informações sobre sentimentos, opiniões e atitudes expressas em textos escritos.
-Neste capítulo abordaremos alguns dos conceitos necessários para o desenvolvimento e entendimento do projeto, do campo de estudo de processamento de linguagem natural, mais especificamente a análise de sentimentos. Também iremos discorrer sobre a funcionalidade de avaliação de estabelecimentos exposta pelo Google Maps.
 
-\section{Google Maps}
+%Neste capítulo abordaremos alguns dos conceitos necessários para o desenvolvimento e entendimento do projeto, do campo de estudo de processamento de linguagem natural, mais especificamente a análise de sentimentos. Também iremos discorrer sobre a funcionalidade de avaliação de estabelecimentos exposta pelo Google Maps.
+
+\section{Avaliações no Google Maps}
 \label{cap:fund_teorica:sec:google_maps}
 
 O Google Maps é uma das ferramentas de mapeamento e navegação mais populares do mundo, desenvolvida e mantida pela Google. Lançado em 2005, o Google Maps rapidamente se tornou uma ferramenta essencial para milhões de pessoas ao redor do mundo, oferecendo mapas detalhados, direções de navegação, informações sobre o tráfego em tempo real e uma ampla gama de recursos adicionais, como visualização de imagens de satélite, avaliações de estabelecimentos comerciais e muito mais.
@@ -17,8 +17,8 @@ Além disso, os "Local Guides" desempenham um papel importante na melhoria cont�
 
 Em resumo, o Google Maps é uma ferramenta essencial para navegação e descoberta de lugares, enquanto os "Local Guides" são membros voluntários da comunidade que contribuem com informações valiosas para melhorar a precisão e utilidade do serviço. Juntos, eles desempenham um papel crucial na criação de uma experiência de mapeamento e navegação mais rica e envolvente para todos os usuários.
 
-\subsection{Avaliação de estabelecimentos}
-\label{cap:fund_teorica:sec:google_maps:subsec:avaliacao_estabelecimentos}
+%\subsection{Avaliação de estabelecimentos}
+%\label{cap:fund_teorica:sec:google_maps:subsec:avaliacao_estabelecimentos}
 
 
 A funcionalidade de avaliação de estabelecimentos no Google Maps é uma ferramenta poderosa que oferece aos usuários uma maneira de compartilhar suas experiências e opiniões sobre diferentes locais, desde restaurantes e cafés até hotéis e pontos turísticos. Essa funcionalidade permite que os usuários forneçam feedback valioso sobre a qualidade do serviço, a atmosfera do local, a qualidade dos produtos e uma infinidade de outros aspectos.
@@ -36,34 +36,26 @@ Em resumo, a funcionalidade de avaliação de estabelecimentos no Google Maps of
 % https://www.teses.usp.br/teses/disponiveis/59/59143/tde-31102018-174346/publico/mateuscorrigida.pdf
 % pesquisar sobre classificação de avaliações
 
-\section{Nuvem de Palavras}
-\label{cap:fund_teorica:sec:word_cloud}
-% TODO
-%
-Uma tecnica bastante popular é o agrupamento dos tokens para que seja posteriormente realizada uma representação visual dos dados, onde o tamanho do token representa sua frenquência em um dado corpus, e sua coloração pode ser util para representar o sentimento do token. Essa representação gráfica é nomeanda \emph{wordcloud}, ou nuvem de palavras.
-
-O modelo de gráfico de nuvens de palavras é uma técnica de visualização frequentemente utilizada na análise de sentimentos para representar as palavras mais frequentes em um conjunto de dados de texto, com o tamanho das palavras proporcional à sua frequência de ocorrência. Neste contexto, as palavras são tipicamente coloridas de acordo com seu sentimento associado, o que facilita a identificação visual das palavras mais relevantes e das tendências sentimentais no texto.
-
-Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida identificação de palavras-chave associadas a diferentes emoções, como positivas, negativas ou neutras. Ao visualizar um gráfico de nuvens de palavras, os analistas podem extrair insights sobre as percepções dos usuários e as principais tendências de sentimentos presentes nos comentários ou avaliações de um determinado produto, serviço ou tópico.
-
-O modelo de gráfico de nuvens de palavras é uma ferramenta poderosa para a visualização e interpretação de dados de texto em análises de sentimentos, proporcionando uma representação intuitiva e acessível das informações linguísticas subjacentes.
-
-\section{Análise de Sentimento}
-\label{cap:fund_teorica:sec:analise_sentimento}
-% 10.1145/1014052.1014073 Mining and Summarizing Customer Reviews
-A análise de sentimentos é uma das áreas de pesquisa em processamento de linguagem natural, que visa utilizar recursos computacionais para estudar os sentimentos, opiniões e emoções de uma determinada sentença em relação a um alvo \cite{Bellini2019}.
-
-Uma opinião é composta de dois componentes chaves, formando o par \emph{(g,s)}: um alvo \emph{g} e um sentimento \emph{s} relacionado a esse alvo. E como destacado em \cite{Machado2018}, \emph{g} pode se referir a qualquer aspecto da entidade ou a ela própria e sentimento \emph{s} pode ser positivo, negativo ou neutro, ou ser representado por um valor numérico que representa a sua intensidade, denominado como polarização do sentimento ou opinião.
+\section{Processamento de Linguagem Natural}
 
 
 
-\section{Modelos}
-\label{cap:fund_teorica:sec:modelos}
+\subsection{Grandes Modelos de Linguagem}
+% hugging face?
+% todo
+
+
+%\subsection[Large Language Models]{LLM}
+%\label{cap:fund_teorica:sec:modelos:subsec:LLM}
+% TODO LLM
+% https://arxiv.org/pdf/2307.06435.pdf
+
 
 
 Neste projeto foram utilizados \emph{Large Language Models}(LLM) pré-treinados, como o GPT (Generative Pre-trained Transformer), OpenChat e Vicuna, além de modelos baseados na arquitetura \emph{BERT} (Bidirectional Encoder Representations from Transformers)\cite{hugoZanini2021mediu}. Esses modelos representam o estado-da-arte em PLN e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
 
-\subsection[Bert]{Bert}
+
+\subsubsection[BERT]{BERT}
 \label{cap:fund_teorica:sec:modelos:subsec:bert}
 
 % TODO bert
@@ -78,17 +70,42 @@ Depois de pré-treinado em um grande corpus de texto, um modelo \emph{BERT} pode
 
 Os modelos baseados em \emph{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, BERTs treinados em português e com boa performance podemos citar o RoBERTa {https://arxiv.org/pdf/1907.11692.pdf} TODO e BERTimbau.
 
-\subsection[Large Language Models]{LLM}
-\label{cap:fund_teorica:sec:modelos:subsec:LLM}
-% TODO LLM
-% https://arxiv.org/pdf/2307.06435.pdf
+\subsubsection{Vicuna}
 
+O Vicuna \cite{vicuna2023} é outro modelo baseado em transformadores projetado especificamente para análise de sentimentos. Ele foi treinado em uma grande variedade de conjuntos de dados de sentimentos e é capaz de realizar tarefas de classificação de sentimentos com alta precisão.
+
+\subsubsection{GPT 3.5}
 O GPT é um modelo baseado em transformadores que aprende representações de linguagem generalizadas a partir de grandes quantidades de texto não rotulado. Ele é capaz de gerar texto coerente e relevante, e pode ser adaptado para tarefas específicas, como análise de sentimentos, através do treinamento supervisionado em conjuntos de dados rotulados.
+
+
+\subsubsection{OpenChat}
+
 
 O OpenChat \cite{wang2023openchat}  é um modelo de conversação baseado em transformadores que foi pré-treinado em uma grande quantidade de dados de conversação. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode ser útil para entender o contexto em avaliações de hotéis e extrair sentimentos.
 
-O Vicuna \cite{vicuna2023} é outro modelo baseado em transformadores que foi projetado especificamente para análise de sentimentos. Ele foi treinado em uma grande variedade de conjuntos de dados de sentimentos e é capaz de realizar tarefas de classificação de sentimentos com alta precisão.
+
+\subsection{Análise de Sentimentos}
+%\label{cap:fund_teorica:sec:analise_sentimento}
+
+
+%A análise de sentimentos é uma área da ciência da computação e do processamento de linguagem natural (PLN) que tem como objetivo identificar e extrair informações sobre sentimentos, opiniões e atitudes expressas em textos escritos.
+
+% TODO
+%
+Uma técnica bastante popular é o agrupamento dos tokens para que seja posteriormente realizada uma representação visual dos dados, onde o tamanho do token representa sua frequência em um dado corpus, e sua coloração pode ser util para representar o sentimento do token. Essa representação gráfica é nomeada \emph{wordcloud}, ou nuvem de palavras.
+
+O modelo de gráfico de nuvens de palavras é uma técnica de visualização frequentemente utilizada na análise de sentimentos para representar as palavras mais frequentes em um conjunto de dados de texto, com o tamanho das palavras proporcional à sua frequência de ocorrência. Neste contexto, as palavras são tipicamente coloridas de acordo com seu sentimento associado, o que facilita a identificação visual das palavras mais relevantes e das tendências sentimentais no texto.
+
+Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida identificação de palavras-chave associadas a diferentes emoções, como positivas, negativas ou neutras. Ao visualizar um gráfico de nuvens de palavras, os analistas podem extrair insights sobre as percepções dos usuários e as principais tendências de sentimentos presentes nos comentários ou avaliações de um determinado produto, serviço ou tópico.
+
+O modelo de gráfico de nuvens de palavras é uma ferramenta poderosa para a visualização e interpretação de dados de texto em análises de sentimentos, proporcionando uma representação intuitiva e acessível das informações linguísticas subjacentes.
+
+% 10.1145/1014052.1014073 Mining and Summarizing Customer Reviews
+A análise de sentimentos é uma das áreas de pesquisa em processamento de linguagem natural, que visa utilizar recursos computacionais para estudar os sentimentos, opiniões e emoções de uma determinada sentença em relação a um alvo \cite{Bellini2019}.
+
+Uma opinião é composta de dois componentes chaves, formando o par \emph{(g,s)}: um alvo \emph{g} e um sentimento \emph{s} relacionado a esse alvo. E como destacado em \cite{Machado2018}, \emph{g} pode se referir a qualquer aspecto da entidade ou a ela própria e sentimento \emph{s} pode ser positivo, negativo ou neutro, ou ser representado por um valor numérico que representa a sua intensidade, denominado como polarização do sentimento ou opinião.
+
 
 % topicos? https://sol.sbc.org.br/livros/index.php/sbc/catalog/download/4/177/354-1?inline=1
-% hugging face?
-% todo
+
+
