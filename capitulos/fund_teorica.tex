@@ -7,15 +7,15 @@
 \section{Avaliações no Google Maps}
 \label{cap:fund_teorica:sec:google_maps}
 
-O Google Maps é uma das ferramentas de mapeamento e navegação mais populares do mundo, desenvolvida e mantida pela Google. Lançado em 2005, o Google Maps rapidamente se tornou uma ferramenta essencial para milhões de pessoas ao redor do mundo, oferecendo mapas detalhados, direções de navegação, informações sobre o tráfego em tempo real e uma ampla gama de recursos adicionais, como visualização de imagens de satélite, avaliações de estabelecimentos comerciais e muito mais.
+O Google Maps \citeonline{wiki:googlemaps2023} é uma das ferramentas de mapeamento e navegação mais populares do mundo, desenvolvida e mantida pela Google. Lançado em 2005, o Google Maps rapidamente se tornou uma ferramenta essencial para milhões de pessoas ao redor do mundo, oferecendo mapas detalhados, direções de navegação, informações sobre o tráfego em tempo real e uma ampla gama de recursos adicionais, como visualização de imagens de satélite, avaliações de estabelecimentos comerciais e muito mais.
 
-Um dos recursos interessantes do Google Maps é o programa "Local Guides". Este programa foi introduzido pela Google para incentivar os usuários a contribuir com informações adicionais sobre lugares e estabelecimentos em suas comunidades locais. Os "Local Guides" são usuários voluntários que compartilham avaliações, fotos, informações sobre horários de funcionamento, preços e outros detalhes úteis sobre restaurantes, lojas, atrações turísticas e outros pontos de interesse.
+Um dos recursos interessantes do Google Maps é o programa \emph{"Local Guides"}~\citeonline{google2022localguides}. Este programa foi introduzido pela Google para incentivar os usuários a contribuir com informações adicionais sobre lugares e estabelecimentos em suas comunidades locais. Os \emph{"Local Guides"}~são usuários voluntários que compartilham avaliações, fotos, informações sobre horários de funcionamento, preços e outros detalhes úteis sobre restaurantes, lojas, atrações turísticas e outros pontos de interesse.
 
-Os "Local Guides" são incentivados pela Google a contribuir com conteúdo de qualidade, e em troca, eles podem ganhar pontos, níveis e até mesmo recompensas, como armazenamento adicional no Google Drive, acesso antecipado a novos recursos do Google Maps e até mesmo convites para eventos exclusivos. Essa gamificação do processo de contribuição ajuda a manter os usuários engajados e motivados a compartilhar informações úteis.
+Os \emph{"Local Guides"}~são incentivados pela Google a contribuir com conteúdo de qualidade, e em troca, eles podem ganhar pontos, níveis e até mesmo recompensas, como armazenamento adicional no Google Drive, acesso antecipado a novos recursos do Google Maps e até mesmo convites para eventos exclusivos. Essa gamificação do processo de contribuição ajuda a manter os usuários engajados e motivados a compartilhar informações úteis.
 
-Além disso, os "Local Guides" desempenham um papel importante na melhoria contínua da precisão e da utilidade do Google Maps. Ao fornecer informações atualizadas e detalhadas sobre os locais, eles ajudam outros usuários a tomar decisões informadas sobre onde ir e o que fazer. Essa contribuição colaborativa cria uma comunidade global de usuários que trabalham juntos para tornar o Google Maps uma ferramenta ainda mais poderosa e abrangente.
+Além disso, os \emph{"Local Guides"}~desempenham um papel importante na melhoria contínua da precisão e da utilidade do Google Maps. Ao fornecer informações atualizadas e detalhadas sobre os locais, eles ajudam outros usuários a tomar decisões informadas sobre onde ir e o que fazer. Essa contribuição colaborativa cria uma comunidade global de usuários que trabalham juntos para tornar o Google Maps uma ferramenta ainda mais poderosa e abrangente.
 
-Em resumo, o Google Maps é uma ferramenta essencial para navegação e descoberta de lugares, enquanto os "Local Guides" são membros voluntários da comunidade que contribuem com informações valiosas para melhorar a precisão e utilidade do serviço. Juntos, eles desempenham um papel crucial na criação de uma experiência de mapeamento e navegação mais rica e envolvente para todos os usuários.
+Em resumo, o Google Maps é uma ferramenta essencial para navegação e descoberta de lugares, enquanto os \emph{"Local Guides"}~são membros voluntários da comunidade que contribuem com informações valiosas para melhorar a precisão e utilidade do serviço. Juntos, eles desempenham um papel crucial na criação de uma experiência de mapeamento e navegação mais rica e envolvente para todos os usuários.
 
 %\subsection{Avaliação de estabelecimentos}
 %\label{cap:fund_teorica:sec:google_maps:subsec:avaliacao_estabelecimentos}
@@ -49,16 +49,19 @@ Em resumo, a funcionalidade de avaliação de estabelecimentos no Google Maps of
 %\label{cap:fund_teorica:sec:modelos:subsec:LLM}
 % TODO LLM
 % https://arxiv.org/pdf/2307.06435.pdf
+% \cite{naveed2024comprehensive}
 
 
 
-Neste projeto foram utilizados \emph{Large Language Models}(LLM) pré-treinados, como o GPT (Generative Pre-trained Transformer), OpenChat e Vicuna, além de modelos baseados na arquitetura \emph{BERT} (Bidirectional Encoder Representations from Transformers)\cite{hugoZanini2021mediu}. Esses modelos representam o estado-da-arte em PLN e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
+Neste projeto foram utilizados Grandes Modelos de linguagem(\emph{Large Language Models} - LLM) pré-treinados, como o GPT (Generative Pre-trained Transformer), OpenChat e Vicuna, além de modelos baseados na arquitetura \emph{BERT} (Bidirectional Encoder Representations from Transformers)\cite{hugoZanini2021mediu}. Esses modelos representam o estado-da-arte em PLN e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
 
 
 \subsubsection[BERT]{BERT}
 \label{cap:fund_teorica:sec:modelos:subsec:bert}
 
 % TODO bert
+% http://arxiv.org/abs/1909.10649
+
 % % https://arxiv.org/pdf/1909.10649.pdf
 Um modelo baseado em \emph{BERT}(\textit{Bidirectional Encoder Representations from Transformers}) é um tipo de modelo de linguagem pré-treinado desenvolvido pelo Google. \emph{BERT} é um modelo de aprendizado profundo que utiliza a arquitetura de transformers para capturar representações bidirecionais de palavras em um texto. Isso significa que ele é capaz de entender o contexto de uma palavra com base em suas palavras vizinhas, tanto anteriores quanto posteriores, em uma sentença.
 
@@ -68,15 +71,28 @@ O treinamento de \emph{BERT} é realizado em grandes quantidades de dados de tex
 
 Depois de pré-treinado em um grande corpus de texto, um modelo \emph{BERT} pode ser ajustado para tarefas específicas, como análise de sentimentos, classificação de texto, resposta a perguntas, entre outras, por meio de um processo chamado de ajuste fino (\textit{fine-tuning}). Durante o ajuste fino, o modelo é treinado em um conjunto de dados rotulado específico para a tarefa em questão, adaptando suas representações aprendidas durante o pré-treinamento para a tarefa específica.
 
-Os modelos baseados em \emph{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, BERTs treinados em português e com boa performance podemos citar o RoBERTa {https://arxiv.org/pdf/1907.11692.pdf} TODO e BERTimbau.
+Os modelos baseados em \emph{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, BERTs treinados em português e com boa performance podemos citar o RoBERTa~\cite{liu2019roberta} e BERTimbau~\cite{souza2020bertimbau}.
 
 \subsubsection{Vicuna}
 
-O Vicuna \cite{vicuna2023} é outro modelo baseado em transformadores projetado especificamente para análise de sentimentos. Ele foi treinado em uma grande variedade de conjuntos de dados de sentimentos e é capaz de realizar tarefas de classificação de sentimentos com alta precisão.
+O Vicuna \cite{vicuna2023} é um modelo de assistente de chat desenvolvido pela LMSYS, ajustado a partir do modelo LLaMA usando ajuste fino de instrução supervisionada. É um modelo de linguagem auto-regressivo baseado na arquitetura \emph{transformer}, projetado para tarefas de geração de texto. Os dados de treinamento para o Vicuna v1.3 consistem aproximadamente de 125.000 conversas coletadas do ShareGPT.com, enquanto o Vicuna v1.1 foi treinado com cerca de 70.000 conversas da mesma fonte.
+
+Vicuna é avaliado usando \emph{benchmarks} padrão, preferência humana e LLM-como-juiz, fornecendo uma avaliação abrangente de seu desempenho. É notável por alcançar mais de 90\% da qualidade do ChatGPT em testes de preferência do usuário e superar significativamente o Alpaca, tornando-se um forte concorrente na família de modelos LLaMA ajustados por instrução até maio de 2023.
+
+O modelo está disponível no \emph{Hugging Face}, onde tem sido utilizado em vários espaços e projetos, indicando sua ampla adoção e aplicação na comunidade de desenvolvedores. No entanto, é importante notar que o Vicuna está sujeito a uma licença não comercial, restringindo seu uso em aplicações comerciais.
+
+Para aqueles interessados em começar com o Vicuna, o cartão de modelo do Hugging Face fornece informações detalhadas sobre detalhes do modelo, fontes, usos e como começar a trabalhar com o modelo. Além disso, há uma nota sobre uma versão mais recente dos pesos disponíveis, sugerindo que os usuários verifiquem atualizações para garantir que estejam usando a versão mais atual do modelo.
 
 \subsubsection{GPT 3.5}
+
 O GPT é um modelo baseado em transformadores que aprende representações de linguagem generalizadas a partir de grandes quantidades de texto não rotulado. Ele é capaz de gerar texto coerente e relevante, e pode ser adaptado para tarefas específicas, como análise de sentimentos, através do treinamento supervisionado em conjuntos de dados rotulados.
 
+% https://en.wikipedia.org/wiki/GPT-3
+O GPT-3.5, introduzido pela OpenAI em março de 2022, é uma subclasse dos modelos GPT-3 que representa um avanço significativo sobre seus predecessores. Ele é projetado para entender e gerar linguagem natural ou código, tornando-o adequado para uma ampla gama de aplicações, incluindo conversação e tarefas gerais. O GPT-3.5 é notável por sua velocidade e flexibilidade, sendo mais rápido que o GPT-4 e mais adaptável que o GPT Base. É considerado o modelo "suficientemente bom" para a maioria das necessidades, oferecendo um equilíbrio entre desempenho e custo-efetividade. A variante GPT-3.5 Turbo, em particular, é destacada como o melhor modelo da série GPT-3.5, usado pela versão gratuita do ChatGPT e elogiado por sua relação custo-eficácia e flexibilidade.
+
+% https://platform.openai.com/docs/models/gpt-3-5-turbo
+% https://openai.com/pricing 24/04/2024
+Os modelos GPT-3.5, incluindo a variante Turbo, têm um limite máximo de token de 4.096 para a versão padrão e 16.384 para a versão Turbo-16k. Eles são treinados em dados até setembro de 2021, garantindo que tenham uma ampla base de conhecimento para se basear. A precificação para usar esses modelos é competitiva, com a variante Turbo custando \$0.0015 por 1.000 tokens para entrada e \$0.002 por 1.000 tokens para saída, enquanto a variante Turbo-16k custa \$0.0005 por 1.000 tokens para entrada e \$0.0015 por 1.000 tokens para saída.
 
 \subsubsection{OpenChat}
 
