@@ -1,7 +1,6 @@
 \chapter{Fundamentação Teórica}
 \label{cap:fund_teorica}
 
-
 %Neste capítulo abordaremos alguns dos conceitos necessários para o desenvolvimento e entendimento do projeto, do campo de estudo de processamento de linguagem natural, mais especificamente a análise de sentimentos. Também iremos discorrer sobre a funcionalidade de avaliação de estabelecimentos exposta pelo Google Maps.
 
 \section{Avaliações no Google Maps}
@@ -21,7 +20,7 @@ Em resumo, o Google Maps é uma ferramenta essencial para navegação e descober
 %\label{cap:fund_teorica:sec:google_maps:subsec:avaliacao_estabelecimentos}
 
 
-A funcionalidade de avaliação de estabelecimentos no Google Maps é uma ferramenta poderosa que oferece aos usuários uma maneira de compartilhar suas experiências e opiniões sobre diferentes locais, desde restaurantes e cafés até hotéis e pontos turísticos. Essa funcionalidade permite que os usuários forneçam feedback valioso sobre a qualidade do serviço, a atmosfera do local, a qualidade dos produtos e uma infinidade de outros aspectos.
+A funcionalidade de avaliação de estabelecimentos no Google Maps é uma ferramenta poderosa que oferece aos usuários uma maneira de compartilhar suas experiências e opiniões sobre diferentes locais, desde restaurantes e cafés até hotéis e pontos turísticos. Essa funcionalidade permite que os usuários forneçam opnião valiosa sobre a qualidade do serviço, a atmosfera do local, a qualidade dos produtos e uma infinidade de outros aspectos.
 
 Uma das principais vantagens dessa funcionalidade é a capacidade de ajudar outros usuários a tomar decisões informadas ao escolherem um estabelecimento para visitar. As avaliações e comentários fornecidos por outros usuários podem servir como uma referência confiável, permitindo que as pessoas tenham uma noção melhor do que esperar de um determinado local antes de decidirem visitá-lo.
 
@@ -53,7 +52,7 @@ Em resumo, a funcionalidade de avaliação de estabelecimentos no Google Maps of
 
 
 
-Neste projeto foram utilizados Grandes Modelos de linguagem(\emph{Large Language Models} - LLM) pré-treinados, como o GPT (Generative Pre-trained Transformer), OpenChat e Vicuna, além de modelos baseados na arquitetura \emph{BERT} (Bidirectional Encoder Representations from Transformers)\cite{hugoZanini2021mediu}. Esses modelos representam o estado-da-arte em PLN e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
+Neste projeto foram utilizados Grandes Modelos de linguagem(\emph{Large Language Models} - LLM) pré-treinados, como o GPT (\emph{Generative Pre-trained Transformer}), OpenChat e Vicuna, além de modelos baseados na arquitetura \emph{BERT} (Bidirectional Encoder Representations from Transformers)\cite{hugoZanini2021mediu}. Esses modelos representam o estado-da-arte em PLN e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
 
 
 \subsubsection[BERT]{BERT}
@@ -74,6 +73,7 @@ Depois de pré-treinado em um grande corpus de texto, um modelo \emph{BERT} pode
 Os modelos baseados em \emph{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, BERTs treinados em português e com boa performance podemos citar o RoBERTa~\cite{liu2019roberta} e BERTimbau~\cite{souza2020bertimbau}.
 
 \subsubsection{Vicuna}
+\label{cap:fund_teorica:sec:modelos:subsec:vicuna}
 
 O Vicuna \cite{vicuna2023} é um modelo de assistente de chat desenvolvido pela LMSYS, ajustado a partir do modelo LLaMA usando ajuste fino de instrução supervisionada. É um modelo de linguagem auto-regressivo baseado na arquitetura \emph{transformer}, projetado para tarefas de geração de texto. Os dados de treinamento para o Vicuna v1.3 consistem aproximadamente de 125.000 conversas coletadas do ShareGPT.com, enquanto o Vicuna v1.1 foi treinado com cerca de 70.000 conversas da mesma fonte.
 
@@ -83,36 +83,46 @@ O modelo está disponível no \emph{Hugging Face}, onde tem sido utilizado em v�
 
 Para aqueles interessados em começar com o Vicuna, o cartão de modelo do Hugging Face fornece informações detalhadas sobre detalhes do modelo, fontes, usos e como começar a trabalhar com o modelo. Além disso, há uma nota sobre uma versão mais recente dos pesos disponíveis, sugerindo que os usuários verifiquem atualizações para garantir que estejam usando a versão mais atual do modelo.
 
+A versão utilizada neste projeto é o vicuna-1.5-13B disponível para consulta no Hugging faces~\citeonline{vicuna1513b}.
+
 \subsubsection{GPT 3.5}
+\label{cap:fund_teorica:sec:modelos:subsec:gpt}
 
 O GPT é um modelo baseado em transformadores que aprende representações de linguagem generalizadas a partir de grandes quantidades de texto não rotulado. Ele é capaz de gerar texto coerente e relevante, e pode ser adaptado para tarefas específicas, como análise de sentimentos, através do treinamento supervisionado em conjuntos de dados rotulados.
 
 % https://en.wikipedia.org/wiki/GPT-3
+% TODO
 O GPT-3.5, introduzido pela OpenAI em março de 2022, é uma subclasse dos modelos GPT-3 que representa um avanço significativo sobre seus predecessores. Ele é projetado para entender e gerar linguagem natural ou código, tornando-o adequado para uma ampla gama de aplicações, incluindo conversação e tarefas gerais. O GPT-3.5 é notável por sua velocidade e flexibilidade, sendo mais rápido que o GPT-4 e mais adaptável que o GPT Base. É considerado o modelo "suficientemente bom" para a maioria das necessidades, oferecendo um equilíbrio entre desempenho e custo-efetividade. A variante GPT-3.5 Turbo, em particular, é destacada como o melhor modelo da série GPT-3.5, usado pela versão gratuita do ChatGPT e elogiado por sua relação custo-eficácia e flexibilidade.
 
+% TODO
 % https://platform.openai.com/docs/models/gpt-3-5-turbo
 % https://openai.com/pricing 24/04/2024
 Os modelos GPT-3.5, incluindo a variante Turbo, têm um limite máximo de token de 4.096 para a versão padrão e 16.384 para a versão Turbo-16k. Eles são treinados em dados até setembro de 2021, garantindo que tenham uma ampla base de conhecimento para se basear. A precificação para usar esses modelos é competitiva, com a variante Turbo custando \$0.0015 por 1.000 tokens para entrada e \$0.002 por 1.000 tokens para saída, enquanto a variante Turbo-16k custa \$0.0005 por 1.000 tokens para entrada e \$0.0015 por 1.000 tokens para saída.
 
 \subsubsection{OpenChat}
+\label{cap:fund_teorica:sec:modelos:subsec:openchat}
 
+O OpenChat \cite{wang2024openchat} é um modelo de conversação que usa como modelo base o llama 2, usando ajuste fino com aprendizado supervisionado e treinado utilizando um ajuste fino de aprendizagem por reforço condicionado. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode ser útil para entender o contexto em avaliações de hotéis e extrair sentimentos.
 
-O OpenChat \cite{wang2024openchat}  é um modelo de conversação baseado em transformadores e que usa como modelo base o llama 2. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode ser útil para entender o contexto em avaliações de hotéis e extrair sentimentos.
+É apresentado uma nova forma de ajuste fino de modelos, nomeado como \emph{OpenChat Framework}, que de forma sucinta consiste em realizar o ajuste fino do modelo utilizando um conjunto de dados que não é ótimo, ou seja, no conjunto de dados utilizado podemos ter dados com qualidade diferentes, de modo a aumentar a quantidade de dados que serão utilizadas no processo, porém de modo a realizar uma classificação para que o algoritmo de ajuste fino leve agora em consideração também a qualidade do dado utilizado.
 
+O desempenho do OpenChat 13b se comprado a outros modelos com mesmo tamanho é bastante competitivo, tendo pontuação em AlapacaEval e MT-bench superiores aos valores de vicuna-v1.5-13b e ou modelo base llama-2-13b.
+
+A versão utilizada neste projeto é o OpenChat-3.5-7B disponível para consulta no Hugging faces~\citeonline{openChat357b}.
 
 \subsection{Análise de Sentimentos}
-%\label{cap:fund_teorica:sec:analise_sentimento}
+\label{cap:fund_teorica:sec:analise_sentimento}
 
 
 %A análise de sentimentos é uma área da ciência da computação e do processamento de linguagem natural (PLN) que tem como objetivo identificar e extrair informações sobre sentimentos, opiniões e atitudes expressas em textos escritos.
 
 % TODO
 %
-Uma técnica bastante popular é o agrupamento dos tokens para que seja posteriormente realizada uma representação visual dos dados, onde o tamanho do token representa sua frequência em um dado corpus, e sua coloração pode ser util para representar o sentimento do token. Essa representação gráfica é nomeada \emph{wordcloud}, ou nuvem de palavras.
+Uma técnica bastante popular é o agrupamento dos tokens para que seja posteriormente realizada uma representação visual dos dados, onde o tamanho do token representa sua frequência em um dado corpus, e sua coloração pode ser útil para representar o sentimento do token. Essa representação gráfica é nomeada \emph{wordcloud}, ou nuvem de palavras.
 
 O modelo de gráfico de nuvens de palavras é uma técnica de visualização frequentemente utilizada na análise de sentimentos para representar as palavras mais frequentes em um conjunto de dados de texto, com o tamanho das palavras proporcional à sua frequência de ocorrência. Neste contexto, as palavras são tipicamente coloridas de acordo com seu sentimento associado, o que facilita a identificação visual das palavras mais relevantes e das tendências sentimentais no texto.
 
-Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida identificação de palavras-chave associadas a diferentes emoções, como positivas, negativas ou neutras. Ao visualizar um gráfico de nuvens de palavras, os analistas podem extrair insights sobre as percepções dos usuários e as principais tendências de sentimentos presentes nos comentários ou avaliações de um determinado produto, serviço ou tópico.
+Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida identificação de palavras-chave associadas a diferentes emoções, como positivas, negativas ou neutras. Ao visualizar um gráfico de nuvens de palavras, os analistas podem extrair percepções sobre as percepções dos usuários e as principais tendências de sentimentos presentes nos comentários ou avaliações de um determinado produto, serviço ou tópico.
 
 O modelo de gráfico de nuvens de palavras é uma ferramenta poderosa para a visualização e interpretação de dados de texto em análises de sentimentos, proporcionando uma representação intuitiva e acessível das informações linguísticas subjacentes.
 
@@ -122,6 +132,4 @@ A análise de sentimentos é uma das áreas de pesquisa em processamento de ling
 Uma opinião é composta de dois componentes chaves, formando o par \emph{(g,s)}: um alvo \emph{g} e um sentimento \emph{s} relacionado a esse alvo. E como destacado em \cite{Machado2018}, \emph{g} pode se referir a qualquer aspecto da entidade ou a ela própria e sentimento \emph{s} pode ser positivo, negativo ou neutro, ou ser representado por um valor numérico que representa a sua intensidade, denominado como polarização do sentimento ou opinião.
 
 
-% topicos? https://sol.sbc.org.br/livros/index.php/sbc/catalog/download/4/177/354-1?inline=1
-
-
+% tópicos? https://sol.sbc.org.br/livros/index.php/sbc/catalog/download/4/177/354-1?inline=1
