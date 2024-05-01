@@ -18,11 +18,11 @@ E por ultimo observamos a nuvem de palavras levando em consideração apenas os 
 
 Uma outra forma de analise é o agrupamento de tokens em unigramas na Figura \ref{img:unigramas}, bigramas na Figura \ref{img:bigramas} e os trigramas na Figura \ref{img:trigramas} presentes em todas as avaliações. dessa forma temos exatamente a classificação de franquênia dos tokens no corpus de estudo.
 
-Entre os unigramas \ref{img:unigramas} temos uma lista com alguns dos tokens mais frequentes, alguns chegando a passar a contagem de utilização de mais de 10.000 vezes, como é o caso de lugar, sendo seguindo ainda que próximo por comida, excelente e atendimento, este ultimo com uma frequência próximo de 8500 vezes. Ainda em relação aos unigramas também podemos levar em consideração a sua frequência com a evolução do tempo em \ref{img:rank_unigramas}, e algo com grande destaque é a palavra lugar que está entre o top 10 entre todo o periodo da analise, flutuando entre as cinco primeiras posições, tio é um unigrama que merece atenção, por não ter aparecido na nuvem de palavras de unigramas, porém se faz presente no ranking se observarmos individualmente os anos ele aparece em décimo lugar no ano de 2022, indicios de uma possível atração local bem conhecida, substituindo então o unigrama 'praia', que se fazia presente no ranking até 2021 na nona colocação.
+Entre os unigramas \ref{img:unigramas} temos uma lista com alguns dos tokens mais frequentes, alguns chegando a passar a contagem de utilização de mais de 10.000 vezes, como é o caso de lugar, sendo seguindo ainda que próximo por comida, excelente e atendimento, este ultimo com uma frequência próximo de 8500 vezes. Ainda em relação aos unigramas também podemos levar em consideração a sua frequência com a evolução do tempo em \ref{img:rank_unigramas}, e algo com grande destaque é a palavra lugar que está entre o top 10 entre todo o período da analise, flutuando entre as cinco primeiras posições, tio é um unigrama que merece atenção, por não ter aparecido na nuvem de palavras de unigramas, porém se faz presente no ranking se observarmos individualmente os anos ele aparece em décimo lugar no ano de 2022, indícios de uma possível atração local bem conhecida, substituindo então o unigrama 'praia', que se fazia presente no ranking até 2021 na nona colocação.
 
 Considerando os bigramas \ref{img:bigramas} a frequência diminui consideravelmente, pois aqui temos que a ordem importa e dessa forma o mais frequente fica próximo de 1700 vezes, sendo composto pela dupla 'lugar' e 'maravilhoso', seguido pelo segundo colocado, bem próximo de 1400 vezes, sendo 'comida' e 'boa', onde podemos observar a grande frequência de palavras positivas, por conta dos adjetivo positivos.
 
-Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda mais e como destaque tmos um que supera a contagem de 250 vezes, sendo 'facilidade', 'deslocamento' e 'pe', o que nos indica que existe pelo menos um hotel que possui uma boa localizacao para que seja possivel se deslocar até uma atração popular do local à pé, seguido de 'atendimento', 'nota' e '10' que indica que para as pessoas que avaliaram o atendimento da rede de hotéis ainda é algo importante e que deve ser levado em consideração caso a rede tenha interesse em ter ou manter um conceito positivo entre seus cliente.
+Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda mais e como destaque temos um que supera a contagem de 250 vezes, sendo 'facilidade', 'deslocamento' e 'pe', o que nos indica que existe pelo menos um hotel que possui uma boa localização para que seja possível se deslocar até uma atração popular do local à pé, seguido de 'atendimento', 'nota' e '10' que indica que para as pessoas que avaliaram o atendimento da rede de hotéis ainda é algo importante e que deve ser levado em consideração caso a rede tenha interesse em ter ou manter um conceito positivo entre seus cliente.
 
 
 \begin{figure}
@@ -69,7 +69,7 @@ Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda
 \end{figure}
 
 
-%TODO ajustar tamano, ta estranho
+%TODO ajustar tamanho, ta estranho
 \begin{figure}
 	\centering
 	\includegraphics[width=.7\textwidth]{figs/exploratoria/ranking_unigramas_por_ano.png}
@@ -79,29 +79,6 @@ Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda
 
 \section{Análise de Sentimentos Temporal}
 \label{cap:resultados:sec:analise_sentimento}
-
-Utilizando o modelo GPT 3.5 para realizar a tarefa de analise de sentimentos do conteudo textual das avaliações obtemos a distribuição conforme \ref{img:gpt_pizza_distribuicao}, onde 84.77\% das avaliações, ou seja, 41721 avaliações foram classificadas como tendo um sentimento positivo, isso representa um número próximo das avaliações que receberam como nota 4 ou 5, 6128 e 38347 avaliações respectivamente, porém fica facil notar em \ref{gpt_sentimento_nota} que mesmo a grande maioria das avaliações com essa nota atribuida ainda existem avaliações com sentimentos diferentes
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/gpt/distribuicao_pizza.png}
-	\caption{Distribuição do sentimento das avaliações}
-	\label{img:gpt_pizza_distribuicao}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/gpt/sentimento_ano.png}
-	\caption{Sentimento das avaliações por ano}
-	\label{img:gpt_sentimento_ano}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/gpt/sentimento_nota.png}
-	\caption{Sentimento das avaliações por nota}
-	\label{img:gpt_sentimento_nota}
-\end{figure}
 
 \subsection[BERT]{BERT}
 \label{sec:resultados:subsec:bert}
@@ -124,6 +101,30 @@ O tempo de execução médio, após 5 execuções cada, para que a analise de to
 \subsection{Vicuna}
 
 \subsection{GPT 3.5}
+
+Utilizando o modelo GPT 3.5 para realizar a tarefa de analise de sentimentos do conteúdo textual das avaliações obtemos a distribuição conforme Figura \ref{img:gpt_pizza_distribuicao}, onde 84.77\% das avaliações, ou seja, 41721 avaliações foram classificadas como tendo um sentimento positivo, isso representa um número próximo das avaliações que receberam como nota 4 ou 5, 6128 e 38347 avaliações respectivamente, porém fica fácil notar na Figura \ref{img:gpt_sentimento_nota} que mesmo a grande maioria das avaliações com essa nota atribuída ainda existem avaliações com sentimentos diferentes
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/gpt/distribuicao_pizza.png}
+	\caption{Distribuição do sentimento das avaliações}
+	\label{img:gpt_pizza_distribuicao}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/gpt/sentimento_ano.png}
+	\caption{Sentimento das avaliações por ano}
+	\label{img:gpt_sentimento_ano}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/gpt/sentimento_nota.png}
+	\caption{Sentimento das avaliações por nota}
+	\label{img:gpt_sentimento_nota}
+\end{figure}
+
 
 \subsection{OpenChat}
 
