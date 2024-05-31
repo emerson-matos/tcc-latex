@@ -59,24 +59,20 @@ Neste projeto foram utilizados Grandes Modelos de linguagem(\textit{Large Langua
 \subsubsection[BERT]{BERT}
 \label{cap:fund_teorica:sec:modelos:subsec:bert}
 
-% TODO bert
-% http://arxiv.org/abs/1909.10649
+Um modelo baseado em \textit{BERT}(\textit{Bidirectional Encoder Representations from Transformers})~\cite{devlin2019bert} é um tipo de modelo de linguagem pré-treinado desenvolvido pelo Google. \textit{BERT} é um modelo de aprendizado profundo que utiliza a arquitetura de \textit{transformers} para capturar representações bidirecionais de palavras em um texto. Isso significa que ele é capaz de entender o contexto de uma palavra com base em suas palavras vizinhas, tanto anteriores quanto posteriores, em uma sentença.
 
-% % https://arxiv.org/pdf/1909.10649.pdf
-Um modelo baseado em \textit{BERT}(\textit{Bidirectional Encoder Representations from Transformers}) é um tipo de modelo de linguagem pré-treinado desenvolvido pelo Google. \textit{BERT} é um modelo de aprendizado profundo que utiliza a arquitetura de transformers para capturar representações bidirecionais de palavras em um texto. Isso significa que ele é capaz de entender o contexto de uma palavra com base em suas palavras vizinhas, tanto anteriores quanto posteriores, em uma sentença.
-
-Os modelos BERT são uma família de modelos de linguagem baseados em transformers que foram pré-treinados em grandes corpora de texto. Eles são capazes de capturar o contexto bidirecional das palavras em uma frase, o que os torna especialmente eficazes para tarefas de análise de sentimentos, onde o contexto é crucial para determinar o sentimento expresso.
+Os modelos BERT são uma família de modelos de linguagem baseados em \textit{transformers} que foram pré-treinados em grandes corpora de texto. Eles são capazes de capturar o contexto bidirecional das palavras em uma frase, o que os torna especialmente eficazes para tarefas de análise de sentimentos, onde o contexto é crucial para determinar o sentimento expresso.
 
 O treinamento de \textit{BERT} é realizado em grandes quantidades de dados de texto, onde o modelo aprende a prever palavras em uma frase ou sentença com base no contexto global da sentença. Como resultado, \textit{BERT} é capaz de capturar nuances e complexidades da linguagem natural de uma maneira mais eficaz do que modelos mais simples.
 
 Depois de pré-treinado em um grande corpus de texto, um modelo \textit{BERT} pode ser ajustado para tarefas específicas, como análise de sentimentos, classificação de texto, resposta a perguntas, entre outras, por meio de um processo chamado de ajuste fino (\textit{fine-tuning}). Durante o ajuste fino, o modelo é treinado em um conjunto de dados rotulado específico para a tarefa em questão, adaptando suas representações aprendidas durante o pré-treinamento para a tarefa específica.
 
-Os modelos baseados em \textit{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, BERTs treinados em português e com boa performance podemos citar o RoBERTa~\cite{liu2019roberta} e BERTimbau~\cite{souza2020bertimbau}.
+Os modelos baseados em \textit{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, \textit{BERTs} treinados em português e com boa performance podemos citar o RoBERTa~\cite{liu2019roberta} e BERTimbau~\cite{souza2020bertimbau}.
 
 \subsubsection{Vicuna}
 \label{cap:fund_teorica:sec:modelos:subsec:vicuna}
 
-O Vicuna \cite{vicuna2023} é um modelo de assistente de chat desenvolvido pela LMSYS, ajustado a partir do modelo LLaMA usando ajuste fino de instrução supervisionada. É um modelo de linguagem auto-regressivo baseado na arquitetura \textit{transformer}, projetado para tarefas de geração de texto. Os dados de treinamento para o Vicuna v1.3 consistem aproximadamente de 125.000 conversas coletadas do ShareGPT.com, enquanto o Vicuna v1.1 foi treinado com cerca de 70.000 conversas da mesma fonte.
+O Vicuna~\cite{vicuna2023} é um modelo de assistente de chat desenvolvido pela LMSYS~(\textit{Large Model Systems Organization}), ajustado a partir do modelo LLaMA usando ajuste fino de instrução supervisionada. É um modelo de linguagem auto-regressivo baseado na arquitetura \textit{transformers}, projetado para tarefas de geração de texto. Os dados de treinamento para o Vicuna v1.5 consistem aproximadamente de 125.000 conversas coletadas do ShareGPT.com, enquanto o Vicuna v1.1 foi treinado com cerca de 70.000 conversas da mesma fonte.
 
 Vicuna é avaliado usando \textit{benchmarks} padrão, preferência humana e LLM-como-juiz, fornecendo uma avaliação abrangente de seu desempenho. É notável por alcançar mais de 90\% da qualidade do ChatGPT em testes de preferência do usuário e superar significativamente o Alpaca, tornando-se um forte concorrente na família de modelos LLaMA ajustados por instrução até maio de 2023.
 
@@ -89,32 +85,56 @@ A versão utilizada neste projeto é o vicuna-1.5-13B disponível para consulta 
 \subsubsection{GPT 3.5}
 \label{cap:fund_teorica:sec:modelos:subsec:gpt}
 
-O GPT é um modelo baseado em transformadores que aprende representações de linguagem generalizadas a partir de grandes quantidades de texto não rotulado. Ele é capaz de gerar texto coerente e relevante, e pode ser adaptado para tarefas específicas, como análise de sentimentos, através do treinamento supervisionado em conjuntos de dados rotulados.
+O GPT~\cite{enwiki:1226113577} é um modelo de código fechado e baseado em transformadores que aprende representações de linguagem generalizadas a partir de grandes quantidades de texto não rotulado. Ele é capaz de gerar texto coerente e relevante, e pode ser adaptado para tarefas específicas, como análise de sentimentos, através do treinamento supervisionado em conjuntos de dados rotulados.
 
-% https://en.wikipedia.org/wiki/GPT-3
-% TODO
-O GPT-3.5, introduzido pela OpenAI em março de 2022, é uma subclasse dos modelos GPT-3 que representa um avanço significativo sobre seus predecessores. Ele é projetado para entender e gerar linguagem natural ou código, tornando-o adequado para uma ampla gama de aplicações, incluindo conversação e tarefas gerais. O GPT-3.5 é notável por sua velocidade e flexibilidade, sendo mais rápido que o GPT-4 e mais adaptável que o GPT Base. É considerado o modelo "suficientemente bom" para a maioria das necessidades, oferecendo um equilíbrio entre desempenho e custo-efetividade. A variante GPT-3.5 Turbo, em particular, é destacada como o melhor modelo da série GPT-3.5, usado pela versão gratuita do ChatGPT e elogiado por sua relação custo-eficácia e flexibilidade.
+O GPT-3.5~\cite{openai:gpt35turbo}, introduzido pela OpenAI em março de 2022, é uma subclasse dos modelos GPT-3 que representa um avanço significativo sobre seus predecessores. Ele é projetado para entender e gerar linguagem natural ou código, tornando-o adequado para uma ampla gama de aplicações, incluindo conversação e tarefas gerais. O GPT-3.5 é notável por sua velocidade e flexibilidade, sendo mais rápido que o GPT-3 e mais adaptável que o GPT Base. É considerado o modelo "suficientemente bom"\ para a maioria das necessidades, oferecendo um equilíbrio entre desempenho e custo-efetividade. A variante GPT-3.5 Turbo, em particular, é destacada como o melhor modelo da série GPT-3.5, usado pela versão gratuita do ChatGPT e elogiado por sua relação custo-eficácia e flexibilidade.
 
-% TODO
-% https://platform.openai.com/docs/models/gpt-3-5-turbo
-% https://openai.com/pricing 24/04/2024
-Os modelos GPT-3.5, incluindo a variante Turbo, têm um limite máximo de token de 4.096 para a versão padrão e 16.384 para a versão Turbo-16k. Eles são treinados em dados até setembro de 2021, garantindo que tenham uma ampla base de conhecimento para se basear. A precificação para usar esses modelos é competitiva, com a variante Turbo custando \$0.0015 por 1.000 tokens para entrada e \$0.002 por 1.000 tokens para saída, enquanto a variante Turbo-16k custa \$0.0005 por 1.000 tokens para entrada e \$0.0015 por 1.000 tokens para saída.
+Os modelos GPT-3.5, incluindo a variante Turbo, têm um limite máximo de \textit{token} de 4.096 para a versão padrão e 16.384 para a versão Turbo-16k. Eles são treinados em dados até setembro de 2021, garantindo que tenham uma ampla base de conhecimento para se basear. A precificação~\cite{openai:gptpricing} para usar esses modelos é competitiva, com a variante Turbo custando \$0.0015 por 1.000 \textit{tokens} para entrada e \$0.002 por 1.000 \textit{tokens} para saída, enquanto a variante Turbo-16k custa \$0.0005 por 1.000 \textit{tokens} para entrada e \$0.0015 por 1.000 \textit{tokens} para saída.
 
 \subsubsection{OpenChat}
 \label{cap:fund_teorica:sec:modelos:subsec:openchat}
 
-O OpenChat \cite{wang2024openchat} é um modelo de conversação que usa como modelo base o llama 2, usando ajuste fino com aprendizado supervisionado e treinado utilizando um ajuste fino de aprendizagem por reforço condicionado. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode ser útil para entender o contexto em avaliações de hotéis e extrair sentimentos.
+O OpenChat \cite{wang2024openchat} é um modelo de conversação que usa como modelo base o llama 2, usando ajuste fino com aprendizado supervisionado de aprendizagem por reforço condicionado. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode ser útil para entender o contexto em avaliações de hotéis e extrair sentimentos.
 
 É apresentado uma nova forma de ajuste fino de modelos, nomeado como \textit{OpenChat Framework}, que de forma sucinta consiste em realizar o ajuste fino do modelo utilizando um conjunto de dados que não é ótimo, ou seja, no conjunto de dados utilizado podemos ter dados com qualidade diferentes, de modo a aumentar a quantidade de dados que serão utilizadas no processo, porém de modo a realizar uma classificação para que o algoritmo de ajuste fino leve agora em consideração também a qualidade do dado utilizado.
 
-O desempenho do OpenChat 13b se comprado a outros modelos com mesmo tamanho é bastante competitivo, tendo pontuação em AlapacaEval e MT-bench superiores aos valores de vicuna-v1.5-13b e ou modelo base llama-2-13b.
+O desempenho do OpenChat 13b se comprado a outros modelos com mesmo tamanho é bastante competitivo, tendo pontuação em AlapacaEval e MT-bench superiores aos valores de vicuna-v1.5-13b e o modelo base llama-2-13b.
 
 A versão utilizada neste projeto é o OpenChat-3.5-7B disponível para consulta no \textit{Hugging Face}~\cite{openChat357b}.
 
 \subsection{Análise de Sentimentos}
 \label{cap:fund_teorica:sec:analise_sentimento}
 
-O Processamento de Linguagem Natural (PLN) é um campo de estudo que se concentra na interação entre computadores e linguagem humana. O objetivo principal do PLN é capacitar os computadores a entender, interpretar e gerar texto de forma semelhante aos seres humanos. Algumas das tarefas típicas do PLN incluem análise sintática, análise semântica, extração de informações e geração de linguagem natural.
+O Processamento de Linguagem Natural (PLN) é um campo de estudo que se concentra na interação entre computadores e linguagem humana. O objetivo principal do PLN é capacitar os computadores a entender, interpretar e gerar texto de forma semelhante aos seres humanos. Algumas das tarefas típicas do PLN incluem análise sintática, análise semântica, extração de informações e geração de linguagem natural~\cite{anchieta2021pln}.
+
+A análise de sentimento é uma aplicação específica do PLN que se concentra na identificação e classificação das emoções expressas em textos~\cite{Liu2012}. Essa técnica é amplamente utilizada em diversas áreas, incluindo análise de mídia social, monitoramento de opinião pública, análise de opinião do cliente e tomada de decisões empresariais. A análise de sentimento é uma área de pesquisa em constante evolução, impulsionada pelo avanço das tecnologias de inteligência artificial e pela crescente disponibilidade de dados textuais. A compreensão dos conceitos e técnicas fundamentais nessas áreas é essencial para o desenvolvimento de sistemas eficazes de análise de sentimento, com aplicações em uma ampla gama de domínios, desde o marketing digital até a assistência virtual ao cliente.
+
+O modelo de gráfico de nuvens de palavras é uma técnica de visualização frequentemente utilizada na análise de sentimentos para representar as palavras mais frequentes em um conjunto de dados de texto, com o tamanho das palavras proporcional à sua frequência de ocorrência. Neste contexto, as palavras são tipicamente coloridas de acordo com seu sentimento associado, o que facilita a identificação visual das palavras mais relevantes e das tendências sentimentais no texto.
+
+Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida identificação de palavras-chave associadas a diferentes emoções, como positivas, negativas ou neutras. Ao visualizar um gráfico de nuvens de palavras, os analistas podem extrair percepções sobre as percepções dos usuários e as principais tendências de sentimentos presentes nos comentários ou avaliações de um determinado produto, serviço ou tópico.
+
+Além das nuvens de palavras, outras técnicas e modelos são utilizados na análise de sentimento, incluindo:
+
+\begin{itemize}
+    \item \textbf{Modelos Baseados em Regras}: Utilizam léxicos de sentimentos, como SentiWordNet \cite{Baccianella2010} e VADER \cite{Hutto2014}, para atribuir valores de polaridade às palavras e calcular o sentimento geral do texto.
+    \item \textbf{Modelos de Machine Learning}: Utilizam algoritmos supervisionados, como Naive Bayes, SVM e Random Forest, treinados em grandes corpora anotados para classificar o sentimento de novos textos \cite{Pang2002, Liu2012}.
+    \item \textbf{Modelos de Deep Learning}: Redes neurais profundas, como LSTM e \textit{transformers} (ex.: BERT \cite{Devlin2019}), são capazes de capturar dependências contextuais complexas e proporcionar resultados de alta precisão na análise de sentimentos \cite{Zhang2018}.
+\end{itemize}
+
+Esses métodos variam em complexidade e aplicabilidade, dependendo da natureza dos dados e dos requisitos específicos do problema de análise de sentimentos.
+
+A análise de sentimentos enfrenta diversos desafios, incluindo a detecção de sarcasmo e ironia, a ambiguidade lexical e a necessidade de contextualização. Além disso, a evolução constante da linguagem, especialmente em plataformas de mídia social, requer modelos adaptáveis e atualizados regularmente para manter a precisão e relevância.
+
+% \subsubsection{Aplicações Práticas da Análise de Sentimentos}
+
+A análise de sentimentos tem uma ampla gama de aplicações práticas:
+
+\begin{itemize}
+    \item \textbf{Monitoramento de Marca}: Empresas utilizam análise de sentimentos para monitorar a percepção de suas marcas nas redes sociais e outras plataformas online \cite{Cambria2017}.
+    \item \textbf{Serviço ao Cliente}: Sistemas de atendimento ao cliente automatizados utilizam análise de sentimentos para identificar e priorizar interações negativas que necessitam de atenção imediata \cite{Mishra2019}.
+    \item \textbf{Pesquisa de Mercado}: A análise de sentimentos é utilizada para entender as opiniões dos consumidores sobre produtos e serviços, auxiliando no desenvolvimento de estratégias de marketing e melhoria de produtos \cite{Vinodhini2012}.
+    \item \textbf{Análise Política}: Governos e organizações utilizam a análise de sentimentos para monitorar a opinião pública e avaliar a reação a políticas e eventos políticos \cite{Bakliwal2013}.
+\end{itemize}
 
 A análise de sentimento é uma aplicação específica do PLN que se concentra na identificação e classificação das emoções expressas em textos. Essa técnica é amplamente utilizada em diversas áreas, incluindo análise de mídia social, monitoramento de opinião pública, análise de opinião do cliente e tomada de decisões empresariais. A análise de sentimento é uma área de pesquisa em constante evolução, impulsionadas pelo avanço das tecnologias de inteligência artificial e pela crescente disponibilidade de dados textuais. A compreensão dos conceitos e técnicas fundamentais nessas áreas é essencial para o desenvolvimento de sistemas eficazes de análise de sentimento, com aplicações em uma ampla gama de domínios, desde o marketing digital até a assistência virtual ao cliente.
 
