@@ -1,8 +1,6 @@
 \chapter{Fundamentação Teórica}
 \label{cap:fund_teorica}
 
-%Neste capítulo abordaremos alguns dos conceitos necessários para o desenvolvimento e entendimento do projeto, do campo de estudo de processamento de linguagem natural, mais especificamente a análise de sentimentos. Também iremos discorrer sobre a funcionalidade de avaliação de estabelecimentos exposta pelo \textit{Google Maps}.
-
 \section{Avaliações no \textit{Google Maps}}
 \label{cap:fund_teorica:sec:google_maps}
 
@@ -12,15 +10,11 @@ Um dos recursos interessantes do \textit{Google Maps} é o programa \textit{"Loc
 
 Os \textit{"Local Guides"}~são incentivados pela Google a contribuir com conteúdo de qualidade, e em troca, eles podem ganhar pontos, níveis e até mesmo recompensas, como armazenamento adicional no Google Drive, acesso antecipado a novos recursos do \textit{Google Maps} e até mesmo convites para eventos exclusivos. Essa gamificação do processo de contribuição ajuda a manter os usuários engajados e motivados a compartilhar informações úteis.
 
-Além disso, os \textit{"Local Guides"}~desempenham um papel importante na melhoria contínua da precisão e da utilidade do \textit{Google Maps}. Ao fornecer informações atualizadas e detalhadas sobre os locais, eles ajudam outros usuários a tomar decisões informadas sobre onde ir e o que fazer. Essa contribuição colaborativa cria uma comunidade global de usuários que trabalham juntos para tornar o \textit{Google Maps} uma ferramenta ainda mais poderosa e abrangente.
+Além disso, os \textit{"Local Guides"}~desempenham um papel importante na melhoria contínua da precisão e da utilidade do \textit{Google Maps}. Ao fornecer informações atualizadas e detalhadas sobre os locais, eles ajudam outros usuários a tomar decisões informadas sobre aonde ir e o que fazer. Essa contribuição colaborativa cria uma comunidade global de usuários que trabalham juntos para tornar o \textit{Google Maps} uma ferramenta ainda mais poderosa e abrangente.
 
 Em resumo, o \textit{Google Maps} é uma ferramenta essencial para navegação e descoberta de lugares, enquanto os \textit{"Local Guides"}~são membros voluntários da comunidade que contribuem com informações valiosas para melhorar a precisão e utilidade do serviço. Juntos, eles desempenham um papel crucial na criação de uma experiência de mapeamento e navegação mais rica e envolvente para todos os usuários.
 
-%\subsection{Avaliação de estabelecimentos}
-%\label{cap:fund_teorica:sec:google_maps:subsec:avaliacao_estabelecimentos}
-
-
-A funcionalidade de avaliação de estabelecimentos no \textit{Google Maps} é uma ferramenta poderosa que oferece aos usuários uma maneira de compartilhar suas experiências e opiniões sobre diferentes locais, desde restaurantes e cafés até hotéis e pontos turísticos. Essa funcionalidade permite que os usuários forneçam opnião valiosa sobre a qualidade do serviço, a atmosfera do local, a qualidade dos produtos e uma infinidade de outros aspectos.
+A funcionalidade de avaliação de estabelecimentos no \textit{Google Maps} é uma ferramenta poderosa que oferece aos usuários uma maneira de compartilhar suas experiências e opiniões sobre diferentes locais, desde restaurantes e cafés até hotéis e pontos turísticos. Essa funcionalidade permite que os usuários forneçam opinião valiosa sobre a qualidade do serviço, a atmosfera do local, a qualidade dos produtos e uma infinidade de outros aspectos.
 
 Uma das principais vantagens dessa funcionalidade é a capacidade de ajudar outros usuários a tomar decisões informadas ao escolherem um estabelecimento para visitar. As avaliações e comentários fornecidos por outros usuários podem servir como uma referência confiável, permitindo que as pessoas tenham uma noção melhor do que esperar de um determinado local antes de decidirem visitá-lo.
 
@@ -28,22 +22,12 @@ Além disso, o sistema de avaliação do \textit{Google Maps} geralmente é muit
 
 No entanto, é importante reconhecer que nem todas as avaliações podem ser completamente imparciais ou precisas. Algumas podem ser tendenciosas ou baseadas em experiências individuais que podem não refletir a experiência média dos clientes. Portanto, é sempre aconselhável considerar várias avaliações e fontes de informações ao tomar uma decisão.
 
-Portanto a funcionalidade de avaliação de estabelecimentos no \textit{Google Maps} oferece aos usuários uma maneira conveniente de compartilhar e acessar informações sobre locais locais, ajudando a tornar as experiências de viagem e exploração mais informadas e satisfatórias.
-% falar sobre o google maps e as avaliações e que avaliações de idioma diferente são traduzidas. traduzido por google
-% preprocessamento
-% pesquisar sobre os algoritmos de analise de sentimento https://www.lume.ufrgs.br/bitstream/handle/10183/140910/000991520.pdf?sequence=1
-% https://www.teses.usp.br/teses/disponiveis/59/59143/tde-31102018-174346/publico/mateuscorrigida.pdf
-% pesquisar sobre classificação de avaliações
+Portanto, a funcionalidade de avaliação de estabelecimentos no \textit{Google Maps} oferece aos usuários uma maneira conveniente de compartilhar e acessar informações sobre locais, ajudando a tornar as experiências de viagem e exploração mais informadas e satisfatórias.
 
 \section{Processamento de Linguagem Natural}
 
-
-
 \subsection{Grandes Modelos de Linguagem}
 \label{cap:fund_teorica:sec:modelos}
-% hugging face?
-% todo
-
 
 %\subsection[Large Language Models]{LLM}
 %\label{cap:fund_teorica:sec:modelos:subsec:LLM}
@@ -51,10 +35,7 @@ Portanto a funcionalidade de avaliação de estabelecimentos no \textit{Google M
 % https://arxiv.org/pdf/2307.06435.pdf
 % \cite{naveed2024comprehensive}
 
-
-
 Neste projeto foram utilizados Grandes Modelos de linguagem(\textit{Large Language Models} - LLM) pré-treinados, como o GPT (\textit{Generative Pre-trained Transformer}), OpenChat e Vicuna, além de modelos baseados na arquitetura \textit{BERT} (Bidirectional Encoder Representations from Transformers)\cite{hugoZanini2021mediu}. Esses modelos representam o estado-da-arte em PLN e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
-
 
 \subsubsection[BERT]{BERT}
 \label{cap:fund_teorica:sec:modelos:subsec:bert}
@@ -67,12 +48,12 @@ O treinamento de \textit{BERT} é realizado em grandes quantidades de dados de t
 
 Depois de pré-treinado em um grande corpus de texto, um modelo \textit{BERT} pode ser ajustado para tarefas específicas, como análise de sentimentos, classificação de texto, resposta a perguntas, entre outras, por meio de um processo chamado de ajuste fino (\textit{fine-tuning}). Durante o ajuste fino, o modelo é treinado em um conjunto de dados rotulado específico para a tarefa em questão, adaptando suas representações aprendidas durante o pré-treinamento para a tarefa específica.
 
-Os modelos baseados em \textit{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, \textit{BERTs} treinados em português e com boa performance podemos citar o RoBERTa~\cite{liu2019roberta} e BERTimbau~\cite{souza2020bertimbau}.
+Os modelos baseados em \textit{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, \textit{BERTs} treinados em português e com bom desempenho podemos citar o RoBERTa~\cite{liu2019roberta} e BERTimbau~\cite{souza2020bertimbau}.
 
 \subsubsection{Vicuna}
 \label{cap:fund_teorica:sec:modelos:subsec:vicuna}
 
-O Vicuna~\cite{vicuna2023} é um modelo de assistente de chat desenvolvido pela LMSYS~(\textit{Large Model Systems Organization}), ajustado a partir do modelo LLaMA usando ajuste fino de instrução supervisionada. É um modelo de linguagem auto-regressivo baseado na arquitetura \textit{transformers}, projetado para tarefas de geração de texto. Os dados de treinamento para o Vicuna v1.5 consistem aproximadamente de 125.000 conversas coletadas do ShareGPT.com, enquanto o Vicuna v1.1 foi treinado com cerca de 70.000 conversas da mesma fonte.
+O Vicuna~\cite{vicuna2023} é um modelo de assistente de chat desenvolvido pela LMSYS~(\textit{Large Model Systems Organization}), ajustado a partir do modelo LLaMA usando ajuste fino de instrução supervisionada. É um modelo de linguagem autorregressivo baseado na arquitetura \textit{transformers}, projetado para tarefas de geração de texto. Os dados de treinamento para o Vicuna v1.5 consistem aproximadamente em 125.000 conversas coletadas do ShareGPT.com, enquanto o Vicuna v1.1 foi treinado com cerca de 70.000 conversas da mesma fonte.
 
 Vicuna é avaliado usando \textit{benchmarks} padrão, preferência humana e LLM-como-juiz, fornecendo uma avaliação abrangente de seu desempenho. É notável por alcançar mais de 90\% da qualidade do ChatGPT em testes de preferência do usuário e superar significativamente o Alpaca, tornando-se um forte concorrente na família de modelos LLaMA ajustados por instrução até maio de 2023.
 
@@ -85,7 +66,7 @@ A versão utilizada neste projeto é o vicuna-1.5-13B disponível para consulta 
 \subsubsection{GPT 3.5}
 \label{cap:fund_teorica:sec:modelos:subsec:gpt}
 
-O GPT~\cite{enwiki:1226113577} é um modelo de código fechado e baseado em transformadores que aprende representações de linguagem generalizadas a partir de grandes quantidades de texto não rotulado. Ele é capaz de gerar texto coerente e relevante, e pode ser adaptado para tarefas específicas, como análise de sentimentos, através do treinamento supervisionado em conjuntos de dados rotulados.
+O GPT~\cite{enwiki:1226113577} é um modelo de código fechado e baseado em transformadores que aprende representações de linguagem generalizadas a partir de excesso de texto não rotulado. Ele é capaz de gerar texto coerente e relevante, e pode ser adaptado para tarefas específicas, como análise de sentimentos, através do treinamento supervisionado em conjuntos de dados rotulados.
 
 O GPT-3.5~\cite{openai:gpt35turbo}, introduzido pela OpenAI em março de 2022, é uma subclasse dos modelos GPT-3 que representa um avanço significativo sobre seus predecessores. Ele é projetado para entender e gerar linguagem natural ou código, tornando-o adequado para uma ampla gama de aplicações, incluindo conversação e tarefas gerais. O GPT-3.5 é notável por sua velocidade e flexibilidade, sendo mais rápido que o GPT-3 e mais adaptável que o GPT Base. É considerado o modelo "suficientemente bom"\ para a maioria das necessidades, oferecendo um equilíbrio entre desempenho e custo-efetividade. A variante GPT-3.5 Turbo, em particular, é destacada como o melhor modelo da série GPT-3.5, usado pela versão gratuita do ChatGPT e elogiado por sua relação custo-eficácia e flexibilidade.
 
@@ -94,7 +75,7 @@ Os modelos GPT-3.5, incluindo a variante Turbo, têm um limite máximo de \texti
 \subsubsection{OpenChat}
 \label{cap:fund_teorica:sec:modelos:subsec:openchat}
 
-O OpenChat \cite{wang2024openchat} é um modelo de conversação que usa como modelo base o llama 2, usando ajuste fino com aprendizado supervisionado de aprendizagem por reforço condicionado. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode ser útil para entender o contexto em avaliações de hotéis e extrair sentimentos.
+O OpenChat \cite{wang2024openchat} é um modelo de conversação que usa como modelo base o llama 2, usando ajuste fino com aprendizado supervisionado de aprendizagem por reforço condicionado. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode servir para entender o contexto em avaliações de hotéis e extrair sentimentos.
 
 É apresentado uma nova forma de ajuste fino de modelos, nomeado como \textit{OpenChat Framework}, que de forma sucinta consiste em realizar o ajuste fino do modelo utilizando um conjunto de dados que não é ótimo, ou seja, no conjunto de dados utilizado podemos ter dados com qualidade diferentes, de modo a aumentar a quantidade de dados que serão utilizadas no processo, porém de modo a realizar uma classificação para que o algoritmo de ajuste fino leve agora em consideração também a qualidade do dado utilizado.
 
@@ -127,27 +108,20 @@ A análise de sentimentos enfrenta diversos desafios, incluindo a detecção de 
 
 % \subsubsection{Aplicações Práticas da Análise de Sentimentos}
 
-A análise de sentimentos tem uma ampla gama de aplicações práticas:
-
-\begin{itemize}
-    \item \textbf{Monitoramento de Marca}: Empresas utilizam análise de sentimentos para monitorar a percepção de suas marcas nas redes sociais e outras plataformas online \cite{Cambria2017}.
-    \item \textbf{Serviço ao Cliente}: Sistemas de atendimento ao cliente automatizados utilizam análise de sentimentos para identificar e priorizar interações negativas que necessitam de atenção imediata \cite{Mishra2019}.
-    \item \textbf{Pesquisa de Mercado}: A análise de sentimentos é utilizada para entender as opiniões dos consumidores sobre produtos e serviços, auxiliando no desenvolvimento de estratégias de marketing e melhoria de produtos \cite{Vinodhini2012}.
-    \item \textbf{Análise Política}: Governos e organizações utilizam a análise de sentimentos para monitorar a opinião pública e avaliar a reação a políticas e eventos políticos \cite{Bakliwal2013}.
-\end{itemize}
+A análise de sentimentos tem uma ampla gama de aplicações práticas como por exemplo analise de sentimento de \textit{tweets} para serem utilizados para predizer o resultado das eleições ou como forma de antecipar movimento do mercado financeiro, entre outras diversas aplicações \cite{Liu2012}.
 
 A análise de sentimento é uma aplicação específica do PLN que se concentra na identificação e classificação das emoções expressas em textos. Essa técnica é amplamente utilizada em diversas áreas, incluindo análise de mídia social, monitoramento de opinião pública, análise de opinião do cliente e tomada de decisões empresariais. A análise de sentimento é uma área de pesquisa em constante evolução, impulsionadas pelo avanço das tecnologias de inteligência artificial e pela crescente disponibilidade de dados textuais. A compreensão dos conceitos e técnicas fundamentais nessas áreas é essencial para o desenvolvimento de sistemas eficazes de análise de sentimento, com aplicações em uma ampla gama de domínios, desde o marketing digital até a assistência virtual ao cliente.
 
 % TODO
-Uma técnica bastante popular é o agrupamento dos tokens para que seja posteriormente realizada uma representação visual dos dados, onde o tamanho do token representa sua frequência em um dado corpus, e sua coloração pode ser útil para representar o sentimento do token. Essa representação gráfica é nomeada \textit{wordcloud}, ou nuvem de palavras.
+% Uma técnica bastante popular é o agrupamento dos \textit{tokens} para ser posteriormente realizada uma representação visual dos dados, onde o tamanho do \textit{token} representa sua frequência em um dado corpus, e sua coloração pode servir para representar o sentimento do \textit{token}. Essa representação gráfica é nomeada \textit{wordcloud}, ou nuvem de palavras.
 
-O modelo de gráfico de nuvens de palavras é uma técnica de visualização frequentemente utilizada na análise de sentimentos para representar as palavras mais frequentes em um conjunto de dados de texto, com o tamanho das palavras proporcional à sua frequência de ocorrência. Neste contexto, as palavras são tipicamente coloridas de acordo com seu sentimento associado, o que facilita a identificação visual das palavras mais relevantes e das tendências sentimentais no texto.
+% O modelo de gráfico de nuvens de palavras é uma técnica de visualização frequentemente utilizada na análise de sentimentos para representar as palavras mais frequentes em um conjunto de dados de texto, com o tamanho das palavras proporcional à sua frequência de ocorrência. Neste contexto, as palavras são tipicamente coloridas de acordo com seu sentimento associado, o que facilita a identificação visual das palavras mais relevantes e das tendências sentimentais no texto.
 
-Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida identificação de palavras-chave associadas a diferentes emoções, como positivas, negativas ou neutras. Ao visualizar um gráfico de nuvens de palavras, os analistas podem extrair percepções sobre as percepções dos usuários e as principais tendências de sentimentos presentes nos comentários ou avaliações de um determinado produto, serviço ou tópico.
+% Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida identificação de palavras-chave associadas a diferentes emoções, como positivas, negativas ou neutras. Ao visualizar um gráfico de nuvens de palavras, os analistas podem extrair percepções sobre as percepções dos usuários e as principais tendências de sentimentos presentes nos comentários ou avaliações de um determinado produto, serviço ou tópico.
 
-O modelo de gráfico de nuvens de palavras é uma ferramenta poderosa para a visualização e interpretação de dados de texto em análises de sentimentos, proporcionando uma representação intuitiva e acessível das informações linguísticas subjacentes.
+% O modelo de gráfico de nuvens de palavras é uma ferramenta poderosa para a visualização e interpretação de dados de texto em análises de sentimentos, proporcionando uma representação intuitiva e acessível das informações linguísticas subjacentes.
 
 % 10.1145/1014052.1014073 Mining and Summarizing Customer Reviews
-A análise de sentimentos é uma das áreas de pesquisa em processamento de linguagem natural, que visa utilizar recursos computacionais para estudar os sentimentos, opiniões e emoções de uma determinada sentença em relação a um alvo \cite{Bellini2019}.
+% A análise de sentimentos é uma das áreas de pesquisa em processamento de linguagem natural, que visa utilizar recursos computacionais para estudar os sentimentos, opiniões e emoções de uma determinada sentença em relação a um alvo \cite{Bellini2019}.
 
-Uma opinião é composta de dois componentes chaves, formando o par \textit{(g,s)}: um alvo \textit{g} e um sentimento \textit{s} relacionado a esse alvo. E como destacado em \cite{Machado2018}, \textit{g} pode se referir a qualquer aspecto da entidade ou a ela própria e sentimento \textit{s} pode ser positivo, negativo ou neutro, ou ser representado por um valor numérico que representa a sua intensidade, denominado como polarização do sentimento ou opinião.
+% Uma opinião é composta de dois componentes chaves, formando o par \textit{(g,s)}: um alvo \textit{g} e um sentimento \textit{s} relacionado a esse alvo. E como destacado em \cite{Machado2018}, \textit{g} pode se referir a qualquer aspecto da entidade ou a ela própria e sentimento \textit{s} pode ser positivo, negativo ou neutro, ou ser representado por um valor numérico que representa a sua intensidade, denominado como polarização do sentimento ou opinião.
