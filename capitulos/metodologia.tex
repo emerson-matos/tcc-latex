@@ -14,9 +14,9 @@
 O conjunto de dados foi selecionado considerando os hotéis localizados em todo o território brasileiro e com informações disponíveis no Google Maps.
 
 % https://developers.google.com/maps/apis-by-platform?hl=pt-br#web_service_apis
-A primeira etapa consiste em identificar os hotéis distribuídos no território brasileiro por estado na plataforma do Google Maps, essa tarefa é automatizada por meio da utilização do serviço exposto do Google Maps, a iteração foi realizada utilizando a biblioteca oficial do Google Maps versão escrita em Java que está disponível publicamente no repositório \citeonline{javaGoogleMapsService2022}.
+A primeira etapa consiste em identificar os hotéis distribuídos no território brasileiro por estado na plataforma do Google Maps, essa tarefa é automatizada por meio da utilização do serviço exposto do Google Maps, a iteração foi realizada utilizando a biblioteca oficial do Google Maps versão escrita em Java que está disponível publicamente no repositório do \citeonline{javaGoogleMapsService2022}.
 
-Para identificar os diversos hotéis, foi escrito um \emph{script} Kotlin \citeonline{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e persistindo os dados obtidos.
+Para identificar os diversos hotéis, foi escrito um \emph{script} Kotlin \cite{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e persistindo os dados obtidos.
 
 O objetivo nesta etapa é identificar o maior número possível de hotéis que estão disponíveis para consulta na plataforma e em posse destes obter informações mais detalhadas, como quantidade de avaliações, nota atual, localização do estabelecimento, para cada hotel para ser possível em posse dessa lista então realizar escolha dos hotéis para estudo.
 
@@ -26,459 +26,35 @@ Para essa tarefa utilizaremos a interface de \emph{Text Search Query}, informaç
 
 O texto utilizado para a busca dos hotéis é definida no seguinte modelo “frase + região”. Por exemplo, na frase “hotéis próximos ao Cristo Redentor”, a API deverá retornar informações básicas de hotéis cadastrados na plataforma próximos à região do Cristo Redentor. As regiões utilizadas foram os estados e capitais brasileiros.
 
-Após obter a lista com as informações básicas se faz necessário obter informações mais detalhadas dos estabelecimentos, para isso utilizaremos a interface de \emph{Place Details} para poder obter essas informações na plataforma, dentre as informações expostas por esta interface apenas algumas são de nosso interesse e serão utilizadas como, por exemplo, mas não se restringindo à, número de avaliações disponíveis, classificação atual na plataforma e quantidade de avaliações, essas serão informações importantes no momento de escolha dos hotéis que serão utilizados no estudo, essas e outras são obtidas nessa etapa. Infelizmente por limitação da plataforma essa interface apenas lista 5 avaliações aleatórias, tornado inviável a sua utilização para coleta de grande número de avaliações, a coleta das avaliações é descrita em \ref{cap:metodologia:sec:conjunto_dados:sec:coleta_review}.
+Se necessário serão adicionados de forma manual hotéis em regiões brasileiras populares por suas atrações turísticas, indicados na lista de regiões das principais atrações do Brasil segundo~\citeonline{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma..
+
+Após obter a lista com as informações básicas se faz necessário obter informações mais detalhadas dos estabelecimentos, para isso será utilizada a interface de \emph{Place Details} para poder obter essas informações na plataforma, dentre as informações expostas por esta interface apenas algumas são de nosso interesse e serão utilizadas como, por exemplo, mas não se restringindo à, número de avaliações disponíveis, classificação atual na plataforma e quantidade de avaliações, essas serão informações importantes no momento de escolha dos hotéis que serão utilizados no estudo, essas e outras são obtidas nessa etapa. Infelizmente por limitação da plataforma essa interface apenas lista 5 avaliações aleatórias, tornado inviável a sua utilização para coleta de grande número de avaliações.
 
 \lstinputlisting[language=java,caption=Fragmento de código da interface Google Maps \emph{Place Details}]{extras/code/googlemaps-place-details.kt}
 
-Foi possível identificar 814 hotéis distribuídos em todo o território nacional, desde hotéis de grandes redes e com disponibilidade de reservas do tipo \emph{All Inclusive} até hotéis pouco conhecidos com menos de 10 avaliações na plataforma.
-
-%lista disponivel no apêndice \ref{apendice:lista_completa_hoteis},
-Dessa lista temos como destaque os seguintes números:
-
-Estados com a maior quantidade de hotéis
-\begin{itemize}
-	\item RJ: 71
-	\item SP: 67
-	\item PA: 62
-	\item MG: 61
-	\item RR/PI/MS: 60
-\end{itemize}
-
-Estados com a maior quantidade de avaliações
-
-\begin{itemize}
-	\item RJ: 231947 (4,22 com 71 hotéis)
-	\item SP: 169586 (4,21 com 67 hotéis)
-	\item BA: 107716 (4,34 com 22 hotéis)
-	\item MG: 107067 (4,35 com 61 hotéis)
-	\item PB: 68188 (4,36 com 54 hotéis)
-\end{itemize}
-
-
-Média da classificação dos hotéis por Estado
-
-\begin{itemize}
-	\item RS: 4,70 com 9493 avaliações no total (2 hotéis)
-	\item AL: 4,64 com 33345 avaliações no total (8 hotéis)
-	\item AC: 4,60 com 1696 avaliações no total (1 hotel)
-	\item AM: 4,53 com 45509 avaliações no total (46 hotéis)
-	\item SC: 4,50 com 32621 avaliações no total (7 hotéis)
-\end{itemize}
-
-Por conta da grande variedade de hotéis, o critério de escolha foi limitar a hotéis com disponibilidade de pacote \emph{All Inclusive} e na região nordeste, com o primeiro critério definido temos então uma lista com um grupo de 15 hotéis dentre os disponíveis após o filtro da região temos então 11.
-
-Também foram adicionados manualmente a lista outros hotéis não foram listados nas consultas à API, porém que estavam indicados na lista de regiões das principais atrações do Brasil segundo~\cite{googleFlights2022destinos}. Essa lista é composta com base nas análises conduzidas pelo Google, que considera a quantidade de menções online e as suas avaliações recebidas na plataforma. 2 novos hotéis foram adicionados e atendiam os critérios já definidos e foram adicionados à nossa lista.
-
-Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos usuários e os \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Os detalhes da escolha das avaliações são discutidos em \ref{cap:metodologia:sec:conjunto_dados:sec:pre_processamento}.
-
-A lista composta de 13 hotéis todos localizados na região nordeste do Brasil e com a disponibilidade de pacotes \emph{All Inclusive}, no momento de consulta na plataforma do Google Maps, é valido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do Google Maps com nota superior a 4.20 e são todos hotéis de 4 ou 5 estrelas.
-
-A lista de hotéis obtida é composta conforme a tabela~\ref{table:lista_hoteis}.
-
-\begin{table}[]
-	\begin{tabular}{|p{5cm}|l|r|r|l|r|}
-		\hline
-		\textbf{Nome}                                 & \textbf{Estado} & \textbf{Nota} & \textbf{Estrelas} & \textbf{Região} & \textbf{Quantidade} \\\hline
-
-		Cana Brava All Inclusive Resort               & BA              & 4.60          & 4                 & NORDESTE        & 10987               \\\hline
-		Grand Oca Maragogi                            & AL              & 4.30          & 5                 & NORDESTE        & 4613                \\\hline
-		Hotel Marsol Beach Resort                     & RN              & 4.20          & 4                 & NORDESTE        & 3269                \\\hline
-		Hotel Vila Galé - Touros                      & RN              & 4.60          & 5                 & NORDESTE        & 5619                \\\hline
-		Hotel Vila Galé - Marés                       & BA              & 4.50          & 5                 & NORDESTE        & 8516                \\\hline
-		Hotel Vila Galé: Eco Resort - Cabo            & PE              & 4.50          & 5                 & NORDESTE        & 5370                \\\hline
-		Iberostar Bahia                               & BA              & 4.70          & 5                 & NORDESTE        & 16109               \\\hline
-		La Torre Resort All Inclusive                 & BA              & 4.70          & 4                 & NORDESTE        & 6140                \\\hline
-		Makai Resort Aracaju - All Inclusive          & SE              & 4.30          & 4                 & NORDESTE        & 5276                \\\hline
-		Nauticomar Resort All Inclusive \& Beach Club & BA              & 4.30          & 4                 & NORDESTE        & 4258                \\\hline
-		Salinas Maceió All Inclusive Resort           & AL              & 4.70          & 4                 & NORDESTE        & 4663                \\\hline
-		Salinas Maragogi All Inclusive Resort         & AL              & 4.80          & 5                 & NORDESTE        & 7111                \\\hline
-		Transamerica Comandatuba                      & BA              & 4.80          & 4                 & NORDESTE        & 3179                \\\hline
-	\end{tabular}%
-	\caption{Lista de hotéis e número de avalições}
-	\label{table:lista_hoteis}
-\end{table}
+Por conta da grande variedade de hotéis, o critério de escolha será composto por limitar a hotéis com disponibilidade de pacote \emph{All Inclusive} e na região nordeste. Posteriormente essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações onlines disponíveis no Google Maps, realizadas pelos usuários e os \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Os detalhes da escolha das avaliações são discutidos em \ref{cap:metodologia:sec:conjunto_dados:sec:pre_processamento}.
 
 \subsection{Coleta de dados}
 \label{cap:metodologia:sec:conjunto_dados:sec:coleta_review}
 
 Já existe um \emph{script} escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do Google Maps, utilizando Selenium, obtém um determinado número de avaliações, o \emph{script} porém estava defasado e pendente de atualização, um dos \emph{forks} existentes \citeonline{ryuuzakescrapper2023} estava também pouco mais atualizado, porém ainda não funcional.
 
-
-%TODO essas referencias de selenium numpy etc estão certas?
-Utilizando esses projetos como base fiz um novo \emph{fork} e então atualizei o \emph{script} para realizar o trabalho de obter as avaliações dos hotéis, o \emph{script} escrito em Python e as suas principais dependências eram de \cite{selenium2023}, \citeonline{harris2020array}, \citeonline{jeffreback20226702671} e \citeonline{richardson2007beautiful}. Utilizando \citeonline{merkel2014docker} para executar o \emph{script} era possível executá-lo de forma concorrente, utilizando o Selenium e executando diversos drivers do Google Chrome, porém para esse tipo de tarefa o Selenium não é uma ferramenta eficiente e seu desempenho não é rápido, existem diferentes impactos por conta de sua utilização, os quais não serão discutidos aqui, a busca das avaliações para apenas um hotel demorava aproximadamente 3h para executar e o sucesso da execução do \emph{script} com a utilização do Selenium depende diretamente da imutabilidade da interface visual do Google Maps, o que torna esse formato não escalável dado a velocidade com que a interface do Google Maps recebe atualizações. Durante a adaptação do \emph{script} para conseguir extrair corretamente as avaliações foram realizadas 10 tentativas de execução, no período de 09/2022 à 11/2022, com periodicidade aproximadamente semanal e aproximadamente a cada duas semanas a estrutura do Google Maps mudava, estrutura essa que é parte fundamental para que a execução obtivesse sucesso, e dessa forma o \emph{script} precisava passar por nova atualização para que a nova estrutura fosse de conhecimento, existiam inclusive alguns testes no formato A/B onde alguns estabelecimentos possuíam estrutura da página do Google Maps diferente de outros, aumentando ainda mais a complexidade de manter o \emph{script} funcional.
+Utilizando esses projetos como base fiz um novo \emph{fork} e então atualizei o \emph{script} para realizar o trabalho de obter as avaliações dos hotéis, o \emph{script} escrito em Python e as suas principais dependências eram de Selenium~\cite{selenium2023}, NumPy~\cite{harris2020array}, Pandas\cite{jeffreback20226702671} e Beautiful soup~\cite{richardson2007beautiful}. Utilizando docker~\cite{merkel2014docker} para execução do \emph{script} de forma concorrente, utilizando o Selenium e executando alguns \textit{drivers} do Google Chrome, porém para esse tipo de tarefa o Selenium não é uma ferramenta eficiente e seu desempenho não é rápido, satisfatório e nem necessário, existem diferentes impactos por conta de sua utilização, os quais não serão discutidos aqui, a busca das avaliações para apenas um hotel demorava aproximadamente 3h para executar e o sucesso da execução do \emph{script} com a utilização do Selenium depende diretamente da imutabilidade da interface visual do Google Maps, o que torna esse formato não escalável dado a velocidade com que a interface do Google Maps recebe atualizações. Durante a adaptação do \emph{script} para conseguir extrair corretamente as avaliações foram realizadas 10 tentativas de execução, no período de 09/2022 à 11/2022, com periodicidade aproximadamente semanal e aproximadamente a cada duas semanas a estrutura do Google Maps mudava, estrutura essa que é parte fundamental para que a execução obtivesse sucesso, e dessa forma o \emph{script} precisava passar por nova atualização para que a nova estrutura fosse de conhecimento, existiam inclusive alguns testes no formato A/B onde alguns estabelecimentos possuíam estrutura da página do Google Maps diferente de outros, aumentando ainda mais a complexidade de manter o \emph{script} funcional.
 
 O \emph{script} possui uma dependência muito forte com a parte estrutural da página e dessa forma qualquer mudança em \emph{tags HTML} e/ou as classes \emph{CSS} da página dos estabelecimentos no Google Maps, características de um \emph{WebScrapper}, que dificulta a manutenção e limita a sua capacidade de reutilização.
 
 % https://github.com/emerson-matos/maps-reviews-api-scraper
-Baseado no \emph{script} do \emph{WebScrapper} existe um repositório que utiliza diretamente uma API do Google chamada \emph{reviewDialog}, sem a necessidade de utilizar o Selenium, que era na maioria responsável pela baixa desempenho, dessa forma a coleta das avaliações ocorre de forma bem mais rápida, e em um período de aproximadamente 1h foi possível obter um total de 86.291 avaliações dos hotéis da lista.
+Baseado no \emph{script} do \emph{WebScrapper} existe um repositório que utiliza diretamente uma API do Google chamada \emph{reviewDialog}, sem a necessidade de utilizar o Selenium, que era na maioria responsável pelo desempenho insatisfatorio, dessa forma a coleta das avaliações ocorre de forma bem mais rápida.
+% adicionar isso? TODO
+%, e em um período de aproximadamente 1h foi possível obter um total de 86.291 avaliações dos hotéis da lista.
+
 
 \subsection{Pré-processamento dos dados}
 \label{cap:metodologia:sec:conjunto_dados:sec:pre_processamento}
 
-Após possuir as avaliações precisamos realizar alguns filtros para que a análise de sentimentos consiga resultar algo concreto, dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideração na análise.
+Após capturar as avaliações precisamos realizar alguns filtros e tratamentos para que a análise de sentimentos consiga resultar algo concreto, dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideração na análise. Dessa forma definiremos alguns critérios para realização de filtro.
 
-O primeiro critério é que a avaliação precisa possuir conteúdo textual e este por sua vez precisa então possuir 3 ou mais caracteres. Como podemos observar na tabela~\ref{table:review_per_year} temos uma discrepância no número de avaliações perceptível com divisão no período de 2017/2018, então apenas levaremos em consideração avaliações realizadas após 2017 e o último critério a ser levado em consideração é que a avaliação precisa estar escrita no idioma português, e não ter sido traduzida pelo Google.
-
-\lstinputlisting[language=Python,caption=Filtros aplicados ao dataset de avalições]{extras/code/review_filter.py}
-
-Considerando todas as avaliações obtidas, temos:
-
-\begin{itemize}
-	\item 80470(93.25\%) enviadas depois de 2017 e 5821(6.75\%) enviadas em 2017, ou antes
-	\item 56893(65.93\%) com texto e 3 ou mais caracteres, 29386(34.05\%) sem texto e 12(0.01\%) avaliações com 1 ou 2 caracteres
-	\item 4184(4.85\%) avaliações traduzidas
-\end{itemize}
-
-E dentre todas as avaliações obtidas utilizaremos para a análise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas. Assim as avaliações que foram consideradas estão então distribuídas conforme \ref{table:distribuicao_review_per_year}.
-
-
-\begin{table}[]
-	\centering
-	\begin{tabular}{|l|l|}
-		\hline
-		\textbf{Ano} & \textbf{Quantidade} \\\hline
-		2023         & 11925               \\
-		2022         & 16364               \\
-		2021         & 8104                \\
-		2020         & 12489               \\
-		2019         & 18963               \\
-		2018         & 12625               \\
-		2017         & 4426                \\
-		2016         & 940                 \\
-		2015         & 247                 \\
-		2014         & 106                 \\
-		2013         & 88                  \\
-		2011         & 5                   \\
-		2012         & 9                   \\
-		\hline
-	\end{tabular}%
-	\caption{Quantidade de avaliações obtidas por ano}
-	\label{table:review_per_year}
-\end{table}
-
-\begin{table}[]
-	\centering
-	\begin{tabular}{|c|crrrrr|}
-		\hline
-		\multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{Estado}}} &
-		\multicolumn{2}{c|}{\textbf{analisar}}                 &
-		\multicolumn{3}{c|}{\textbf{nota}}                     &
-		\multicolumn{1}{c|}{\textbf{estrelas}}                                                                            \\ \cline{2-7}
-		\multicolumn{1}{|l|}{}                                 &
-		\multicolumn{1}{c}{\textbf{rotulo}}                    &
-		\multicolumn{1}{c|}{\textbf{quantidade}}               &
-		\multicolumn{1}{c}{\textbf{média}}                     &
-		\multicolumn{1}{c}{\textbf{min}}                       &
-		\multicolumn{1}{c|}{\textbf{max}}                      &
-		\multicolumn{1}{c|}{\textbf{média}}                                                                               \\ \hline
-		\multirow{2}{*}{\textbf{AL}}                           & \textbf{False} & 8106  & 4.623896 & 4.3 & 4.8 & 4.735998 \\
-		                                                       & \textbf{True}  & 8668  & 4.643205 & 4.3 & 4.8 & 4.706853 \\ \hline
-		\multirow{2}{*}{\textbf{BA}}                           & \textbf{False} & 20970 & 4.617740 & 4.3 & 4.8 & 4.542680 \\
-		                                                       & \textbf{True}  & 28727 & 4.613016 & 4.3 & 4.8 & 4.467017 \\ \hline
-		\multirow{2}{*}{\textbf{PE}}                           & \textbf{False} & 2645  & 4.500000 & 4.5 & 4.5 & 5.000000 \\
-		                                                       & \textbf{True}  & 2746  & 4.500000 & 4.5 & 4.5 & 5.000000 \\ \hline
-		\multirow{2}{*}{\textbf{RN}}                           & \textbf{False} & 2903  & 4.397451 & 4.2 & 4.6 & 4.493627 \\
-		                                                       & \textbf{True}  & 6232  & 4.480424 & 4.2 & 4.6 & 4.701059 \\ \hline
-		\multirow{2}{*}{\textbf{SE}}                           & \textbf{False} & 2448  & 4.300000 & 4.3 & 4.3 & 4.000000 \\
-		                                                       & \textbf{True}  & 2846  & 4.300000 & 4.3 & 4.3 & 4.000000 \\ \hline
-	\end{tabular}\caption{Quantidade de avaliações por estado e por rotulo -- indicando o que será e o que não será analisado}
-	\label{table:distribuicao_review_por_estado}
-\end{table}
-
-\begin{table}[]
-	\centering
-	\begin{tabular}{|l|l|}
-		\hline
-		\textbf{Ano} & \textbf{Quantidade} \\\hline
-		2023         & 9444                \\
-		2022         & 11866               \\
-		2021         & 5350                \\
-		2020         & 6236                \\
-		2019         & 9645                \\
-		2018         & 6678                \\
-		\hline
-	\end{tabular}
-	\caption{Quantidade de avaliações por ano após filtro}
-	\label{table:distribuicao_review_per_year}
-\end{table}
-% TODO
-
-\begin{table}[]
-	\centering
-	\begin{tabular}{|c|c|r|r|}
-		\hline
-		\multicolumn{1}{|r|}{\textbf{Hotel}}                                    &
-		\multicolumn{1}{r|}{\textbf{Analisar?}}                                 &
-		\textbf{Quantidade}                                                     &
-		\textbf{\%}                                                               \\ \hline
-		\multirow{2}{*}{\textbf{Cana Brava All Inclusive Resort}}               &
-		False                                                                   &
-		3028                                                                    &
-		27.16                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		8119                                                                    &
-		72.84                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Grand Oca Maragogi}}                            &
-		False                                                                   &
-		2427                                                                    &
-		52.34                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		2210                                                                    &
-		47.66                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Hotel Marsol Beach Resort}}                     &
-		False                                                                   &
-		1470                                                                    &
-		44.10                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		1863                                                                    &
-		55.90                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Hotel Vila Galé - Touros}}                      &
-		False                                                                   &
-		1433                                                                    &
-		24.70                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		4369                                                                    &
-		75.30                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Hotel Vila Galé - Marés}}                       &
-		False                                                                   &
-		3550                                                                    &
-		41.36                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		5033                                                                    &
-		58.64                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Hotel Vila Galé: Eco Resort - Cabo}}            &
-		False                                                                   &
-		2645                                                                    &
-		49.06                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		2746                                                                    &
-		50.94                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Iberostar Bahia}}                               &
-		False                                                                   &
-		7830                                                                    &
-		48.29                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		8383                                                                    &
-		51.71                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{La Torre Resort All Inclusive}}                 &
-		False                                                                   &
-		3164                                                                    &
-		50.84                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		3060                                                                    &
-		49.16                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Makai Resort Aracaju - All Inclusive}}          &
-		False                                                                   &
-		2448                                                                    &
-		46.24                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		2846                                                                    &
-		53.76                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Nauticomar Resort All Inclusive \& Beach Club}} &
-		False                                                                   &
-		2104                                                                    &
-		49.03                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		2187                                                                    &
-		50.97                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Salinas Maceió All Inclusive Resort}}           &
-		False                                                                   &
-		2140                                                                    &
-		45.72                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		2541                                                                    &
-		54.28                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Salinas Maragogi All Inclusive Resort}}         &
-		False                                                                   &
-		3539                                                                    &
-		47.46                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		3917                                                                    &
-		52.54                                                                     \\ \hline
-		\multirow{2}{*}{\textbf{Transamerica Comandatuba}}                      &
-		False                                                                   &
-		1294                                                                    &
-		39.95                                                                     \\ \cline{2-4}
-		                                                                        &
-		True                                                                    &
-		1945                                                                    &
-		60.05                                                                     \\ \hline
-	\end{tabular}
-	\caption{Lista de quantidade de avaliações analisadas e descartadas por hotel}
-	\label{tab:lista_review_hoteis}
-\end{table}%
-%
-% TODO falar sobre a estrutura dos dadosf
-
-Cada um dos reviews é composto por 18 campos com informações, com formatos diferentes e descritos na tabela \ref{tab:estrutura_review}. Dentre os 18 campos, estaremos interessados apenas em alguns deles sendo:
-\begin{itemize}
-	\item text: conteúdo que passará pela analise de sentimento
-	\item rating: utilizado na analise de distribuição de notas.
-	\item relative\_date: utilizado para inferir a o período no qual a avaliação foi submetida
-	\item retrieval\_date: útil para que possa ser possivel inferir a data na qual a avaliação foi submetida.
-\end{itemize}
-
-E adicionaremos algumas novas colunas para:
-
-\begin{itemize}
-	\item source: indica o hotel ao qual a avaliação foi submetida. exemplo: 'hotel-marsol-beach-resort'
-	\item mes\_avaliacao: indica em qual mes a avalição foi submetida. exemplo: 1, 6, 8.
-	\item ano\_avaliacao: indica em qual ano a avalição foi submetida. exemplo: 2023, 2021, 2016.
-	\item mes\_ano\_avaliacao: indica em qual mes-ano a avalição foi submetida, exemplo: '2023-01', '2016-07'
-\end{itemize}
-
-
-Para construir as colunas de tempo (mes\_avaliacao, ano\_avaliacao e mes\_ano\_avaliacao) é necessário realizar um tratamento de data relativa de quando a avaliação foi submetida, que é representado por relative\_date, com o retrieval\_date que representa o momento em que a avaliação foi obtida, o seguinte trecho de código foi utilizado para realizar o tratamento:
-%TODO apendice?
-\lstinputlisting[language=Python,caption=Código utilizado para tratar a data relativa]{extras/code/from_relative_date_to_timestamp.py}
-
-Com os dados tratados agora possuímos a nova coluna \emph{mes\_ano\_avaliacao}, na Figura \ref{img:dist_ano_mes_avaliacao}, nota-se um comportamento estranho com a ausência de diversos meses por ano, durante o período de 2011 até 2021 temos o registro de apenas avaliações no mês 7, este comportamento é devido ao formato de data relativa utilizada pelo Google Maps ao expor suas avaliações, não foi possível identificar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada, por este motivo ao utilizar a data relativa e para as avaliações mais antigas conseguimos apenas identificar o ano no qual a avaliação foi publicada, as avaliações com menos de um ano de diferença da data de recuperação utilizando este \textit{script} poderiam ser utilizadas em uma analise mais detalhada em relação ao período, porém esta não foi a estrategia escolhida e optaremos por restringir a análise de maneira em que as avaliações serão agrupadas em períodos anuais, representando assim o ano de publicação de cada avaliação.
-
-Agora estamos considerando apenas avaliações que serão utilizadas na analise, a distribuição das notas atribuídas individualmente a cada avaliação pode ser consultada na Figura \ref{img:dist_review_rating}. É fácil notar que a grande maioria das avaliações registradas, mais especificamente 38347 (77,91\%), possui a maior nota atribuída, de valor 5, o que nos leva a acreditar que em grande parte das avaliações o sentimento geral que deve ser identificado será positivo.
-
-% possivel referencia? https://riull.ull.es/xmlui/handle/915/26220
-Este comportamento de distribuição desigual das notas ainda é perceptível também quando olhamos para as avaliações agrupadas por ano de submissão, como pode-se notar na Figura \ref{img:dist_review_rating_per_year}. Podemos também observar na Figura \ref{img:dist_review_rating_per_year} a evolução em quantidade numérica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19 (referências?) e já pós flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então possivelmente seguiremos com a tendencia de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
-
-Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuída tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores é cresce de forma desproporcional se comparado com as avaliações com notas baixas, como observado na Figura \ref{img:dist_review_rating_per_year}.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figs/exploratoria/distribuicao_ano_mes_avaliacao.png}
-	\caption{Distribuição do número de avaliação por mês e ano}
-	\label{img:dist_ano_mes_avaliacao}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.75\textwidth]{figs/exploratoria/quantidade_avaliacao_nota_atribuida.png}
-	\caption{Quantidade de avaliações por nota atribuida}
-	\label{img:dist_review_rating}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/quantidade_avaliacao_nota_atribuida_ano.png}
-	\caption{Quantidade de avaliações por ano e nota atribuída}
-	\label{img:dist_review_rating_per_year}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.70\textwidth]{figs/exploratoria/relplot_ano_rating.png}
-	\caption{Variação da nota atribuída ao longo dos anos}
-	\label{img:relplot_ano_rating}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/relplot_ano_rating_source.png}
-	\caption{Variação da nota atribuída ao longo dos anos por hotel}
-	\label{img:relplot_ano_rating_source}
-\end{figure}
-
-\begin{table}[]
-	\centering
-	\begin{tabular}{|p{5cm}|l|l|l|l|}
-		\hline
-		\textbf{Hotel}                                      &
-		\textbf{Não vazio}                                  &
-		\textbf{Com texto}                                  &
-		\textbf{Traduzido}                                  &
-		\textbf{Públicos em +2017}                            \\
-		\hline
-		\textbf{Cana Brava All Inclusive Resort}            &
-		8583                                                &
-		8581                                                &
-		141                                                 &
-		10656                                                 \\
-		\hline
-		\textbf{Grand Oca Maragogi}                         &
-		2948                                                &
-		2947                                                &
-		542                                                 &
-		4297                                                  \\
-		\hline
-		\textbf{Hotel Marsol Beach Resort}                  &
-		2150                                                &
-		2150                                                &
-		162                                                 &
-		3128                                                  \\
-		\hline
-		\textbf{Hotel Vila Galé - Touros}                   &
-		4481                                                &
-		4480                                                &
-		111                                                 &
-		5802                                                  \\
-		\hline
-		\textbf{Hotel Vila Galé - Marés}                    &
-		5723                                                &
-		5721                                                &
-		315                                                 &
-		7981                                                  \\
-		\hline
-		\textbf{Hotel Vila Galé Eco Resort - Cabo}          &
-		3219                                                &
-		3217                                                &
-		183                                                 &
-		4934                                                  \\
-		\hline
-		\textbf{Iberostar Bahia}                            &
-		10587                                               &
-		10586                                               &
-		1464                                                &
-		14848                                                 \\
-		\hline
-		\textbf{La Torre Resort - All Inclusive}            &
-		3847                                                &
-		3847                                                &
-		496                                                 &
-		5722                                                  \\
-		\hline
-		\textbf{Makai Resort Aracaju - All Inclusive}       &
-		3180                                                &
-		3180                                                &
-		84                                                  &
-		4917                                                  \\
-		\hline
-		\textbf{Nauticomar Resort All Inclusive Beach Club} &
-		2630                                                &
-		2628                                                &
-		228                                                 &
-		3938                                                  \\
-		\hline
-		\textbf{Salinas Maceió All Inclusive Resort}        &
-		2836                                                &
-		2836                                                &
-		168                                                 &
-		4497                                                  \\
-		\hline
-		\textbf{Salinas Maragogi All Inclusive Resort}      &
-		4572                                                &
-		4572                                                &
-		203                                                 &
-		6700                                                  \\
-		\hline
-		\textbf{Transamerica Comandatuba}                   &
-		2149                                                &
-		2148                                                &
-		87                                                  &
-		3050                                                  \\ \hline
-	\end{tabular}
-	\caption{Quantidade de avaliações em cada filtro pro hotél}
-	\label{table:qtd_review_filtro}
-\end{table}
+Os critérios são a avaliação precisa possuir conteúdo textual e este por sua vez precisa então possuir 3 ou mais caracteres, não ser traduzido e será realizado filtro de período, que será definido posteriormente.
 
 \begin{table}[]
 	\centering
@@ -486,11 +62,11 @@ Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota
 		\hline
 		\textbf{Campo}            & \textbf{Descrição}                                                              & \textbf{Tipo}                                                                  \\
 		\hline
-		token                     & \emph{token} utilizado para buscar a próxima sequência de avaliações na API            & textual                                                                        \\
+		token                     & \emph{token} utilizado para buscar a próxima sequência de avaliações na API     & textual                                                                        \\
 		\hline
 		review\_id                & identificador da avaliação                                                      & textual                                                                        \\
 		\hline
-		retrieval\_date           & data na qual o \emph{script} recuperou a avaliação                                     & textual em formato de datetime                                                 \\
+		retrieval\_date           & data na qual o \emph{script} recuperou a avaliação                              & textual em formato de datetime                                                 \\
 		\hline
 		rating                    & valor numérico de nota que foi atribuído ao estabelecimento                     & numérico                                                                       \\
 		\hline
@@ -508,15 +84,15 @@ Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota
 		\hline
 		user\_is\_local\_guide    & identificador para indicar usuários que são local guides                        & textual                                                                        \\
 		\hline
-		user\_reviews             & número para indicar a quantidade de avaliações realizadas pelo usuário         & textual                                                                        \\
+		user\_reviews             & número para indicar a quantidade de avaliações realizadas pelo usuário          & textual                                                                        \\
 		\hline
 		user\_photos              & número de fotos que o usuário postou                                            & numérico                                                                       \\
 		\hline
 		user\_url                 & endereço na web do perfil do usuário                                            & textual                                                                        \\
 		\hline
-		text                      & conteúdo textual da avaliação                                                    & textual                                                                        \\
+		text                      & conteúdo textual da avaliação                                                   & textual                                                                        \\
 		\hline
-		response\_text            & conteúdo textual de uma possível resposta do estabelecimento à avaliação         & textual                                                                        \\
+		response\_text            & conteúdo textual de uma possível resposta do estabelecimento à avaliação        & textual                                                                        \\
 		\hline
 		response\_relative\_date  & data relativa ao retrieval\_date de quando a resposta à avaliação foi publicada & string no formato de data relativa                                             \\
 		\hline
@@ -526,13 +102,35 @@ Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota
 	\caption{estrutura da avaliação}
 	\label{tab:estrutura_review}
 \end{table}
+
+Cada uma das avaliações é composta por 18 campos com informações com formatos diferentes e descritos na tabela \ref{tab:estrutura_review}.
+
+Dentre os 18 campos, estaremos interessados apenas em alguns deles, sendo:
+
+\begin{itemize}
+	\item text: conteúdo que passará pela analise de sentimento
+	\item rating: utilizado na analise de distribuição de notas.
+	\item relative\_date: utilizado para inferir a o período no qual a avaliação foi submetida
+	\item retrieval\_date: útil para que possa ser possível inferir a data na qual a avaliação foi submetida.
+\end{itemize}
+
+E adicionaremos algumas novas colunas para:
+
+\begin{itemize}
+	\item source: indica o hotel ao qual a avaliação foi submetida. exemplo: 'hotel-marsol-beach-resort'
+	\item mes\_avaliacao: indica em qual mês a avaliação foi submetida. exemplo: 1, 6, 8.
+	\item ano\_avaliacao: indica em qual ano a avaliação foi submetida. exemplo: 2023, 2021, 2016.
+	\item mes\_ano\_avaliacao: indica em qual mes-ano a avaliação foi submetida, exemplo: '2023-01', '2016-07'
+\end{itemize}
+
+Para construir as colunas de tempo (mes\_avaliacao, ano\_avaliacao e mes\_ano\_avaliacao) é necessário realizar um tratamento de data relativa de quando a avaliação foi submetida, que é representado por relative\_date, com o retrieval\_date que representa o momento em que a avaliação foi obtida, o seguinte trecho de código foi utilizado para realizar o tratamento:
+
+\lstinputlisting[language=Python,caption=Código utilizado para tratar a data relativa]{extras/code/from_relative_date_to_timestamp.py}
+
 \section{Análise dos Dados}
 \label{cap:metodologia:sec:analise_dados}
 
-
 % TODO
-
-
 %\subsection{Análise de Sentimentos}
 %\label{subsec:analise_sentimentos}
 
