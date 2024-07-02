@@ -1,15 +1,11 @@
 \chapter{Resultados e Discussão}
 \label{cap:resultados}
 
-% todo
-
-% todo analise exploratoria
 \section{Análise Exploratória dos Dados}
 \label{cap:resultados:sec:analise_exploratoria}
 
 Foram identificados 814 hotéis distribuídos em todo o território nacional, desde hotéis de grandes redes e com disponibilidade de reservas do tipo \emph{All Inclusive} até hotéis pouco conhecidos com menos de 10 avaliações na plataforma.
 
-%lista disponivel no apêndice \ref{apendice:lista_completa_hoteis},
 Dessa lista temos como destaque os seguintes números:
 
 Estados com a maior quantidade de hotéis
@@ -31,7 +27,6 @@ Estados com a maior quantidade de avaliações
 	\item PB: 68188 (4,36 com 54 hotéis)
 \end{itemize}
 
-
 Média da classificação dos hotéis por Estado
 
 \begin{itemize}
@@ -42,19 +37,14 @@ Média da classificação dos hotéis por Estado
 	\item SC: 4,50 com 32621 avaliações no total (7 hotéis)
 \end{itemize}
 
-Após aplicar o primeiro critério definido para a seleção da lista de hotéis, temos então uma lista com um grupo de 15 hotéis dentre os disponíveis após o filtro da região temos então 11.
+Após aplicar o primeiro critério definido para a seleção da lista de hotéis, temos então uma lista com um grupo de 15 hotéis dentre os disponíveis, e após o filtro da região temos então 11. Também foram adicionados manualmente a lista outros 2 hotéis que atendiam os critérios hotéis que não foram listados nas consultas à \textit{API}.
 
-Também foram adicionados manualmente a lista outros hotéis não foram listados nas consultas à API, adicionando 2 novos hotéis que atendiam os critérios e foram acrescentados à lista.
-
-A lista composta de 13 hotéis todos localizados na região nordeste do Brasil e com a disponibilidade de pacotes \emph{All Inclusive}, no momento de consulta na plataforma do Google Maps, é valido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do Google Maps com nota superior a 4.20 e são todos hotéis de 4 ou 5 estrelas.
-
-A lista de hotéis obtida é composta conforme a tabela~\ref{table:lista_hoteis}.
+A lista composta de 13 hotéis todos localizados na região nordeste do Brasil e com a disponibilidade de pacotes \emph{All Inclusive}, conforme tabela~\ref{table:lista_hoteis}, é valido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do \textit{Google Maps} com nota igual ou superior a 4.20 e são todos hotéis apontados pela plataforma como sendo hotéis de classificação de 4 ou 5 estrelas.
 
 \begin{table}[]
 	\begin{tabular}{|p{5cm}|l|r|r|l|r|}
 		\hline
 		\textbf{Nome}                                 & \textbf{Estado} & \textbf{Nota} & \textbf{Estrelas} & \textbf{Região} & \textbf{Quantidade} \\\hline
-
 		Cana Brava All Inclusive Resort               & BA              & 4.60          & 4                 & NORDESTE        & 10987               \\\hline
 		Grand Oca Maragogi                            & AL              & 4.30          & 5                 & NORDESTE        & 4613                \\\hline
 		Hotel Marsol Beach Resort                     & RN              & 4.20          & 4                 & NORDESTE        & 3269                \\\hline
@@ -72,16 +62,6 @@ A lista de hotéis obtida é composta conforme a tabela~\ref{table:lista_hoteis}
 	\caption{Lista de hotéis e número de avalições}
 	\label{table:lista_hoteis}
 \end{table}
-
-Considerando todas as avaliações obtidas, temos:
-
-\begin{itemize}
-	\item 80470(93.25\%) enviadas depois de 2017 e 5821(6.75\%) enviadas em 2017, ou antes
-	\item 56893(65.93\%) com texto e 3 ou mais caracteres, 29386(34.05\%) sem texto e 12(0.01\%) avaliações com 1 ou 2 caracteres
-	\item 4184(4.85\%) avaliações traduzidas
-\end{itemize}
-
-Considerando todas as avaliações obtidas podemos observar na tabela~\ref{table:review_per_year} que temos uma discrepância na quantidade e é perceptível a divisão no período de 2017/2018.
 
 \begin{table}[]
 	\centering
@@ -105,18 +85,22 @@ Considerando todas as avaliações obtidas podemos observar na tabela~\ref{table
 	\end{tabular}%
 	\caption{Quantidade de avaliações obtidas por ano}
 	\label{table:review_per_year}
-  \end{table}
+\end{table}
 
-Assim foi definido que serão utilizadas avaliações posteriores a 2018. Resultando um código conforme abaixo.
+Considerando todas as avaliações obtidas podemos observar na tabela~\ref{table:review_per_year} que temos uma discrepância na quantidade e é perceptível a divisão no período de 2017/2018.
+E dessa forma foi definido que serão utilizadas avaliações posteriores a 2018. Resultando um código conforme abaixo:
 
 \lstinputlisting[language=Python,caption=Filtros aplicados ao dataset de avalições]{extras/code/review_filter.py}
 
+Considerando todas as avaliações obtidas, temos:
+
+\begin{itemize}
+	\item 80470(93.25\%) enviadas depois de 2017 e 5821(6.75\%) enviadas em 2017, ou antes
+	\item 56893(65.93\%) com texto e 3 ou mais caracteres, 29386(34.05\%) sem texto e 12(0.01\%) avaliações com 1 ou 2 caracteres
+	\item 4184(4.85\%) avaliações traduzidas
+\end{itemize}
+
 Agora estamos considerando apenas avaliações que serão utilizadas na analise, a distribuição das notas atribuídas individualmente a cada avaliação pode ser consultada na Figura \ref{img:dist_review_rating}. É fácil notar que a grande maioria das avaliações registradas, mais especificamente 38347 (77,91\%), possui a maior nota atribuída, de valor 5, o que nos leva a acreditar que em grande parte das avaliações o sentimento geral que deve ser identificado será positivo.
-
-% possivel referencia? https://riull.ull.es/xmlui/handle/915/26220
-Este comportamento de distribuição desigual das notas ainda é perceptível também quando olhamos para as avaliações agrupadas por ano de submissão, como pode-se notar na Figura \ref{img:dist_review_rating_per_year}. Podemos também observar na Figura \ref{img:dist_review_rating_per_year} a evolução em quantidade numérica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19 (referências?) e já pós flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então possivelmente seguiremos com a tendencia de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
-
-Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuída tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores é cresce de forma desproporcional se comparado com as avaliações com notas baixas, como observado na Figura \ref{img:dist_review_rating_per_year}.
 
 \begin{figure}
 	\centering
@@ -124,6 +108,11 @@ Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota
 	\caption{Quantidade de avaliações por nota atribuida}
 	\label{img:dist_review_rating}
 \end{figure}
+
+% possivel referencia? https://riull.ull.es/xmlui/handle/915/26220
+Este comportamento de distribuição desigual das notas ainda é perceptível também quando olhamos para as avaliações agrupadas por ano de submissão, como pode-se notar na Figura \ref{img:dist_review_rating_per_year}. Podemos também observar na Figura \ref{img:dist_review_rating_per_year} a evolução em quantidade numérica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19 \cite{Guardia2022} e já pós flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então possivelmente seguiremos com a tendencia de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
+
+Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuída tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores é cresce de forma desproporcional se comparado com as avaliações com notas baixas, como observado na Figura \ref{img:dist_review_rating_per_year}.
 
 \begin{figure}
 	\centering
@@ -238,7 +227,7 @@ Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota
 	\label{table:qtd_review_filtro}
 \end{table}
 
-Com os dados tratados agora possuímos a nova coluna \emph{mes\_ano\_avaliacao}, na Figura \ref{img:dist_ano_mes_avaliacao}, nota-se um comportamento estranho com a ausência de diversos meses por ano, durante o período de 2011 até 2021 temos o registro de apenas avaliações no mês 7, este comportamento é devido ao formato de data relativa utilizada pelo Google Maps ao expor suas avaliações, não foi possível identificar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada, por este motivo ao utilizar a data relativa e para as avaliações mais antigas conseguimos apenas identificar o ano no qual a avaliação foi publicada, as avaliações com menos de um ano de diferença da data de recuperação utilizando este \textit{script} poderiam ser utilizadas em uma analise mais detalhada em relação ao período, porém esta não foi a estrategia escolhida e optaremos por restringir a análise de maneira em que as avaliações serão agrupadas em períodos anuais, representando assim o ano de publicação de cada avaliação.
+Com os dados tratados agora possuímos a nova coluna \emph{mes\_ano\_avaliacao}, na Figura \ref{img:dist_ano_mes_avaliacao}, nota-se um comportamento estranho com a ausência de diversos meses por ano, durante o período de 2011 até 2021 temos o registro de apenas avaliações no mês 7, este comportamento é devido ao formato de data relativa utilizada pelo \textit{Google Maps} ao expor suas avaliações, não foi possível identificar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada, por este motivo ao utilizar a data relativa e para as avaliações mais antigas conseguimos apenas identificar o ano no qual a avaliação foi publicada, as avaliações com menos de um ano de diferença da data de recuperação utilizando este \textit{script} poderiam ser utilizadas em uma analise mais detalhada em relação ao período, porém esta não foi a estrategia escolhida e optaremos por restringir a análise de maneira em que as avaliações serão agrupadas em períodos anuais, representando assim o ano de publicação de cada avaliação.
 
 \begin{figure}
 	\centering
