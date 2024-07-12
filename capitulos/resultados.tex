@@ -132,13 +132,6 @@ Este comportamento de distribuição desigual das notas ainda é perceptível ta
 	\label{img:dist_review_rating_per_year}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.70\textwidth]{figs/exploratoria/relplot_ano_rating.png}
-	\caption{Variação da nota atribuída ao longo dos anos}
-	\label{img:relplot_ano_rating}
-\end{figure}
-
 Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuída tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores é cresce de forma desproporcional se comparado com as avaliações com notas baixas, como observado na Figura \ref{img:dist_review_rating_per_year}.
 
 % \begin{figure}
@@ -240,7 +233,7 @@ Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota
 	\label{table:qtd_review_filtro}
 \end{table}
 
-\begin{table}[]
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|c|crrrrr|}
 		\hline
@@ -271,7 +264,7 @@ Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota
 
 E dentre todas as avaliações obtidas após aplicar o filtro de período utilizaremos para a análise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas. Assim as avaliações que foram consideradas estão então distribuídas conforme a tabela~\ref{table:distribuicao_review_per_year}.
 
-\begin{table}[]
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|l|l|}
 		\hline
@@ -290,7 +283,7 @@ E dentre todas as avaliações obtidas após aplicar o filtro de período utiliz
 
 % TODO
 
-\begin{table}[]
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|c|c|r|r|}
 		\hline
@@ -409,40 +402,45 @@ E dentre todas as avaliações obtidas após aplicar o filtro de período utiliz
 
 Após devido tratamento das avaliações conseguimos obter as nuvens de palavras considerando todas as palavras na Figura \ref{img:wordcloud_geral}, onde podemos notar como alguns dos destaques quarto, piscina, praia, restaurante, como sendo as palavras com maior frequência nas avaliações.
 
+\begin{figure}
+	\centering
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/exploratoria/relplot_ano_rating.png}
+		\caption{Variação da nota atribuída ao longo dos anos}
+		\label{img:relplot_ano_rating}
+	\end{minipage}\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_geral.png}
+		\caption{Wordcloud sem stop words}
+		\label{img:wordcloud_geral}
+	\end{minipage}
+\end{figure}
+
 Já considerando a nuvem de palavras filtrando apenas por adjetivos teremos então na Figura \ref{img:wordcloud_adjetivos} que tem como alguns dos destaques palavras como sensacional, excelente, especial, local, top, ótimo, nota.
 
 E por ultimo observamos a nuvem de palavras levando em consideração apenas os substantivos na Figura \ref{img:wordcloud_substantivos}, que como destaque podemos citar funcionário, piscina, quarto, praia.
 
+\begin{figure}
+	\centering
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_adjetivos.png}
+		\caption{Wordcloud de Adjetivos}
+		\label{img:wordcloud_adjetivos}
+	\end{minipage}
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_substantivos.png}
+		\caption{Wordcloud de substantivos}
+		\label{img:wordcloud_substantivos}
+	\end{minipage}
+\end{figure}
+
 Uma outra forma de analise é o agrupamento de tokens em unigramas na Figura \ref{img:unigramas}, bigramas na Figura \ref{img:bigramas} e os trigramas na Figura \ref{img:trigramas} presentes em todas as avaliações. dessa forma temos exatamente a classificação de franquênia dos tokens no corpus de estudo.
 
 Entre os unigramas \ref{img:unigramas} temos uma lista com alguns dos tokens mais frequentes, alguns chegando a passar a contagem de utilização de mais de 10.000 vezes, como é o caso de lugar, sendo seguindo ainda que próximo por comida, excelente e atendimento, este ultimo com uma frequência próximo de 8500 vezes. Ainda em relação aos unigramas também podemos levar em consideração a sua frequência com a evolução do tempo em \ref{img:rank_unigramas}, e algo com grande destaque é a palavra lugar que está entre o top 10 entre todo o período da analise, flutuando entre as cinco primeiras posições, tio é um unigrama que merece atenção, por não ter aparecido na nuvem de palavras de unigramas, porém se faz presente no ranking se observarmos individualmente os anos ele aparece em décimo lugar no ano de 2022, indícios de uma possível atração local bem conhecida, substituindo então o unigrama 'praia', que se fazia presente no ranking até 2021 na nona colocação.
-
-Considerando os bigramas \ref{img:bigramas} a frequência diminui consideravelmente, pois aqui temos que a ordem importa e dessa forma o mais frequente fica próximo de 1700 vezes, sendo composto pela dupla 'lugar' e 'maravilhoso', seguido pelo segundo colocado, bem próximo de 1400 vezes, sendo 'comida' e 'boa', onde podemos observar a grande frequência de palavras positivas, por conta dos adjetivo positivos.
-
-Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda mais e como destaque temos um que supera a contagem de 250 vezes, sendo 'facilidade', 'deslocamento' e 'pe', o que nos indica que existe pelo menos um hotel que possui uma boa localização para que seja possível se deslocar até uma atração popular do local à pé, seguido de 'atendimento', 'nota' e '10' que indica que para as pessoas que avaliaram o atendimento da rede de hotéis ainda é algo importante e que deve ser levado em consideração caso a rede tenha interesse em ter ou manter um conceito positivo entre seus cliente.
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_geral.png}
-	\caption{Wordcloud sem stop words}
-	\label{img:wordcloud_geral}
-\end{figure}
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_substantivos.png}
-	\caption{Wordcloud de substantivos}
-	\label{img:wordcloud_substantivos}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_adjetivos.png}
-	\caption{Wordcloud de Adjetivos}
-	\label{img:wordcloud_adjetivos}
-\end{figure}
 
 \begin{figure}
 	\centering
@@ -451,12 +449,16 @@ Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda
 	\label{img:unigramas}
 \end{figure}
 
+Considerando os bigramas \ref{img:bigramas} a frequência diminui consideravelmente, pois aqui temos que a ordem importa e dessa forma o mais frequente fica próximo de 1700 vezes, sendo composto pela dupla 'lugar' e 'maravilhoso', seguido pelo segundo colocado, bem próximo de 1400 vezes, sendo 'comida' e 'boa', onde podemos observar a grande frequência de palavras positivas, por conta dos adjetivo positivos.
+
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figs/exploratoria/bigramas.png}
 	\caption{Bigramas}
 	\label{img:bigramas}
 \end{figure}
+
+Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda mais e como destaque temos um que supera a contagem de 250 vezes, sendo 'facilidade', 'deslocamento' e 'pe', o que nos indica que existe pelo menos um hotel que possui uma boa localização para que seja possível se deslocar até uma atração popular do local à pé, seguido de 'atendimento', 'nota' e '10' que indica que para as pessoas que avaliaram o atendimento da rede de hotéis ainda é algo importante e que deve ser levado em consideração caso a rede tenha interesse em ter ou manter um conceito positivo entre seus cliente.
 
 \begin{figure}
 	\centering
@@ -465,7 +467,6 @@ Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda
 	\label{img:trigramas}
 \end{figure}
 
-
 %TODO ajustar tamanho, ta estranho
 \begin{figure}
 	\centering
@@ -473,7 +474,6 @@ Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda
 	\caption{Ranking de unigramas por ano}
 	\label{img:rank_unigramas}
 \end{figure}
-
 
 
 
