@@ -546,39 +546,97 @@ Nas figuras \ref{img:sentimento_phil} e \ref{img:sentimento_citizenlab} consegui
 
 \subsection{Vicuna}
 \label{sec:resultados:subsec:vicuna}
-todo
 
+% TODO
+
+\begin{figure}
+	\centering
+	\begin{minipage}{0.8\textwidth}
+		\centering
+		\includegraphics[width=.6\textwidth]{figs/vicuna/distribuicao_pizza.png}
+		\caption{Distribuição do sentimento das avaliações}
+		\label{img:vicuna_pizza_distribuicao}
+	\end{minipage}\hfill
+	\begin{minipage}{1\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/vicuna/sentimento_ano.png}
+		\caption{Sentimento das avaliações por ano}
+		\label{img:vicuna_sentimento_ano}
+	\end{minipage}\hfill
+	\begin{minipage}{1\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/vicuna/sentimento_nota.png}
+		\caption{Sentimento das avaliações por nota}
+		\label{img:vicuna_sentimento_nota}
+	\end{minipage}
+\end{figure}
 
 \subsection{GPT 3.5}
 \label{sec:resultados:subsec:gpt}
 
-Utilizando o modelo GPT 3.5 para realizar a tarefa de analise de sentimentos do conteúdo textual das avaliações obtemos a distribuição conforme Figura \ref{img:gpt_pizza_distribuicao}, onde 84.77\% das avaliações, ou seja, 41721 avaliações foram classificadas como tendo um sentimento positivo, isso representa um número próximo das avaliações que receberam como nota 4 ou 5, 6128 e 38347 avaliações respectivamente, porém fica fácil notar na Figura \ref{img:gpt_sentimento_nota} que mesmo a grande maioria das avaliações com essa nota atribuída ainda existem avaliações com sentimentos diferentes
+%TODO revisar imagens
+
+O modelo GPT 3.5 demorou pouco mais do que 4 horas e teve custo de pouco menos de 11 dólares para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, além de ser um modelo pago e privado, o que é pode ser um ponto negativo dependendo do projeto que se está executando, ele demorou um tempo consideravelmente maior se comparado com os modelos BERTs e para a tarefa proposta no trabalho ambos realizaram uma simular em termos de volume de etiquetas atribuídas para as avaliações, ambos reconheceram como sendo positivas a grande parte, mais de 84\% das avaliações, e o segundo maior grupo como sendo as avaliações negativas.
+
+Outra grande desvantagem do GPT é que se faz necessário uso de rede de internet nesse caso, por conta do modelo ser executado na nuvem da OpenAI, que acaba por gerar exposição desnecessária dos dados se comparado com modelos abertos que podem ser executados sem a necessidade de utilização da internet.
+
+Utilizando o modelo GPT 3.5 para realizar a tarefa de analise de sentimentos do conteúdo textual das avaliações obtemos a distribuição conforme Figura \ref{img:gpt_pizza_distribuicao}, onde 84.77\% das avaliações, ou seja, 41721 avaliações foram classificadas como tendo um sentimento positivo, isso representa um número próximo das avaliações que receberam como nota 4 ou 5, 6128 e 38347 avaliações respectivamente, porém fica fácil notar na Figura \ref{img:gpt_sentimento_nota} que mesmo a grande maioria das avaliações com essa nota atribuída ainda existem avaliações com sentimentos diferentes e até mesmo avaliações em quais a etiqueta atribuída não foi identificável, sendo assim marcadas como com a etiqueta \textit{INVALID}, que foram classificadas dessa forma por conta do modelo não conseguir realizar a tarefa que lhe foi atribuída e produzir resposta maior ou mais detalhada sobre a etiqueta, e como o interesse é em classificações simples e diretas a etiqueta atribuída não foi identificável.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]{figs/gpt/distribuicao_pizza.png}
-	\caption{Distribuição do sentimento das avaliações}
-	\label{img:gpt_pizza_distribuicao}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/gpt/sentimento_ano.png}
-	\caption{Sentimento das avaliações por ano}
-	\label{img:gpt_sentimento_ano}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{figs/gpt/sentimento_nota.png}
-	\caption{Sentimento das avaliações por nota}
-	\label{img:gpt_sentimento_nota}
+	\begin{minipage}{0.8\textwidth}
+		\centering
+		\includegraphics[width=.6\textwidth]{figs/gpt/distribuicao_pizza.png}
+		\caption{Distribuição do sentimento das avaliações}
+		\label{img:gpt_pizza_distribuicao}
+	\end{minipage}\hfill
+	\begin{minipage}{1\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/gpt/sentimento_ano.png}
+		\caption{Sentimento das avaliações por ano}
+		\label{img:gpt_sentimento_ano}
+	\end{minipage}\hfill
+	\begin{minipage}{1\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/gpt/sentimento_nota.png}
+		\caption{Sentimento das avaliações por nota}
+		\label{img:gpt_sentimento_nota}
+	\end{minipage}
 \end{figure}
 
 
 \subsection{OpenChat}
 \label{sec:resultados:subsec:openchat}
-todo
+
+%TODO revisar imagens
+
+O modelo OpenChat demorou aproximadamente 9 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, por ser um modelo menor é esperado que seu desempenho seja inferior se comparado com os anteriores, seu tamanho menor pode ser também um ponto positivo por conta de serem necessários uma menor quantidade de memória de vídeo para carregar o modelo e conseguir realizar a execução do mesmo, ele demorou um tempo consideravelmente maior se comparado com todas as outras abordagens do projeto e para a tarefa proposta no trabalho a atribuição ainda foi simular, reconheceu como sendo positivas a grande parte, aproximadamente 83\% das avaliações, porém o grande destaque está no segundo maior grupo, que é o das avaliações que não foram possíveis classificar, com pouco mais de 11\%.
+
+É perceptível que o modelo do OpenChat não conseguir executar um bom trabalho com o texto que inicia a tarefa se comparado com os outros LLMs, porém ele matem o comportamento esperado de ter um número de avaliações com sentimento positivo bastante destoante dos outros grupos.
+
+Analisando algumas das classificações que o OpenChat realizou, especificamente contendo o texto \textit{Sem palavras}, temos o total de 7 avaliações com exatamente o mesmo texto, todas com uma nota de 5 estrelas atribuída pelo usuário, que não foi levada em consideração no momento de analise, o que é interessante notar é que o GPT classifica todas como sendo de sentimento neutro, já o vicuna classifica como sendo sentimento positivo, porém o OpenChat classifica 5 como tendo o sentimento positivo e as outras duas como sendo de sentimento neutro, o que pode indicar que o ambiente de testes não estava devidamente configurado para que a reprodutividade com esse modelo fosse algo consistente ou que o modelo tem certa inconsistências.
+
+\begin{figure}
+	\centering
+	\begin{minipage}{0.8\textwidth}
+		\centering
+		\includegraphics[width=.6\textwidth]{figs/openchat/distribuicao_pizza.png}
+		\caption{Distribuição do sentimento das avaliações}
+		\label{img:openchat_pizza_distribuicao}
+	\end{minipage}\hfill
+	\begin{minipage}{1\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/openchat/sentimento_ano.png}
+		\caption{Sentimento das avaliações por ano}
+		\label{img:openchat_sentimento_ano}
+	\end{minipage}\hfill
+	\begin{minipage}{1\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/openchat/sentimento_nota.png}
+		\caption{Sentimento das avaliações por nota}
+		\label{img:openchat_sentimento_nota}
+	\end{minipage}
+\end{figure}
 
 
 % sentimento bert
