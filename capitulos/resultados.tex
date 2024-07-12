@@ -444,16 +444,16 @@ Entre os unigramas \ref{img:unigramas} temos uma lista com alguns dos tokens mai
 
 \begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/unigramas.png}
+	\includegraphics[width=.8\textwidth]{figs/exploratoria/unigramas.png}
 	\caption{Unigramas}
 	\label{img:unigramas}
 \end{figure}
 
 Considerando os bigramas \ref{img:bigramas} a frequência diminui consideravelmente, pois aqui temos que a ordem importa e dessa forma o mais frequente fica próximo de 1700 vezes, sendo composto pela dupla 'lugar' e 'maravilhoso', seguido pelo segundo colocado, bem próximo de 1400 vezes, sendo 'comida' e 'boa', onde podemos observar a grande frequência de palavras positivas, por conta dos adjetivo positivos.
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/bigramas.png}
+	\includegraphics[width=.8\textwidth]{figs/exploratoria/bigramas.png}
 	\caption{Bigramas}
 	\label{img:bigramas}
 \end{figure}
@@ -462,7 +462,7 @@ Para destaque entre os trigramas \ref{img:trigramas} a frequência diminui ainda
 
 \begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]{figs/exploratoria/trigramas.png}
+	\includegraphics[width=.8\textwidth]{figs/exploratoria/trigramas.png}
 	\caption{Trigramas}
 	\label{img:trigramas}
 \end{figure}
@@ -527,16 +527,18 @@ Nas figuras \ref{img:sentimento_phil} e \ref{img:sentimento_citizenlab} consegui
 
 \begin{figure}
 	\centering
-	\includegraphics[width=.7\textwidth]{figs/bert/classificacao_phil.png}
-	\caption{Sentimento philschmid por ano}
-	\label{img:sentimento_phil}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=.7\textwidth]{figs/bert/classificacao_citizenlab.png}
-	\caption{Sentimento citizenlab por ano}
-	\label{img:sentimento_citizenlab}
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/bert/classificacao_phil.png}
+		\caption{Sentimento philschmid por ano}
+		\label{img:sentimento_phil}
+	\end{minipage}\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1\textwidth]{figs/bert/classificacao_citizenlab.png}
+		\caption{Sentimento citizenlab por ano}
+		\label{img:sentimento_citizenlab}
+	\end{minipage}
 \end{figure}
 
 
