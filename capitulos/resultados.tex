@@ -500,7 +500,7 @@ Após realizar o tratamento e levar em consideração o \textit{score} mais alto
 
 \begin{figure}
 	\centering
-	\includegraphics[width=.7\textwidth]{figs/bert/classificacao.png}
+	\includegraphics[width=.7\textwidth]{figs/bert/distribuicao_pizza.png}
 	\caption{Sentimento BERTs}
 	\label{img:sentimento_bert}
 \end{figure}
@@ -509,9 +509,16 @@ Como já era esperado a grande maioria das avaliações foram classificadas como
 
 \begin{figure}
 	\centering
-	\includegraphics[width=.7\textwidth]{figs/bert/timechart_classificacao.png}
+	\includegraphics[width=1\textwidth]{figs/bert/sentimento_ano.png}
 	\caption{Sentimento BERTs por ano}
 	\label{img:sentimento_timechart_bert}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/bert/sentimento_nota.png}
+	\caption{Sentimento BERTs por nota}
+	\label{img:sentimento_nota_bert}
 \end{figure}
 
 Porém avaliando de forma individual cada um dos modelos, podemos notar uma grande discrepância entre eles, com a afinação mais eficiente para esse corpus sendo o do citizenlab, considerando que eficiência aqui representa a maior número de avaliações classificadas com \textit{score} superior aos outros, como notamos na figura \ref{img:rinha_de_berts}, modelo esse que levou menos de 7 minutos para executar e classificar todo o corpus, seguido pelo philschmid que levou cerca de 3 minutos e meio na média.
