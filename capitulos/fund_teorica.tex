@@ -35,7 +35,7 @@ Portanto, a funcionalidade de avaliação de estabelecimentos no \textit{Google 
 % https://arxiv.org/pdf/2307.06435.pdf
 % \cite{naveed2024comprehensive}
 
-Neste projeto foram utilizados Grandes Modelos de linguagem(\textit{Large Language Models} - LLM) pré-treinados, como o GPT (\textit{Generative Pre-trained Transformer}), OpenChat e Vicuna, além de modelos baseados na arquitetura \textit{BERT} (Bidirectional Encoder Representations from Transformers)\cite{hugoZanini2021mediu}. Esses modelos representam o estado-da-arte em PLN e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
+Neste projeto foram utilizados Grandes Modelos de linguagem(\textit{Large Language Models} - LLM) pré-treinados, como o \textit{GPT} (\textit{Generative Pre-trained Transformer}), \textit{OpenChat} e \textit{Vicuna}, além de modelos baseados na arquitetura \textit{BERT} (Bidirectional Encoder Representations from Transformers)\cite{hugoZanini2021mediu}. Esses modelos representam o estado-da-arte em \textit{PLN} e têm demonstrado um desempenho significativo em uma variedade de tarefas, incluindo análise de sentimentos.
 
 \subsubsection[BERT]{BERT}
 \label{cap:fund_teorica:sec:modelos:subsec:bert}
@@ -44,24 +44,24 @@ Um modelo baseado em \textit{BERT}(\textit{Bidirectional Encoder Representations
 
 Os modelos BERT são uma família de modelos de linguagem baseados em \textit{transformers} que foram pré-treinados em grandes corpora de texto. Eles são capazes de capturar o contexto bidirecional das palavras em uma frase, o que os torna especialmente eficazes para tarefas de análise de sentimentos, onde o contexto é crucial para determinar o sentimento expresso.
 
-O treinamento de \textit{BERT} é realizado em grandes quantidades de dados de texto, onde o modelo aprende a prever palavras em uma frase ou sentença com base no contexto global da sentença. Como resultado, \textit{BERT} é capaz de capturar nuances e complexidades da linguagem natural de uma maneira mais eficaz do que modelos mais simples.
+O treinamento de \textit{BERT} é realizado com abundância de dados de texto, onde o modelo aprende a prever palavras em uma frase ou sentença com base no contexto global da sentença. Como resultado, \textit{BERT} é capaz de capturar nuances e complexidades da linguagem natural de uma maneira mais eficaz do que modelos mais simples.
 
-Depois de pré-treinado em um grande corpus de texto, um modelo \textit{BERT} pode ser ajustado para tarefas específicas, como análise de sentimentos, classificação de texto, resposta a perguntas, entre outras, por meio de um processo chamado de ajuste fino (\textit{fine-tuning}). Durante o ajuste fino, o modelo é treinado em um conjunto de dados rotulado específico para a tarefa em questão, adaptando suas representações aprendidas durante o pré-treinamento para a tarefa específica.
+Após pré-treinado em um grande corpus de texto, um modelo \textit{BERT} pode ser ajustado para tarefas específicas, como análise de sentimentos, classificação de texto, resposta a perguntas, entre outras, por meio de um processo chamado de ajuste fino (\textit{fine-tuning}). Durante o ajuste fino, o modelo é treinado em um conjunto de dados rotulado específico para a tarefa em questão, adaptando suas representações aprendidas durante o pré-treinamento para a tarefa específica.
 
-Os modelos baseados em \textit{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, \textit{BERTs} treinados em português e com bom desempenho podemos citar o RoBERTa~\cite{liu2019roberta} e BERTimbau~\cite{souza2020bertimbau}.
+Os modelos baseados em \textit{BERT} tornaram-se amplamente populares e são frequentemente usados como base para uma variedade de tarefas de processamento de linguagem natural devido à sua capacidade de capturar contextos complexos e produzir resultados de alta qualidade, \textit{BERTs} treinados em português e com bom desempenho podemos citar o \textit{RoBERTa}~\cite{liu2019roberta} e BERTimbau~\cite{souza2020bertimbau}.
 
 \subsubsection{Vicuna}
 \label{cap:fund_teorica:sec:modelos:subsec:vicuna}
 
-O Vicuna~\cite{vicuna2023} é um modelo de assistente de chat desenvolvido pela LMSYS~(\textit{Large Model Systems Organization}), ajustado a partir do modelo LLaMA usando ajuste fino de instrução supervisionada. É um modelo de linguagem autorregressivo baseado na arquitetura \textit{transformers}, projetado para tarefas de geração de texto. Os dados de treinamento para o Vicuna v1.5 consistem aproximadamente em 125.000 conversas coletadas do ShareGPT.com, enquanto o Vicuna v1.1 foi treinado com cerca de 70.000 conversas da mesma fonte.
+O \textit{Vicuna}~\cite{vicuna2023} é um modelo de assistente de chat desenvolvido pela \textit{LMSYS}~(\textit{Large Model Systems Organization}), ajustado a partir do modelo \textit{LLaMA} usando ajuste fino de instrução supervisionada. É um modelo de linguagem autorregressivo baseado na arquitetura \textit{transformers}, projetado para tarefas de geração de texto. Os dados de treinamento para o \textit{Vicuna} v1.5 consistem aproximadamente em 125.000 conversas coletadas do \textit{ShareGPT.com}, enquanto o \textit{Vicuna} v1.1 foi treinado com cerca de 70.000 conversas da mesma fonte.
 
-Vicuna é avaliado usando \textit{benchmarks} padrão, preferência humana e LLM-como-juiz, fornecendo uma avaliação abrangente de seu desempenho. É notável por alcançar mais de 90\% da qualidade do ChatGPT em testes de preferência do usuário e superar significativamente o Alpaca, tornando-se um forte concorrente na família de modelos LLaMA ajustados por instrução até maio de 2023.
+\textit{Vicuna} é avaliado usando \textit{benchmarks} padrão, preferência humana e LLM-como-juiz, fornecendo uma avaliação abrangente de seu desempenho. É notável por alcançar mais de 90\% da qualidade do ChatGPT em testes de preferência do usuário e superar significativamente o Alpaca, tornando-se um forte concorrente na família de modelos \textit{LLaMA} ajustados por instrução até maio de 2023.
 
-O modelo está disponível no \textit{Hugging Face}, onde tem sido utilizado em vários espaços e projetos, indicando sua ampla adoção e aplicação na comunidade de desenvolvedores. No entanto, é importante notar que o Vicuna está sujeito a uma licença não comercial, restringindo seu uso em aplicações comerciais.
+O modelo está disponível no \textit{Hugging Face}, onde tem sido utilizado em vários espaços e projetos, indicando sua ampla adoção e aplicação na comunidade de desenvolvedores. No entanto, é importante notar que o \textit{Vicuna} está sujeito a uma licença não comercial, restringindo seu uso em aplicações comerciais.
 
-Para aqueles interessados em começar com o Vicuna, o cartão de modelo do \textit{Hugging Face} fornece informações detalhadas sobre detalhes do modelo, fontes, usos e como começar a trabalhar com o modelo. Além disso, há uma nota sobre uma versão mais recente dos pesos disponíveis, sugerindo que os usuários verifiquem atualizações para garantir que estejam usando a versão mais atual do modelo.
+Para aqueles interessados em começar com o \textit{Vicuna}, o cartão de modelo do \textit{Hugging Face} fornece informações detalhadas sobre detalhes do modelo, fontes, usos e como começar a trabalhar com o modelo. Além disso, há uma nota sobre uma versão mais recente dos pesos disponíveis, sugerindo que os usuários verifiquem atualizações para garantir que estejam usando a versão mais atual do modelo.
 
-A versão utilizada neste projeto é o vicuna-1.5-13B disponível para consulta no \textit{Hugging Face}~\cite{vicuna1513b}.
+A versão utilizada neste projeto é o \textit{vicuna-1.5-13B} disponível para consulta no \textit{Hugging Face}~\cite{vicuna1513b}.
 
 \subsubsection{GPT 3.5}
 \label{cap:fund_teorica:sec:modelos:subsec:gpt}
@@ -75,11 +75,11 @@ Os modelos GPT-3.5, incluindo a variante Turbo, têm um limite máximo de \texti
 \subsubsection{OpenChat}
 \label{cap:fund_teorica:sec:modelos:subsec:openchat}
 
-O OpenChat \cite{wang2024openchat} é um modelo de conversação que usa como modelo base o llama 2, usando ajuste fino com aprendizado supervisionado de aprendizagem por reforço condicionado. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode servir para entender o contexto em avaliações de hotéis e extrair sentimentos.
+O OpenChat \cite{wang2024openchat} é um modelo de conversação que usa como modelo base o LLaMa 2, usando ajuste fino com aprendizado supervisionado de aprendizagem por reforço condicionado. Ele é capaz de gerar respostas contextuais e relevantes em conversas humanas, o que pode servir para entender o contexto em avaliações de hotéis e extrair sentimentos.
 
 É apresentado uma nova forma de ajuste fino de modelos, nomeado como \textit{OpenChat Framework}, que de forma sucinta consiste em realizar o ajuste fino do modelo utilizando um conjunto de dados que não é ótimo, ou seja, no conjunto de dados utilizado podemos ter dados com qualidade diferentes, de modo a aumentar a quantidade de dados que serão utilizadas no processo, porém de modo a realizar uma classificação para que o algoritmo de ajuste fino leve agora em consideração também a qualidade do dado utilizado.
 
-O desempenho do OpenChat 13b se comprado a outros modelos com mesmo tamanho é bastante competitivo, tendo pontuação em AlapacaEval e MT-bench superiores aos valores de vicuna-v1.5-13b e o modelo base llama-2-13b.
+O desempenho do OpenChat 13b se comprado a outros modelos com mesmo tamanho é bastante competitivo, tendo pontuação em \textit{AlapacaEval} e \textit{MT-bench} superiores aos valores de vicuna-v1.5-13b e o modelo base llama-2-13b.
 
 A versão utilizada neste projeto é o OpenChat-3.5-7B disponível para consulta no \textit{Hugging Face}~\cite{openChat357b}.
 
@@ -97,9 +97,9 @@ Essa abordagem é valiosa na análise de sentimentos, pois permite uma rápida i
 Além das nuvens de palavras, outras técnicas e modelos são utilizados na análise de sentimento, incluindo:
 
 \begin{itemize}
-    \item \textbf{Modelos Baseados em Regras}: Utilizam léxicos de sentimentos, como SentiWordNet \cite{Baccianella2010} e VADER \cite{Hutto2014}, para atribuir valores de polaridade às palavras e calcular o sentimento geral do texto.
-    \item \textbf{Modelos de Machine Learning}: Utilizam algoritmos supervisionados, como Naive Bayes, SVM e Random Forest, treinados em grandes corpora anotados para classificar o sentimento de novos textos \cite{Pang2002, Liu2012}.
-    \item \textbf{Modelos de Deep Learning}: Redes neurais profundas, como LSTM e \textit{transformers} (ex.: BERT \cite{Devlin2019}), são capazes de capturar dependências contextuais complexas e proporcionar resultados de alta precisão na análise de sentimentos \cite{Zhang2018}.
+    \item \textbf{Modelos Baseados em Regras}: Utilizam léxicos de sentimentos, como \textit{SentiWordNet} \cite{Baccianella2010} e \textit{VADER} \cite{Hutto2014}, para atribuir valores de polaridade às palavras e calcular o sentimento geral do texto.
+    \item \textbf{Modelos de Machine Learning}: Utilizam algoritmos supervisionados, como \textit{Naive Bayes}, \textit{SVM} e \textit{Random Forest}, treinados em grandes corpora anotados para classificar o sentimento de novos textos \cite{Pang2002, Liu2012}.
+    \item \textbf{Modelos de Deep Learning}: Redes neurais profundas, como \textit{LSTM} e \textit{transformers} (ex.: BERT \cite{Devlin2019}), são capazes de capturar dependências contextuais complexas e proporcionar resultados de alta precisão na análise de sentimentos \cite{Zhang2018}.
 \end{itemize}
 
 Esses métodos variam em complexidade e aplicabilidade, dependendo da natureza dos dados e dos requisitos específicos do problema de análise de sentimentos.
@@ -108,9 +108,9 @@ A análise de sentimentos enfrenta diversos desafios, incluindo a detecção de 
 
 % \subsubsection{Aplicações Práticas da Análise de Sentimentos}
 
-A análise de sentimentos tem uma ampla gama de aplicações práticas como por exemplo analise de sentimento de \textit{tweets} para serem utilizados para predizer o resultado das eleições ou como forma de antecipar movimento do mercado financeiro, entre outras diversas aplicações \cite{Liu2012}.
+A análise de sentimentos tem uma ampla gama de aplicações práticas como, por exemplo, análise de sentimento de \textit{tweets} para serem utilizados para predizer o resultado das eleições ou como forma de antecipar movimento do mercado financeiro, entre outras diversas aplicações \cite{Liu2012}.
 
-A análise de sentimento é uma aplicação específica do PLN que se concentra na identificação e classificação das emoções expressas em textos. Essa técnica é amplamente utilizada em diversas áreas, incluindo análise de mídia social, monitoramento de opinião pública, análise de opinião do cliente e tomada de decisões empresariais. A análise de sentimento é uma área de pesquisa em constante evolução, impulsionadas pelo avanço das tecnologias de inteligência artificial e pela crescente disponibilidade de dados textuais. A compreensão dos conceitos e técnicas fundamentais nessas áreas é essencial para o desenvolvimento de sistemas eficazes de análise de sentimento, com aplicações em uma ampla gama de domínios, desde o marketing digital até a assistência virtual ao cliente.
+A análise de sentimento é uma aplicação específica do \textit{PLN} que se concentra na identificação e classificação das emoções expressas em textos. Essa técnica é amplamente utilizada em diversas áreas, incluindo análise de mídia social, monitoramento de opinião pública, análise de opinião do cliente e tomada de decisões empresariais. A análise de sentimento é uma área de pesquisa em constante evolução, impulsionadas pelo avanço das tecnologias de inteligência artificial e pela crescente disponibilidade de dados textuais. A compreensão dos conceitos e técnicas fundamentais nessas áreas é essencial para o desenvolvimento de sistemas eficazes de análise de sentimento, com aplicações em uma ampla gama de domínios, desde o marketing digital até a assistência virtual ao cliente.
 
 % TODO
 % Uma técnica bastante popular é o agrupamento dos \textit{tokens} para ser posteriormente realizada uma representação visual dos dados, onde o tamanho do \textit{token} representa sua frequência em um dado corpus, e sua coloração pode servir para representar o sentimento do \textit{token}. Essa representação gráfica é nomeada \textit{wordcloud}, ou nuvem de palavras.
