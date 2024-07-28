@@ -655,9 +655,8 @@ Utilizando o modelo \textit{GPT} 3.5 para realizar a tarefa de análise de senti
 
 O modelo OpenChat demorou aproximadamente 9 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, por ser um modelo menor é esperado que seu desempenho seja inferior se comparado com os anteriores, seu tamanho menor pode ser também um ponto positivo por conta de serem necessários uma menor quantidade de memória de vídeo para carregar o modelo e conseguir realizar a execução do mesmo, ele demorou um tempo consideravelmente maior se comparado com todas as outras abordagens do projeto e para a tarefa proposta no trabalho a atribuição ainda foi simular, reconheceu como sendo positivas a grande parte, aproximadamente 83\% das avaliações, porém o grande destaque está no segundo maior grupo, que é o das avaliações que não foram possíveis classificar, com pouco mais de 11\%.
 
-É perceptível que o modelo do OpenChat não conseguir executar um bom trabalho com o texto que inicia a tarefa se comparado com os outros LLMs, porém ele matem o comportamento esperado de ter um número de avaliações com sentimento positivo bastante destoante dos outros grupos.
+É perceptível que o modelo do OpenChat não conseguiu executar um bom trabalho com o texto utilizado para iniciar a tarefa se comparado com os outros LLMs, porém ele matem o comportamento esperado de ter um número de avaliações com sentimento positivo bastante destoante dos outros grupos.
 
-Analisando algumas das classificações que o OpenChat realizou, especificamente contendo o texto \textit{Sem palavras}, temos o total de 7 avaliações com o mesmo texto, todas com uma nota de 5 estrelas atribuída pelo usuário, que não foi levada em consideração no momento de análise, o que é interessante notar é que o GPT classifica todas como sendo de sentimento neutro, já o \textit{Vicuna} classifica como sendo sentimento positivo, porém o OpenChat classifica 5 como tendo o sentimento positivo e as outras duas como sendo de sentimento neutro, o que pode indicar que o ambiente de testes não estava devidamente configurado para que a reprodutividade com esse modelo fosse algo consistente ou que o modelo tem certa inconsistência.
 
 \begin{figure}
 	\centering
@@ -718,5 +717,4 @@ HEAT MAPS.
 \end{figure}
 
 
-
-% bert vs GPT
+Analisando algumas das classificações que o OpenChat realizou, especificamente contendo o texto \textit{Sem palavras}, temos o total de 7 avaliações com o mesmo texto, todas com uma nota de 5 estrelas atribuída pelo usuário, que não foi levada em consideração no momento de análise, o que é interessante notar é que o GPT classifica todas como sendo de sentimento neutro, já o \textit{Vicuna} classifica como sendo sentimento positivo, porém o OpenChat classifica 5 como tendo o sentimento positivo e as outras duas como sendo de sentimento neutro, o que pode indicar que o ambiente de testes não estava devidamente configurado para que a reprodutividade com esse modelo fosse algo consistente ou que o modelo tem certa inconsistência.
