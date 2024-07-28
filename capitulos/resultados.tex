@@ -39,7 +39,7 @@ Média da classificação dos hotéis por Estado
 
 Após aplicar o primeiro critério definido para a seleção da lista de hotéis, temos então uma lista com um grupo de 15 hotéis dentre os disponíveis, e após o filtro da região temos então 11. Também foram adicionados manualmente a lista outros 2 hotéis que atendiam os critérios hotéis que não foram listados nas consultas à \textit{API}.
 
-A lista composta de 13 hotéis todos localizados na região nordeste do Brasil e com a disponibilidade de pacotes \textit{All Inclusive}, conforme tabela~\ref{table:lista_hoteis}, é valido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do \textit{Google Maps} com nota igual ou superior a 4,20 e são todos hotéis apontados pela plataforma como sendo hotéis de classificação de 4 ou 5 estrelas.
+A lista composta de 13 hotéis todos localizados na região nordeste do Brasil e com a disponibilidade de pacotes \textit{All Inclusive}, conforme Tabela~\ref{table:lista_hoteis}, é valido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do \textit{Google Maps} com nota igual ou superior a 4,20 e são todos hotéis apontados pela plataforma como sendo hotéis de classificação de 4 ou 5 estrelas.
 
 \begin{table}[]
 	\begin{tabular}{|p{5cm}|l|r|r|l|r|}
@@ -98,7 +98,7 @@ Por este motivo ao se utilizar a data relativa passamos a ter dificuldade com as
 	\label{table:review_per_year}
 \end{table}
 
-Considerando todas as avaliações obtidas podemos observar na tabela~\ref{table:review_per_year} que temos uma discrepância na quantidade e é perceptível a divisão no período de 2017/2018.
+Considerando todas as avaliações obtidas podemos observar na Tabela~\ref{table:review_per_year} que temos uma discrepância na quantidade e é perceptível a divisão no período de 2017/2018.
 
 E dessa forma foi definido que serão utilizadas avaliações posteriores a 2018.
 
@@ -262,7 +262,7 @@ Com a Figura \ref{img:relplot_ano_rating} podemos notar que a variação da nota
 	\label{table:distribuicao_review_por_estado}
 \end{table}
 
-E dentre todas as avaliações obtidas após aplicar o filtro de período utilizaremos para a análise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas. Assim as avaliações que foram consideradas estão então distribuídas conforme a tabela~\ref{table:distribuicao_review_per_year}.
+E dentre todas as avaliações obtidas após aplicar o filtro de período utilizaremos para a análise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas. Assim as avaliações que foram consideradas estão então distribuídas conforme a Tabela~\ref{table:distribuicao_review_per_year}.
 
 \begin{table}[h]
 	\centering
@@ -400,7 +400,7 @@ E dentre todas as avaliações obtidas após aplicar o filtro de período utiliz
 	\label{tab:lista_review_hoteis}
 \end{table}
 
-Após devido tratamento das avaliações conseguimos obter as nuvens de palavras considerando todas as palavras na Figura \ref{img:wordcloud_geral}, onde podemos notar como alguns dos destaques quarto, piscina, praia, restaurante, como sendo as palavras com maior frequência nas avaliações.
+Após devido tratamento das avaliações conseguimos obter as nuvens de palavras considerando todas as palavras na Figura~\ref{img:wordcloud_geral}, onde podemos notar como alguns dos destaques quarto, piscina, praia, restaurante, como sendo as palavras com maior frequência nas avaliações.
 
 \begin{figure}
 	\centering
@@ -413,14 +413,14 @@ Após devido tratamento das avaliações conseguimos obter as nuvens de palavras
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_geral.png}
-		\caption{Wordcloud sem stop words}
+		\caption{Wordcloud sem \textit{stop words}}
 		\label{img:wordcloud_geral}
 	\end{minipage}
 \end{figure}
 
-Já considerando a nuvem de palavras filtrando apenas por adjetivos teremos então na Figura \ref{img:wordcloud_adjetivos} que tem como alguns dos destaques palavras como sensacional, excelente, especial, local, top, ótimo, nota.
+Já considerando a nuvem de palavras filtrando apenas por adjetivos teremos então na Figura~\ref{img:wordcloud_adjetivos} que tem como alguns dos destaques palavras como sensacional, excelente, especial, local, top, ótimo, nota.
 
-E por último observamos a nuvem de palavras levando em consideração apenas os substantivos na Figura \ref{img:wordcloud_substantivos}, que como destaque podemos citar funcionário, piscina, quarto, praia.
+E por último observamos a nuvem de palavras levando em consideração apenas os substantivos na Figura~\ref{img:wordcloud_substantivos}, que como destaque podemos citar funcionário, piscina, quarto, praia.
 
 \begin{figure}
 	\centering
@@ -438,9 +438,9 @@ E por último observamos a nuvem de palavras levando em consideração apenas os
 	\end{minipage}
 \end{figure}
 
-Outra forma de análise é o agrupamento de tokens em unigramas na Figura \ref{img:unigramas}, bigramas na Figura \ref{img:bigramas} e os trigramas na Figura \ref{img:trigramas} presentes em todas as avaliações. dessa forma temos exatamente a classificação de franquênia dos tokens no corpus de estudo.
+Outra forma de análise é o agrupamento de \textit{tokens} em unigramas na Figura~\ref{img:unigramas}, bigramas na Figura~\ref{img:bigramas} e os trigramas na Figura~\ref{img:trigramas} presentes em todas as avaliações. E dessa forma temos exatamente a classificação de frequência dos \textit{tokens} no corpus de estudo.
 
-Entre os unigramas \ref{img:unigramas} temos uma lista com alguns dos tokens mais frequentes, alguns chegando a passar a contagem de utilização de mais de 10.000 vezes, como é o caso de lugar, sendo seguindo ainda que próximo por comida, excelente e atendimento, este ultimo com uma frequência próximo de 8500 vezes. Ainda em relação aos unigramas também podemos levar em consideração a sua frequência com a evolução do tempo em \ref{img:rank_unigramas}, e algo com grande destaque é a palavra lugar que está entre o top 10 entre todo o período da análise, flutuando entre as cinco primeiras posições, tio é um unigrama que merece atenção, por não aparecer na nuvem de palavras de unigramas, porém se faz presente no ranking se observarmos individualmente os anos ele aparece em décimo lugar no ano de 2022, indícios de uma possível atração local bem conhecida, substituindo então o unigrama 'praia', que se fazia presente no ranking até 2021 na nona colocação.
+Entre os unigramas, Figura~\ref{img:unigramas}, temos uma lista com alguns dos \textit{tokens} mais frequentes, alguns chegando a passar a contagem de utilização de mais de 10.000 vezes, como é o caso de lugar, sendo seguindo ainda que próximo por comida, excelente e atendimento, este ultimo com uma frequência próximo de 8500 vezes. Ainda em relação aos unigramas também podemos levar em consideração a sua frequência com a evolução do tempo em \ref{img:rank_unigramas}, e algo com grande destaque é a palavra lugar que está entre o top 10 entre todo o período da análise, flutuando entre as cinco primeiras posições, tio é um unigrama que merece atenção, por não aparecer na nuvem de palavras de unigramas, porém se faz presente no ranking se observarmos individualmente os anos ele aparece em décimo lugar no ano de 2022, indícios de uma possível atração local bem conhecida, substituindo então o unigrama 'praia', que se fazia presente no ranking até 2021 na nona colocação.
 
 \begin{figure}
 	\centering
