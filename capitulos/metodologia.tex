@@ -130,7 +130,7 @@ Para construir as colunas de tempo (mes\_avaliacao, ano\_avaliacao e mes\_ano\_a
 \section{Análise dos Dados}
 \label{cap:metodologia:sec:analise_dados}
 
-A análise de sentimentos foi realizada utilizando modelos de PLN, incluindo \textit{BERTs} pré-treinados e foi também explorada a utilização de LLMs (GPT 3.5, Vicuna e OpenChat) para classificar, porém de forma genérica e similar ao formato que modelos \textit{BERTs} realizam.
+A análise de sentimentos foi realizada utilizando modelos de PLN, incluindo \textit{BERTs} pré-treinados e foi também explorada a utilização de LLMs (\textit{GPT} 3.5, Vicuna e OpenChat) para classificar, porém de forma genérica e similar ao formato que modelos \textit{BERTs} realizam.
 
 Os modelos foram pré treinados em conjuntos de dados rotulados para reconhecer padrões de linguagem que indicam sentimentos positivos, negativos ou neutros. O objetivo da utilização de modelos diferentes para analisar todo o conjuro de avaliações obtidas para que então seja atribuíam uma etiqueta com base na probabilidade calculada para cada sentimento. Por exemplo, se a probabilidade de um sentimento positivo fosse maior que a de sentimentos negativos ou neutros, a etiqueta "positivo" será então atribuída à avaliação e utilizada como classificação final, os modelos conversacionais utilizados terão a tarefa de simplesmente retornar uma etiqueta numérica, sem necessidade de retornar a probabilidade de tal ou de realizar tarefa mais robusta de avaliação.
 
