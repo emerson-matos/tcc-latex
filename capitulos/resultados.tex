@@ -123,7 +123,7 @@ Agora estamos considerando apenas avaliações que serão utilizadas na análise
 	\label{img:dist_review_rating}
 \end{figure}
 
-Este comportamento de distribuição desigual das notas ainda é perceptível também quando olhamos para as avaliações agrupadas por ano de submissão, como se pode notar na Figura \ref{img:dist_review_rating_per_year}. Podemos também observar na Figura \ref{img:dist_review_rating_per_year} a evolução em quantidade numérica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19 \cite{Guardia2022} e já pós-flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então seguiremos possivelmente com a tendência de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
+Este comportamento de distribuição desigual das notas ainda é perceptível também quando olhamos para as avaliações agrupadas por ano de submissão, como se pode notar na Figura \ref{img:dist_review_rating_per_year}. Podemos também observar na Figura \ref{img:dist_review_rating_per_year} a evolução em quantidade numérica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19~\cite{Guardia2022} e já pós-flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então seguiremos possivelmente com a tendência de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
 
 \begin{figure}
 	\centering
@@ -493,30 +493,30 @@ O tempo de execução médio, após 5 execuções cada, para que a análise de t
 
 Considerando apenas os \textit{BERTs} notamos um desempenho com relação à velocidade de execução bem interessante, levando em consideração que estamos utilizando um ambiente de execução para realizar os testes que possui um poder computacional razoável para os tempos modernos.
 
-Após realizar o tratamento e levar em consideração o \textit{score} mais alto, temos quase 86\% das avaliações identificadas com o sentimento Positivo, em números absolutos 42078 avaliações, pouco mais de 6\% contendo sentimento Neutro e pouco mais de 8\% com sentimento negativo, como podemos observar na Figura \ref{img:sentimento_bert}.
+Após realizar o tratamento e levar em consideração o \textit{score} mais alto, temos quase 86\% das avaliações identificadas com o sentimento Positivo, em números absolutos 42078 avaliações, pouco mais de 6\% contendo sentimento Neutro e pouco mais de 8\% com sentimento negativo, como podemos observar na Figura~\ref{img:sentimento_bert}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=.7\textwidth]{figs/bert/distribuicao_pizza.png}
-	\caption{Sentimento BERTs}
+	\includegraphics[width=.8\textwidth]{figs/bert/distribuicao_pizza.png}
+	\caption{BERTs - Distribuição do sentimento das avaliações}
 	\label{img:sentimento_bert}
 \end{figure}
 
-Como já era esperado, a grande maioria das avaliações foram classificadas como sendo avaliações com sentimento positivo, em todos os anos, como é possível ser observado na Figura \ref{img:sentimento_timechart_bert}.
+Como já era esperado, a grande maioria das avaliações foram classificadas como sendo avaliações com sentimento positivo, em todos os anos, como é possível ser observado na Figura~\ref{img:sentimento_timechart_bert}.
 
-Também conseguimos notar que quanto maior a nota maior a quantidade de avaliações com sentimento positivo, sendo que as avaliações com notas 4 e 5 contém uma discrepância grande com relação à quantidade de avaliações com sentimento positivo contra a quantidade de avaliações com sentimento neutro ou negativo, já as avaliações com nota 3 possuem uma distribuição mais equivalente e as avaliações com notas 1 e 2 com o sentimento negativo tendo grande destaque em relação às avaliações etiquetadas como neutro ou positivo, como é possível ser observado na Figura \ref{img:sentimento_nota_bert}, que indica que os usuários tendem a dar uma nota mais elevada quando escrevem uma avaliação com um sentimento mais positivo.
+Também conseguimos notar que quanto maior a nota maior a quantidade de avaliações com sentimento positivo, sendo que as avaliações com notas 4 e 5 contém uma discrepância grande com relação à quantidade de avaliações com sentimento positivo contra a quantidade de avaliações com sentimento neutro ou negativo, já as avaliações com nota 3 possuem uma distribuição mais equivalente e as avaliações com notas 1 e 2 com o sentimento negativo tendo grande destaque em relação às avaliações etiquetadas como neutro ou positivo, como é possível ser observado na Figura~\ref{img:sentimento_nota_bert}, que indica que os usuários tendem a dar uma nota mais elevada quando escrevem uma avaliação com um sentimento mais positivo.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figs/bert/sentimento_ano.png}
-	\caption{Sentimento BERTs por ano}
+	\caption{BERTs - Sentimento das avaliações por ano}
 	\label{img:sentimento_timechart_bert}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figs/bert/sentimento_nota.png}
-	\caption{Sentimento BERTs por nota}
+	\caption{BERTs - Sentimento das avaliações por nota}
 	\label{img:sentimento_nota_bert}
 \end{figure}
 
@@ -525,97 +525,127 @@ Porém, avaliando de forma individual cada um dos modelos, podemos notar uma gra
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figs/bert/desempenho_berts.png}
-	\caption{Score dos BERTs por ano}
+	\caption{BERTs - Quantidade de avaliações com maior \textit{score} por ano}
 	\label{img:rinha_de_berts}
 \end{figure}
 
-Nas Figuras \ref{img:sentimento_phil} e \ref{img:sentimento_citizenlab} conseguimos visualizar a classificação atribuída de forma individual por ambos os modelos, a versão de \textit{philschmid} e \textit{citizenlab} respectivamente, com o \textit{citizenlab} classificando um número maior de sentimentos positivos, porém com um número de sentimentos neutros e negativos similar, o mesmo não acontece com \textit{philschmid} que tem um número maior de sentimentos neutros em comparação direta, porém da mesma forma um número de sentimento positivo maior e desigual.
+Nas Figuras~\ref{img:sentimento_phil} e~\ref{img:sentimento_citizenlab} conseguimos visualizar a classificação atribuída de forma individual por ambos os modelos, a versão de \textit{philschmid} e \textit{citizenlab} respectivamente, com o \textit{citizenlab} classificando um número maior de sentimentos positivos, porém com um número de sentimentos neutros e negativos similar, o mesmo não acontece com \textit{philschmid} que tem um número maior de sentimentos neutros em comparação direta, porém da mesma forma um número de sentimento positivo maior e desigual.
 
 \begin{figure}
 	\centering
 	\centering
 	\includegraphics[width=1\textwidth]{figs/bert/classificacao_phil.png}
-	\caption{Sentimento philschmid por ano}
+	\caption{BERT philschmid - Sentimento das avaliações por ano}
 	\label{img:sentimento_phil}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figs/bert/classificacao_citizenlab.png}
-	\caption{Sentimento citizenlab por ano}
+	\caption{BERT citizenlab - Sentimento das avaliações por ano}
 	\label{img:sentimento_citizenlab}
 \end{figure}
 
 
 Todos os modelos \textit{BERTs} etiquetam as avaliações de forma aparentemente consistente, como era esperado, temos uma quantidade muito grande de avaliações com nota máxima, 5, e por esse motivo é esperado que o sentimento geral das avaliações de nota 4 ou 5 seja positivo, avaliações com nota 3 distribuição de sentimento mais uniforme e as notas 1 e 2 contendo uma quantidade maior de sentimento negativo.
 
+Os resultados indicam que os modelos \textit{BERTs} concordam com o modelo \textit{GPT} em quase 89\% das avaliações, conforme Figura \ref{img:bert_vs_gpt}, mostrando uma alta taxa de concordância geral entre os modelos na identificação de sentimentos. Essa elevada consistência sugere que ambos os modelos são eficazes na tarefa, especialmente em relação às avaliações positivas.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{figs/bert/vs_gpt.png}
+	\caption{BERT com sentimento igual ao GPT}
+	\label{img:bert_vs_gpt}
+\end{figure}
+
+No entanto, a Figura \ref{img:heat_bert_vs_gpt} revela áreas de discordância, principalmente nas avaliações negativas e neutras. Embora ambos os modelos concordem fortemente nas classificações positivas, com 40.224 avaliações coincidentes, há uma divergência considerável nas categorias negativas e neutras. Isso sugere que os modelos podem ter abordagens diferentes para sentimentos mais ambíguos ou menos claros, importante levar em consideração que o \textit{GPT} não conseguiu classificar todas as avaliações, falaremos mais sobre isso na seção do \textit{GPT}, em \ref{sec:resultados:subsec:gpt}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\textwidth]{figs/bert/heat_vs_gpt.png}
+	\caption{Distribuição de sentimento BERTs comparado com GPT}
+	\label{img:heat_bert_vs_gpt}
+\end{figure}
+
+
 \subsection{Vicuna}
 \label{sec:resultados:subsec:vicuna}
 
 
-% REVIEW
 O modelo \textit{Vicuna} demorou pouco mais do que 6 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, o que é pode ser um ponto negativo dependendo do projeto que se está executando, ele demorou um tempo consideravelmente maior se comparado com os modelos \textit{BERTs} e para a tarefa proposta no trabalho ambos realizaram uma simular em termos de volume de etiquetas atribuídas para as avaliações, ambos reconheceram como sendo positivas a grande parte, mais de 86\% das avaliações, e o segundo maior grupo como sendo as avaliações negativas, como observado na Figura \ref{img:vicuna_pizza_distribuicao}.
-
-Continuamos aqui com o mesmo comportamento de quantidade de avaliações com sentimento positivo brutalmente maior se comparado com os outros sentimentos, porém também temos agora o cenário onde o modelo não conseguir realizar a tarefa com sucesso e atribuir uma etiqueta apropriada a avaliação, dessa forma elas foram etiquetadas com o valor \textit{UNKNOWN}, temos 1746(3.55\%) avaliações nesse estado, cenário que não temos com os modelos \textit{BERT}, que considerando a quantidade total de avaliações pode ser considerado um número baixo, porém se avaliarmos ano a ano, a quantidade de avaliações com esse valor de etiqueta acaba se tornando relevante, até mesmo em quantidade superiores aos outros sentimentos (neutro e negativo), como observado na Figura \ref{img:vicuna_sentimento_ano}, mas mesmo assim o \textit{Vicuna} atribuiu algum sentimento para a maioria das avaliações, sendo o grupo de avaliações com problema na classificação o grupo com menor quantidade de avaliações.
-
-Olhando especificamente para a distribuição por nota atribuída temos um comportamento ainda mais curioso ao observar a nota 3, onde todas as etiquetas possuem uma quantidade equivalente e bem próxima, o comportamento de notas 1 e 2, de possuir uma quantidade de avaliações com sentimento negativo superior as outras etiquetas juntas, e temos o mesmo comportamento para as notas 4 e 5, porém o sentimento que supera é o positivo, como observado pela Figura \ref{img:vicuna_sentimento_nota}.
-
-
-% TODO
 
 \begin{figure}
 	\centering
-	\begin{minipage}{0.8\textwidth}
-		\centering
-		\includegraphics[width=.6\textwidth]{figs/vicuna/distribuicao_pizza.png}
-		\caption{Vicuna - Distribuição do sentimento das avaliações}
-		\label{img:vicuna_pizza_distribuicao}
-	\end{minipage}\hfill
-	\begin{minipage}{1\textwidth}
-		\centering
-		\includegraphics[width=1\textwidth]{figs/vicuna/sentimento_ano.png}
-		\caption{Vicuna - Sentimento das avaliações por ano}
-		\label{img:vicuna_sentimento_ano}
-	\end{minipage}\hfill
-	\begin{minipage}{1\textwidth}
-		\centering
-		\includegraphics[width=1\textwidth]{figs/vicuna/sentimento_nota.png}
-		\caption{Vicuna - Sentimento das avaliações por nota}
-		\label{img:vicuna_sentimento_nota}
-	\end{minipage}
+	\includegraphics[width=.8\textwidth]{figs/vicuna/distribuicao_pizza.png}
+	\caption{Vicuna - Distribuição do sentimento das avaliações}
+	\label{img:vicuna_pizza_distribuicao}
 \end{figure}
+
+Continuamos aqui com o mesmo comportamento de quantidade de avaliações com sentimento positivo brutalmente maior se comparado com os outros sentimentos, porém também temos agora o cenário onde o modelo não conseguir realizar a tarefa com sucesso e atribuir uma etiqueta apropriada a avaliação, dessa forma elas foram etiquetadas com o valor \textit{UNKNOWN}, temos 1746(3.55\%) avaliações nesse estado, cenário que não temos com os modelos \textit{BERT}, que considerando a quantidade total de avaliações pode ser considerado um número baixo, porém se avaliarmos ano a ano, a quantidade de avaliações com esse valor de etiqueta acaba se tornando relevante, até mesmo em quantidade superiores aos outros sentimentos (neutro e negativo), como observado na Figura \ref{img:vicuna_sentimento_ano}, mas mesmo assim o \textit{Vicuna} atribuiu algum sentimento para a maioria das avaliações, sendo o grupo de avaliações com problema na classificação o grupo com menor quantidade de avaliações.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/vicuna/sentimento_ano.png}
+	\caption{Vicuna - Sentimento das avaliações por ano}
+	\label{img:vicuna_sentimento_ano}
+\end{figure}
+
+Olhando especificamente para a distribuição por nota atribuída temos um comportamento ainda mais curioso ao observar a nota 3, onde todas as etiquetas possuem uma quantidade equivalente e bem próxima, o comportamento de notas 1 e 2, de possuir uma quantidade de avaliações com sentimento negativo superior as outras etiquetas juntas, e temos o mesmo comportamento para as notas 4 e 5, porém o sentimento que supera é o positivo, como observado pela Figura \ref{img:vicuna_sentimento_nota}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/vicuna/sentimento_nota.png}
+	\caption{Vicuna - Sentimento das avaliações por nota}
+	\label{img:vicuna_sentimento_nota}
+\end{figure}
+
+Os resultados indicam que o \textit{Vicuna} concordam com o modelo \textit{GPT} em quase 89\% das avaliações, conforme Figura \ref{img:vicuna_vs_gpt}, mostrando uma alta taxa de concordância geral entre os modelos na identificação de sentimentos. Essa elevada consistência sugere que ambos os modelos são eficazes na tarefa, especialmente em relação às avaliações positivas.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{figs/vicuna/vs_gpt.png}
+	\caption{Vicuna com sentimento igual ao GPT}
+	\label{img:vicuna_vs_gpt}
+\end{figure}
+
+No entanto, a Figura \ref{img:heat_vicuna_vs_gpt} revela áreas de discordância, principalmente nas avaliações negativas, neutras e as que ambos não conseguiram classificar. Embora ambos os modelos concordem fortemente nas classificações positivas, com 40.425 avaliações coincidentes, há uma divergência considerável nas outras categorias, com destaque para as avaliações onde o \textit{Vicuna} classificou como neutro e o \textit{GPT} classificou como negativo. Isso sugere que os modelos podem ter abordagens diferentes para sentimentos mais ambíguos ou menos claros.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\textwidth]{figs/vicuna/heat_vs_gpt.png}
+	\caption{Distribuição de sentimento Vicuna comparado com GPT}
+	\label{img:heat_vicuna_vs_gpt}
+\end{figure}
+
 
 \subsection{GPT 3.5}
 \label{sec:resultados:subsec:gpt}
 
 %TODO revisar imagens
 
-O modelo GPT 3.5 demorou pouco mais do que 4 horas e teve custo de pouco menos de 11 dólares para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, além de ser um modelo pago e privado, o que é pode ser um ponto negativo dependendo do projeto que se está executando, ele demorou um tempo consideravelmente maior se comparado com os modelos \textit{BERTs} e para a tarefa proposta no trabalho ambos realizaram uma simular em termos de volume de etiquetas atribuídas para as avaliações, ambos reconheceram como sendo positivas a grande parte, mais de 84\% das avaliações, e o segundo maior grupo como sendo as avaliações negativas.
+O modelo \textit{GPT} 3.5 demorou pouco mais do que 4 horas e teve custo de pouco menos de 11 dólares para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, além de ser um modelo pago e privado, o que é pode ser um ponto negativo dependendo do projeto que se está executando, ele demorou um tempo consideravelmente maior se comparado com os modelos \textit{BERTs} e para a tarefa proposta no trabalho ambos realizaram uma simular em termos de volume de etiquetas atribuídas para as avaliações, ambos reconheceram como sendo positivas a grande parte, mais de 84\% das avaliações, e o segundo maior grupo como sendo as avaliações negativas.
 
-Outra grande desvantagem do GPT é que se faz necessário uso de rede de internet nesse caso, por conta do modelo ser executado na nuvem da OpenAI, que acaba por gerar exposição desnecessária dos dados se comparado com modelos abertos que podem ser executados sem a necessidade de utilização da internet.
+Outra grande desvantagem do \textit{GPT} é que se faz necessário uso de rede de internet nesse caso, por conta do modelo ser executado na nuvem da OpenAI, que acaba por gerar exposição desnecessária dos dados se comparado com modelos abertos que podem ser executados sem a necessidade de utilização da internet.
 
 Utilizando o modelo GPT 3.5 para realizar a tarefa de análise de sentimentos do conteúdo textual das avaliações obtemos a distribuição conforme Figura \ref{img:gpt_pizza_distribuicao}, onde 84.77\% das avaliações, ou seja, 41721 avaliações foram classificadas como tendo um sentimento positivo, isso representa um número próximo das avaliações que receberam como nota 4 ou 5, 6128 e 38347 avaliações respectivamente, porém fica fácil notar na Figura \ref{img:gpt_sentimento_nota} que mesmo a grande maioria das avaliações com essa nota atribuída ainda existem avaliações com sentimentos diferentes e até mesmo avaliações em quais a etiqueta atribuída não foi identificável, sendo assim marcadas como com a etiqueta \textit{UNKNOWN}, que foram classificadas dessa forma por conta do modelo não conseguir realizar a tarefa que lhe foi atribuída e produzir resposta maior ou mais detalhada sobre a etiqueta, e como o interesse é em classificações simples e diretas a etiqueta atribuída não foi identificável, mas diferente do que aconteceu com o \textit{Vicuna}, o \textit{GPT} teve mais dificuldade e não foi possível identificar o sentimento atribuído para mais avaliações do que o seu concorrente(1803 vs 1746), sendo o grupo de avaliações com problema na classificação um grupo com maior quantidade de avaliações, 1803(3.66\%) se comparado com o grupo de sentimento neutro, 1103(2.24\%).
 
 \begin{figure}
 	\centering
-	\begin{minipage}{0.8\textwidth}
-		\centering
-		\includegraphics[width=.6\textwidth]{figs/gpt/distribuicao_pizza.png}
-		\caption{GPT - Distribuição do sentimento das avaliações}
-		\label{img:gpt_pizza_distribuicao}
-	\end{minipage}\hfill
-	\begin{minipage}{1\textwidth}
-		\centering
-		\includegraphics[width=1\textwidth]{figs/gpt/sentimento_ano.png}
-		\caption{GPT - Sentimento das avaliações por ano}
-		\label{img:gpt_sentimento_ano}
-	\end{minipage}\hfill
-	\begin{minipage}{1\textwidth}
-		\centering
-		\includegraphics[width=1\textwidth]{figs/gpt/sentimento_nota.png}
-		\caption{GPT - Sentimento das avaliações por nota}
-		\label{img:gpt_sentimento_nota}
-	\end{minipage}
+	\includegraphics[width=.8\textwidth]{figs/gpt/distribuicao_pizza.png}
+	\caption{GPT - Distribuição do sentimento das avaliações}
+	\label{img:gpt_pizza_distribuicao}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/gpt/sentimento_ano.png}
+	\caption{GPT - Sentimento das avaliações por ano}
+	\label{img:gpt_sentimento_ano}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/gpt/sentimento_nota.png}
+	\caption{GPT - Sentimento das avaliações por nota}
+	\label{img:gpt_sentimento_nota}
 \end{figure}
 
 
@@ -632,24 +662,62 @@ Analisando algumas das classificações que o OpenChat realizou, especificamente
 
 \begin{figure}
 	\centering
-	\begin{minipage}{0.8\textwidth}
-		\centering
-		\includegraphics[width=.6\textwidth]{figs/openchat/distribuicao_pizza.png}
-		\caption{OpenChat - Distribuição do sentimento das avaliações}
-		\label{img:openchat_pizza_distribuicao}
-	\end{minipage}\hfill
-	\begin{minipage}{1\textwidth}
-		\centering
-		\includegraphics[width=1\textwidth]{figs/openchat/sentimento_ano.png}
-		\caption{OpenChat - Sentimento das avaliações por ano}
-		\label{img:openchat_sentimento_ano}
-	\end{minipage}\hfill
-	\begin{minipage}{1\textwidth}
-		\centering
-		\includegraphics[width=1\textwidth]{figs/openchat/sentimento_nota.png}
-		\caption{OpenChat - Sentimento das avaliações por nota}
-		\label{img:openchat_sentimento_nota}
-	\end{minipage}
+	\includegraphics[width=.8\textwidth]{figs/openchat/distribuicao_pizza.png}
+	\caption{OpenChat - Distribuição do sentimento das avaliações}
+	\label{img:openchat_pizza_distribuicao}
 \end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/openchat/sentimento_ano.png}
+	\caption{OpenChat - Sentimento das avaliações por ano}
+	\label{img:openchat_sentimento_ano}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/openchat/sentimento_nota.png}
+	\caption{OpenChat - Sentimento das avaliações por nota}
+	\label{img:openchat_sentimento_nota}
+\end{figure}
+
+HEAT MAPS.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/openchat/vs_gpt.png}
+	\caption{OpenChat com sentimento igual ao GPT}
+	\label{img:openchat_vs_gpt}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/openchat/vs_vicuna.png}
+	\caption{OpenChat co sentimento igual ao Vicuna}
+	\label{img:openchat_vs_vicuna}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figs/openchat/heat_vs_gpt.png}
+	\caption{Distribuição de sentimento OpenChat comparado com GPT}
+	\label{img:heat_openchat_vs_gpt}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\textwidth]{figs/openchat/heat_vs_vicuna.png}
+	\caption{Distribuição de sentimento OpenChat comparado com Vicuna}
+	\label{img:heat_openchat_vs_vicuna}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\textwidth]{figs/openchat/heat_vs_bert.png}
+	\caption{Distribuição de sentimento OpenChat comparado com BERTs}
+	\label{img:heat_openchat_vs_bert}
+\end{figure}
+
+
 
 % bert vs GPT
