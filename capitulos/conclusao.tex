@@ -1,19 +1,23 @@
 \chapter{Conclusões}
 \label{cap:conclusao}
+
 \section{Contribuições}
+\label{cap:conclusao:sec:contribuicoes}
 % TODO
 
-Esse projeto contribui mostrando que para tarefas simples de classificação de sentimento a nível de documento não se faz necessário utilização de grandes modelos complexos, ainda obtemos um bom resultado considerando o uso de recursos e o tempo gasto para realizar a tarefa utilizando apenas os modelos BERT.
+Esse projeto contribui mostrando que para tarefas simples de classificação de sentimento a nível de documento não se faz necessário utilização de grandes modelos complexos, ainda obtemos um bom resultado considerando o uso de recursos e o tempo gasto para realizar a tarefa utilizando apenas os modelos \textit{BERT}.
 
 \section{Limitações}
+\label{cap:conclusao:sec:limitacoes}
 % TODO
 
 Uma das limitações desse trabalho é em relação aos recursos disponíveis para execução dos modelos abertos, por conta do ambiente de execução utilizado possuir apenas 12 GB de VRAM não foi possível realizar testes com modelos maiores, e um outro grande impacto é em relação ao texto utilizado como inicio da conversação com cada modelo, onde alguns modelos podem ser mais sensíveis ao texto utilizado para inciar a tarefa de classificação do texto da avaliação.
 
 
 \section{Trabalhos Futuros}
+\label{cap:conclusao:sec:trab_futuros}
 % TODO
 
 Para trabalhos futuros podemos explorar a analise de impacto do texto inicial utilizado para que o modelo realize a tarefa, e entender a sensibilidade dos modelos para com as alterações no conteúdo utilizado como estimulo para inicio do processamento, bem como o impacto da utilização de modelos iguais porém com tamanho de parâmetros diferentes.
 
-Algo interessante para ser explorado é a utilização de um corpos com uma variação maior de nota de classificação para tentar identificar uma variação de sentimento maior com relação ao tempo, ou até uma possível exploração com maior detalhe utilizando o poder de processamento dos grandes modelos de linguagem, fazendo com que a tarefa não seja uma simples atribuição de etiqueta de sentimento, mas também identificação do sentimento das entidades presentes nos documentos, isto é, o sentimento especifico para uma dada característica do hotel, ou até inverter e no lugar de olhar o conjunto de avaliaçõies de um dado estabelecimento passar a olhar para o conjunto de avaliações de uma lista de local guides e entender a relação de sentimento de suas avaliações e a nota atribuida.
+Algo interessante para ser explorado é a utilização de um corpos com uma variação maior de nota de classificação para tentar identificar uma variação de sentimento maior com relação ao tempo, ou até uma possível exploração com maior detalhe utilizando o poder de processamento dos grandes modelos de linguagem, fazendo com que a tarefa não seja uma simples atribuição de etiqueta de sentimento, mas também identificação do sentimento das entidades presentes nos documentos, isto é, o sentimento especifico para uma dada característica do hotel, ou até inverter e no lugar de olhar o conjunto de avaliações de um dado estabelecimento passar a olhar para o conjunto de avaliações de uma lista de local guides e entender a relação de sentimento de suas avaliações e a nota atribuída.
