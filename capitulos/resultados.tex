@@ -651,12 +651,9 @@ Utilizando o modelo \textit{GPT} 3.5 para realizar a tarefa de análise de senti
 \subsection{OpenChat}
 \label{sec:resultados:subsec:openchat}
 
-%TODO revisar imagens
-
-O modelo OpenChat demorou aproximadamente 9 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, por ser um modelo menor é esperado que seu desempenho seja inferior se comparado com os anteriores, seu tamanho menor pode ser também um ponto positivo por conta de serem necessários uma menor quantidade de memória de vídeo para carregar o modelo e conseguir realizar a execução do mesmo, ele demorou um tempo consideravelmente maior se comparado com todas as outras abordagens do projeto e para a tarefa proposta no trabalho a atribuição ainda foi simular, reconheceu como sendo positivas a grande parte, aproximadamente 83\% das avaliações, porém o grande destaque está no segundo maior grupo, que é o das avaliações que não foram possíveis classificar, com pouco mais de 11\%.
+O modelo OpenChat demorou aproximadamente 9 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, por ser um modelo menor é esperado que seu desempenho seja inferior se comparado com os anteriores, seu tamanho menor pode ser também um ponto positivo por conta de serem necessários uma menor quantidade de memória de vídeo para carregar o modelo e conseguir realizar a execução do mesmo, ele demorou um tempo consideravelmente maior se comparado com todas as outras abordagens do projeto e para a tarefa proposta no trabalho a atribuição ainda foi simular, reconheceu como sendo positivas a grande parte, aproximadamente 83\% das avaliações, porém o grande destaque está no segundo maior grupo, que é o das avaliações que não foram possíveis classificar, com pouco mais de 11\%, que pode ser observado na Figura~\ref{img:openchat_pizza_distribuicao}.
 
 É perceptível que o modelo do OpenChat não conseguiu executar um bom trabalho com o texto utilizado para iniciar a tarefa se comparado com os outros LLMs, porém ele matem o comportamento esperado de ter um número de avaliações com sentimento positivo bastante destoante dos outros grupos.
-
 
 \begin{figure}
 	\centering
@@ -679,7 +676,15 @@ O modelo OpenChat demorou aproximadamente 9 horas para realizar a tarefa de atri
 	\label{img:openchat_sentimento_nota}
 \end{figure}
 
-HEAT MAPS.
+O OpenChat tem uma um tempo de execução superior se comparado com os outros \textit{LLMs} e ainda maior se comparado com os \textit{BERTs} e foi também o modelo que teve maior dificuldade para executar a tarefa de forma consistente, tivemos uma grande quantidade de avaliações classificadas como \textit{UNKNOWN}, 5568 avaliações pouco mais de 11\%, quando comparado com os outros modelos notamos que existe uma concordância satisfatória quando ele identifica o sentimento porém o problema é quando isso não é possível, foram quase 18\% das avaliações classificadas de forma diferente quando comparamos OpenChat com \textit{Vicuna} ou com GPT, Figura~\ref{img:openchat_vs_vicuna} e Figura~\ref{img:openchat_vs_gpt} respectivamente, valor bastante superior se consideramos que a comparação de \textit{Vicuna} e GPT divergiram em apenas 11\% das avaliações classificadas, Figura~\ref{img:vicuna_vs_gpt}, e fenômeno similar se olharmos a divergência dos \textit{BERTs} e os GPT que também discordam em 11\% das avaliações, Figura~\ref{img:bert_vs_gpt}.
+
+
+\begin{figure}
+	\centering
+	\includegraphics{figs/openchat/vs_vicuna.png}
+	\caption{OpenChat com sentimento igual ao \textit{Vicuna}}
+	\label{img:openchat_vs_vicuna}
+\end{figure}
 
 \begin{figure}
 	\centering
@@ -688,12 +693,11 @@ HEAT MAPS.
 	\label{img:openchat_vs_gpt}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics{figs/openchat/vs_vicuna.png}
-	\caption{OpenChat com sentimento igual ao \textit{Vicuna}}
-	\label{img:openchat_vs_vicuna}
-\end{figure}
+Isso pode ser devido ao OpenChat ser o menor modelo aqui utilizado entre os \textit{LLMs} ou também devido ao OpenChat ter dificuldades para trabalhar com o texto utilizado no início da tarefa e que possivelmente gerou alguma dificuldade com o sentimento positivo, que foi o sentimento identificado pelo GPT com o maior número dentre as avaliações classificadas pelo OpenChat com \textit{UNKNOWN}, ele parece ter também grande dificuldade de identificar avaliações com sentimento negativo quando comparamos ele com o GPT, como observamos na Figura~\ref{img:heat_openchat_vs_gpt} a grande variação de classificação do OpenChat das avaliações em que o GPT atribuiu a etiqueta de sentimento negativo.
+
+E comparando OpenChat com o \textit{Vicuna} o comportamento segue similar, ainda observamos a dificuldade do OpenChat em classificar as avaliações onde o \textit{Vicuna} atribuiu a etiqueta de sentimento positivo, porém é perceptível que as avaliações onde o \textit{Vicuna} classificou como negativo o OpenChat teve menor dificuldade em classificá-las quando consideramos essa mesma comparação com o GPT.
+
+E o mesmo se repete para a comparação com os modelos \textit{BERTs} grande dificuldade de atribuir classificação para os modelos consentimento positivo aqui ainda notamos um aumento na discrepância quando o \textit{BERT} classifica com o neutro temos o OpenChat classificando essas avaliações em maior quantidade como possuindo sentimento positivo eu mesmo segue para a classificação de sentimento negativo OpenChat realiza uma distribuição seguindo o comportamento na comparação com os outros modelos.
 
 \begin{figure}
 	\centering
@@ -715,6 +719,5 @@ HEAT MAPS.
 	\caption{Distribuição de sentimento OpenChat comparado com \textit{BERTs}}
 	\label{img:heat_openchat_vs_bert}
 \end{figure}
-
 
 Analisando algumas das classificações que o OpenChat realizou, especificamente contendo o texto \textit{Sem palavras}, temos o total de 7 avaliações com o mesmo texto, todas com uma nota de 5 estrelas atribuída pelo usuário, que não foi levada em consideração no momento de análise, o que é interessante notar é que o GPT classifica todas como sendo de sentimento neutro, já o \textit{Vicuna} classifica como sendo sentimento positivo, porém o OpenChat classifica 5 como tendo o sentimento positivo e as outras duas como sendo de sentimento neutro, o que pode indicar que o ambiente de testes não estava devidamente configurado para que a reprodutividade com esse modelo fosse algo consistente ou que o modelo tem certa inconsistência.
