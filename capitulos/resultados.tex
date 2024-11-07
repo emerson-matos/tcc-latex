@@ -39,8 +39,7 @@ Média da classificação dos hotéis por Estado:
 
 Após aplicar o primeiro critério definido para a seleção da lista de hotéis, temos então uma lista com um grupo de 15 hotéis dentre os disponíveis, e após o filtro da região temos então 11. Também foram adicionados manualmente a lista outros 2 hotéis que atendiam os critérios hotéis que não foram listados nas consultas à \textit{API}.
 
-%%% parei aqui
-A lista composta de 13 hotéis todos localizados na região nordeste do Brasil e com a disponibilidade de pacotes \textit{All Inclusive}, conforme Tabela~\ref{table:lista_hoteis}, é valido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do \textit{Google Maps} com nota igual ou superior a 4,20 e são todos hotéis apontados pela plataforma como sendo hotéis de classificação de 4 ou 5 estrelas.
+A lista composta de 13 hotéis, todos localizados na região nordeste do Brasil e com a disponibilidade de pacotes \textit{All Inclusive}, é apresentada na Tabela~\ref{table:lista_hoteis}. É válido notar que todos os hotéis da lista no momento da escolha possuíam uma avaliação na plataforma do \textit{Google Maps} com nota igual ou superior a 4,20 e são todos hotéis apontados pela plataforma como sendo hotéis de classificação de 4 ou 5 estrelas.
 
 \begin{table}[]
 	\begin{tabular}{|p{5cm}|l|r|r|l|r|}
@@ -71,9 +70,9 @@ A lista composta de 13 hotéis todos localizados na região nordeste do Brasil e
 	\label{img:dist_ano_mes_avaliacao}
 \end{figure}
 
-Tratamos então os dados de avaliações e agora possuímos a nova coluna \textit{mes\_ano\_avaliacao}, na Figura~\ref{img:dist_ano_mes_avaliacao}, nota-se um comportamento estranho com a ausência de diversos meses por ano, durante o período de 2011 até 2021 temos o registro de apenas avaliações no mês 7, este comportamento é devido ao formato de data relativa utilizada pelo \textit{Google Maps} ao expor suas avaliações, não foi possível identificar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada.
+Tratamos então os dados de avaliações e agora possuímos a nova coluna \textit{mes\_ano\_avaliacao}, na Figura~\ref{img:dist_ano_mes_avaliacao}. Nota-se um comportamento estranho com a ausência de diversos meses por ano, pois durante o período de 2011 até 2021 temos o registro de apenas avaliações no mês 7. Esse comportamento é devido ao formato de data relativa utilizada pelo \textit{Google Maps} ao expor suas avaliações e não foi possível identificar uma forma de adquirir o tempo definitivo de quando a avaliação foi publicada.
 
-Por este motivo ao se utilizar a data relativa passamos a ter dificuldade com as avaliações mais antigas, e conseguimos apenas identificar o ano no qual a avaliação foi publicada, as avaliações com menos de um ano de diferença da data de recuperação e utilizando este \textit{script} poderiam ser utilizadas em uma análise mais detalhada em relação ao período, porém esta não será a estratégia adotada e optaremos por restringir a análise de maneira que as avaliações serão agrupadas em períodos anuais, representando assim o ano de publicação de cada avaliação.
+Por esse motivo ao se utilizar a data relativa passamos a ter dificuldade com as avaliações mais antigas, e conseguimos apenas identificar o ano no qual a avaliação foi publicada, as avaliações com menos de um ano de diferença da data de recuperação e utilizando este \textit{script} poderiam ser utilizadas em uma análise mais detalhada em relação ao período. Porém essa não foi a estratégia adotada e optou-se por restringir a análise de maneira que as avaliações serão agrupadas em períodos anuais, representando assim o ano de publicação de cada avaliação.
 
 \begin{table}[]
 	\centering
@@ -99,23 +98,19 @@ Por este motivo ao se utilizar a data relativa passamos a ter dificuldade com as
 	\label{table:review_per_year}
 \end{table}
 
-Considerando todas as avaliações obtidas podemos observar na Tabela~\ref{table:review_per_year} que temos uma discrepância na quantidade e é perceptível a divisão no período de 2017/2018.
-
-E dessa forma foi definido que serão utilizadas avaliações posteriores a 2018.
-
-Resultando um código conforme abaixo:
+Considerando todas as avaliações obtidas podemos observar na Tabela~\ref{table:review_per_year} que temos uma discrepância na quantidade e é perceptível a divisão no período de 2017/2018. E dessa forma foi definido que serão utilizadas apenas avaliações posteriores a 2018, conforme ilustrado no trecho de código listado a seguir:
 
 \lstinputlisting[language=Python,caption=Filtros aplicados ao dataset de avalições]{extras/code/review_filter.py}
 
 Considerando todas as avaliações obtidas, temos:
 
 \begin{itemize}
-	\item 80470(93.25\%) enviadas depois de 2017 e 5821(6.75\%) enviadas em 2017, ou antes
-	\item 56893(65.93\%) com texto e 3 ou mais caracteres, 29386(34.05\%) sem texto e 12(0.01\%) avaliações com 1 ou 2 caracteres
-	\item 4184(4.85\%) avaliações traduzidas
+	\item 80.470(93.25\%) enviadas depois de 2017 e 5.821(6.75\%) enviadas em 2017, ou antes.
+	\item 56.893(65.93\%) com texto e 3 ou mais caracteres, 29.386(34.05\%) sem texto e 12(0.01\%) avaliações com 1 ou 2 caracteres.
+	\item 4.184(4.85\%) avaliações traduzidas.
 \end{itemize}
 
-Agora estamos considerando apenas avaliações que serão utilizadas na análise, a distribuição das notas atribuídas individualmente a cada avaliação pode ser consultada na Figura~\ref{img:dist_review_rating}. É fácil notar que a grande maioria das avaliações registradas, mais especificamente 38347 (77,91\%), possui a maior nota atribuída, de valor 5, o que nos leva a acreditar que na maioria das avaliações o sentimento geral que deve ser identificado será positivo.
+Agora estamos considerando apenas avaliações que serão utilizadas na análise, a distribuição das notas atribuídas individualmente a cada avaliação pode ser consultada na Figura~\ref{img:dist_review_rating}. É possível notar que a grande maioria das avaliações registradas, mais especificamente 38.347 (77,91\%), possui a maior nota atribuída, de valor 5, o que nos leva a acreditar que na maioria das avaliações o sentimento geral que deve ser identificado será positivo.
 
 \begin{figure}
 	\centering
@@ -124,7 +119,7 @@ Agora estamos considerando apenas avaliações que serão utilizadas na análise
 	\label{img:dist_review_rating}
 \end{figure}
 
-Este comportamento de distribuição desigual das notas ainda é perceptível também quando olhamos para as avaliações agrupadas por ano de submissão, como se pode notar na Figura~\ref{img:dist_review_rating_per_year}. Podemos também observar na Figura~\ref{img:dist_review_rating_per_year} a evolução em quantidade numérica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19~\cite{Guardia2022} e já pós-flexibilização do confinamento, 2022, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então seguiremos possivelmente com a tendência de aumento de número de avaliações ano após ano provavelmente 2023 será o ano com maior número de avaliações.
+Este comportamento de distribuição desigual das notas ainda é perceptível também quando olhamos para as avaliações agrupadas por ano de submissão, como se pode notar na Figura~\ref{img:dist_review_rating_per_year}. Podemos também observar a evolução em quantidade numérica durante o tempo, podendo notar uma quebra de tendência no crescimento pós 2019, nos anos de 2020 e 2021, provavelmente causado pelo confinamento decorrente da COVID-19~\cite{Guardia2022}. Em 2022, já pós-flexibilização do confinamento, visualizamos um aumento expressivo no número de avaliações, levando ainda em consideração que temos apenas 6 meses de avaliação em 2023 então seguiremos possivelmente com a tendência de aumento de número de avaliações.
 
 \begin{figure}
 	\centering
@@ -133,7 +128,7 @@ Este comportamento de distribuição desigual das notas ainda é perceptível ta
 	\label{img:dist_review_rating_per_year}
 \end{figure}
 
-Com a Figura~\ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuída tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores é cresce de forma desproporcional se comparado com as avaliações com notas baixas, como observado na Figura~\ref{img:dist_review_rating_per_year}.
+Com a Figura~\ref{img:relplot_ano_rating} podemos notar que a variação da nota atribuída tende a diminuir conforme o tempo passa, pois a quantidade de notas maiores cresce de forma desproporcional se comparado com as avaliações com notas baixas, como pode ser observado na Figura~\ref{img:dist_review_rating_per_year}.
 
 % \begin{figure}
 % 	\centering
@@ -230,7 +225,7 @@ Com a Figura~\ref{img:relplot_ano_rating} podemos notar que a variação da nota
 		87                                                  &
 		3050                                                  \\ \hline
 	\end{tabular}
-	\caption{Quantidade de avaliações em cada filtro pro hotél}
+	\caption{Quantidade de avaliações em cada filtro pro hotel}
 	\label{table:qtd_review_filtro}
 \end{table}
 
@@ -263,7 +258,7 @@ Com a Figura~\ref{img:relplot_ano_rating} podemos notar que a variação da nota
 	\label{table:distribuicao_review_por_estado}
 \end{table}
 
-E dentre todas as avaliações obtidas após aplicar o filtro de período utilizaremos para a análise o total de 49219(57.04\%) e 37072(42.96\%) foram ignoradas. Assim as avaliações que foram consideradas estão então distribuídas conforme a Tabela~\ref{table:distribuicao_review_per_year}.
+E dentre todas as avaliações obtidas após aplicar o filtro de período utilizaremos para a análise o total de 49.219(57.04\%), sendo que 37.072(42.96\%) foram ignoradas. Assim as avaliações que foram consideradas estão então distribuídas conforme a Tabela~\ref{table:distribuicao_review_per_year}.
 
 \begin{table}[h]
 	\centering
@@ -401,7 +396,7 @@ E dentre todas as avaliações obtidas após aplicar o filtro de período utiliz
 	\label{tab:lista_review_hoteis}
 \end{table}
 
-Após devido tratamento das avaliações conseguimos obter as nuvens de palavras considerando todas as palavras na Figura~\ref{img:wordcloud_geral}, onde podemos notar como alguns dos destaques quarto, piscina, praia, restaurante, como sendo as palavras com maior frequência nas avaliações.
+Após o tratamento das avaliações, foi possível obter uma nuvem de palavras apresentada na Figura~\ref{img:wordcloud_geral}. Nela, destacam-se termos como 'quarto', 'piscina', 'praia' e 'restaurante', que são as palavras mais frequentes nas avaliações.
 
 \begin{figure}
 	\centering
@@ -414,34 +409,32 @@ Após devido tratamento das avaliações conseguimos obter as nuvens de palavras
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_geral.png}
-		\caption{Wordcloud sem \textit{stop words}}
+		\caption{Nuvem de palavras sem \textit{stop words}}
 		\label{img:wordcloud_geral}
 	\end{minipage}
 \end{figure}
 
-Já considerando a nuvem de palavras filtrando apenas por adjetivos teremos então na Figura~\ref{img:wordcloud_adjetivos} que tem como alguns dos destaques palavras como sensacional, excelente, especial, local, top, ótimo, nota.
-
-E por último observamos a nuvem de palavras levando em consideração apenas os substantivos na Figura~\ref{img:wordcloud_substantivos}, que como destaque podemos citar funcionário, piscina, quarto, praia.
+Considerando a nuvem de palavras filtrada apenas por adjetivos, a Figura~\ref{img:wordcloud_adjetivos} destaca termos como 'sensacional', 'excelente', 'especial', 'local', 'top', 'ótimo' e 'nota'. Por fim, a nuvem de palavras apresentada na Figura~\ref{img:wordcloud_substantivos} inclui apenas substantivos, com destaques para 'funcionário', 'piscina', 'quarto' e 'praia'.
 
 \begin{figure}
 	\centering
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_adjetivos.png}
-		\caption{Wordcloud de Adjetivos}
+		\caption{Nuvem de palavras de Adjetivos}
 		\label{img:wordcloud_adjetivos}
 	\end{minipage}
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=1\textwidth]{figs/exploratoria/wordcloud_substantivos.png}
-		\caption{Wordcloud de substantivos}
+		\caption{Nuvem de palavras de substantivos}
 		\label{img:wordcloud_substantivos}
 	\end{minipage}
 \end{figure}
 
-Outra forma de análise é o agrupamento de \textit{tokens} em unigramas na Figura~\ref{img:unigramas}, bigramas na Figura~\ref{img:bigramas} e os trigramas na Figura~\ref{img:trigramas} presentes em todas as avaliações. E dessa forma temos exatamente a classificação de frequência dos \textit{tokens} no corpus de estudo.
+Outra forma de análise é o agrupamento de \textit{tokens} em unigramas na Figura~\ref{img:unigramas}, bigramas na Figura~\ref{img:bigramas} e os trigramas na Figura~\ref{img:trigramas} presentes em todas as avaliações. E dessa forma temos exatamente a classificação de frequência dos \textit{tokens} no córpus de estudo.
 
-Entre os unigramas, Figura~\ref{img:unigramas}, temos uma lista com alguns dos \textit{tokens} mais frequentes, alguns chegando a passar a contagem de utilização de mais de 10.000 vezes, como é o caso de lugar, sendo seguindo ainda que próximo por comida, excelente e atendimento, este ultimo com uma frequência próximo de 8500 vezes. Ainda em relação aos unigramas também podemos levar em consideração a sua frequência com a evolução do tempo na Figura~\ref{img:rank_unigramas}, e algo com grande destaque é a palavra lugar que está entre o top 10 entre todo o período da análise, flutuando entre as cinco primeiras posições, tio é um unigrama que merece atenção, por não aparecer na nuvem de palavras de unigramas, porém se faz presente no ranking se observarmos individualmente os anos ele aparece em décimo lugar no ano de 2022, indícios de uma possível atração local bem conhecida, substituindo então o unigrama 'praia', que se fazia presente no ranking até 2021 na nona colocação.
+Entre os unigramas, Figura~\ref{img:unigramas}, temos uma lista com alguns dos \textit{tokens} mais frequentes, alguns chegando a passar a contagem de utilização de mais de 10.000 vezes, como é o caso de 'lugar', sendo seguindo ainda que próximo por 'comida', 'excelente' e 'atendimento', sendo este último com uma frequência próxima de 8500 vezes. Ainda em relação aos unigramas também podemos levar em consideração a sua frequência com a evolução do tempo na Figura~\ref{img:rank_unigramas}, e algo com grande destaque é a palavra 'lugar' que está entre o top 10 entre todo o período da análise, flutuando entre as cinco primeiras posições. 'tio' é um unigrama que merece atenção, por não aparecer na nuvem de palavras de unigramas, porém se faz presente no ranking se observarmos individualmente os anos ele aparece em décimo lugar no ano de 2022, indícios de uma possível atração local bem conhecida, substituindo então o unigrama 'praia', que se fazia presente no ranking até 2021 na nona colocação.
 
 \begin{figure}
 	\centering
@@ -450,7 +443,7 @@ Entre os unigramas, Figura~\ref{img:unigramas}, temos uma lista com alguns dos \
 	\label{img:unigramas}
 \end{figure}
 
-Considerando os bigramas na Figura~\ref{img:bigramas} a frequência diminui consideravelmente, pois aqui temos que a ordem importa e dessa forma o mais frequente fica próximo de 1700 vezes, sendo composto pela dupla 'lugar' e 'maravilhoso', seguido pelo segundo colocado, bem próximo de 1400 vezes, sendo 'comida' e 'boa', onde podemos observar a grande frequência de palavras positivas, por conta dos adjetivos positivos.
+Considerando os bigramas na Figura~\ref{img:bigramas} a frequência diminui consideravelmente, pois aqui temos que a ordem importa e dessa forma o mais frequente fica próximo de 1700 vezes, sendo composto pela dupla 'lugar' e 'maravilhoso', seguido pelo segundo colocado, bem próximo de 1400 vezes, sendo 'comida' e 'boa'. Também podemos observar uma grande frequência de palavras positivas, por conta dos adjetivos positivos.
 
 \begin{figure}[!h]
 	\centering
@@ -481,7 +474,7 @@ Para destaque entre os trigramas na Figura~\ref{img:trigramas} a frequência dim
 \subsection[BERT]{BERT}
 \label{sec:resultados:subsec:bert}
 
-O tempo de execução médio, após 5 execuções cada, para que a análise de todo o corpus fosse realizada, foi o seguinte:
+O tempo de execução médio, após 5 execuções cada, para que a análise de todo o córpus fosse realizada, foi o seguinte:
 
 \begin{itemize}
 	\item philschmid/distilbert-base-multilingual-cased-sentiment: 3min e 37s
@@ -491,9 +484,9 @@ O tempo de execução médio, após 5 execuções cada, para que a análise de t
 	\item ramonmedeiro1/bertimbau-products-reviews-pt-br: 6min e 59s
 \end{itemize}
 
-Considerando apenas os \textit{BERTs} notamos um desempenho com relação à velocidade de execução bem interessante, levando em consideração o ambiente de execução que estamos utilizando para realizar os testes que possui um poder computacional razoável para os tempos modernos.
+Considerando apenas os \textit{BERTs} notamos um desempenho com relação à velocidade de execução bem interessante, levando em consideração o ambiente de execução que estamos utilizando para realizar os testes que possui um poder computacional razoável.
 
-Após realizar o tratamento e levar em consideração o \textit{score} mais alto, temos quase 86\% das avaliações identificadas com o sentimento Positivo, em números absolutos 42078 avaliações, pouco mais de 6\% contendo sentimento Neutro e pouco mais de 8\% com sentimento negativo, como podemos observar na Figura~\ref{img:sentimento_bert}.
+Após realizar o tratamento e levar em consideração o \textit{score} mais alto, temos quase 86\% das avaliações identificadas com o sentimento Positivo, em números absolutos 42.078 avaliações, pouco mais de 6\% contendo sentimento Neutro e pouco mais de 8\% com sentimento negativo, como podemos observar na Figura~\ref{img:sentimento_bert}.
 
 \begin{figure}
 	\centering
@@ -504,7 +497,7 @@ Após realizar o tratamento e levar em consideração o \textit{score} mais alto
 
 Como já era esperado, a grande maioria das avaliações foram classificadas como sendo avaliações com sentimento positivo, em todos os anos, como é possível ser observado na Figura~\ref{img:sentimento_timechart_bert}.
 
-Também conseguimos notar que quanto maior a nota maior a quantidade de avaliações com sentimento positivo, sendo que as avaliações com notas 4 e 5 contém uma discrepância grande com relação à quantidade de avaliações com sentimento positivo contra a quantidade de avaliações com sentimento neutro ou negativo, já as avaliações com nota 3 possuem uma distribuição mais equivalente e as avaliações com notas 1 e 2 com o sentimento negativo tendo grande destaque em relação às avaliações etiquetadas como neutro ou positivo, como é possível ser observado na Figura~\ref{img:sentimento_nota_bert}, que indica que os usuários tendem a dar uma nota mais elevada quando escrevem uma avaliação com um sentimento mais positivo.
+Também conseguimos notar que quanto maior a nota, maior a quantidade de avaliações com sentimento positivo, sendo que as avaliações com notas 4 e 5 contém uma discrepância grande em relação a quantidade de avaliações com sentimento positivo contra a quantidade de avaliações com sentimento neutro ou negativo. Já as avaliações com nota 3 possuem uma distribuição mais equivalente e as avaliações com notas 1 e 2 com o sentimento negativo tendo grande destaque em relação às avaliações etiquetadas como neutro ou positivo, como é possível ser observado na Figura~\ref{img:sentimento_nota_bert}, o que indica que os usuários tendem a dar uma nota mais elevada quando escrevem uma avaliação com um sentimento mais positivo.
 
 \begin{figure}
 	\centering
@@ -520,7 +513,7 @@ Também conseguimos notar que quanto maior a nota maior a quantidade de avaliaç
 	\label{img:sentimento_nota_bert}
 \end{figure}
 
-Porém, avaliando de forma individual cada um dos modelos, podemos notar uma grande discrepância entre eles, com a afinação mais eficiente para esse corpus sendo o do \textit{citizenlab}, considerando que eficiência aqui representa a maior número de avaliações classificadas com \textit{score} superior aos outros, como notamos na Figura~\ref{img:rinha_de_berts}, modelo esse que levou menos de 7 minutos para executar e classificar todo o corpus, seguido pelo \textit{philschmid} que levou cerca de 3 minutos e meio na média.
+Porém, avaliando de forma individual cada um dos modelos, podemos notar uma grande discrepância entre eles, com a afinação mais eficiente para esse córpus sendo o do \textit{citizenlab}, considerando que eficiência aqui representa a maior número de avaliações classificadas com \textit{score} superior aos outros, como notamos na Figura~\ref{img:rinha_de_berts}, modelo esse que levou menos de 7 minutos para executar e classificar todo o córpus, seguido pelo \textit{philschmid} que levou cerca de 3 minutos e meio na média.
 
 \begin{figure}
 	\centering
@@ -529,7 +522,7 @@ Porém, avaliando de forma individual cada um dos modelos, podemos notar uma gra
 	\label{img:rinha_de_berts}
 \end{figure}
 
-Nas Figuras~\ref{img:sentimento_phil} e~\ref{img:sentimento_citizenlab} conseguimos visualizar a classificação atribuída de forma individual por ambos os modelos, a versão de \textit{philschmid} e \textit{citizenlab} respectivamente, com o \textit{citizenlab} classificando um número maior de sentimentos positivos, porém com um número de sentimentos neutros e negativos similar, o mesmo não acontece com \textit{philschmid} que tem um número maior de sentimentos neutros em comparação direta, porém da mesma forma um número de sentimento positivo maior e desigual.
+Nas Figuras~\ref{img:sentimento_phil} e~\ref{img:sentimento_citizenlab} conseguimos visualizar a classificação atribuída de forma individual por ambos os modelos, a versão de \textit{philschmid} e \textit{citizenlab} respectivamente, com o \textit{citizenlab} classificando um número maior de sentimentos positivos, porém com um número de sentimentos neutros e negativos similar. O mesmo não acontece com \textit{philschmid} que tem um número maior de sentimentos neutros em comparação direta, porém da mesma forma um número de sentimento positivo maior e desigual.
 
 \begin{figure}
 	\centering
@@ -547,7 +540,7 @@ Nas Figuras~\ref{img:sentimento_phil} e~\ref{img:sentimento_citizenlab} consegui
 \end{figure}
 
 
-Todos os modelos \textit{BERTs} etiquetam as avaliações de forma aparentemente consistente, como era esperado, temos uma quantidade muito grande de avaliações com nota máxima, 5, e por esse motivo é esperado que o sentimento geral das avaliações de nota 4 ou 5 seja positivo, avaliações com nota 3 distribuição de sentimento mais uniforme e as notas 1 e 2 contendo uma quantidade maior de sentimento negativo.
+Todos os modelos \textit{BERTs} etiquetam as avaliações de forma aparentemente consistente. Como era esperado, temos uma quantidade muito grande de avaliações com nota máxima, 5, e por esse motivo é esperado que o sentimento geral das avaliações de nota 4 ou 5 seja positivo. Avaliações com nota 3 têm uma distribuição de sentimento mais uniforme e as notas 1 e 2 contendo uma quantidade maior de sentimento negativo.
 
 Os resultados indicam que os modelos \textit{BERTs} concordam com o modelo \textit{GPT} em quase 89\% das avaliações, conforme Figura~\ref{img:bert_vs_gpt}, mostrando uma alta taxa de concordância geral entre os modelos na identificação de sentimentos. Essa elevada consistência sugere que ambos os modelos são eficazes na tarefa, especialmente em relação às avaliações positivas.
 
@@ -558,7 +551,7 @@ Os resultados indicam que os modelos \textit{BERTs} concordam com o modelo \text
 	\label{img:bert_vs_gpt}
 \end{figure}
 
-No entanto, a Figura~\ref{img:heat_bert_vs_gpt} revela áreas de discordância, principalmente nas avaliações negativas e neutras. Embora ambos os modelos concordem fortemente nas classificações positivas, com 40.224 avaliações coincidentes, há uma divergência considerável nas categorias negativas e neutras. Isso sugere que os modelos podem ter abordagens diferentes para sentimentos mais ambíguos ou menos claros, importante levar em consideração que o \textit{GPT} não conseguiu classificar todas as avaliações,falaremos mais sobre isso na seção do \textit{GPT}, em ~\ref{sec:resultados:subsec:gpt}.
+No entanto, a Figura~\ref{img:heat_bert_vs_gpt} revela áreas de discordância, principalmente nas avaliações negativas e neutras. Embora ambos os modelos concordem fortemente nas classificações positivas, com 40.224 avaliações coincidentes, há uma divergência considerável nas categorias negativas e neutras. Isso sugere que os modelos podem ter abordagens diferentes para sentimentos mais ambíguos ou menos claros. É importante levar em consideração que o \textit{GPT} não conseguiu classificar todas as avaliações e falaremos mais sobre isso na seção do \textit{GPT}, em ~\ref{sec:resultados:subsec:gpt}.
 
 \begin{figure}
 	\centering
@@ -572,7 +565,7 @@ No entanto, a Figura~\ref{img:heat_bert_vs_gpt} revela áreas de discordância, 
 \label{sec:resultados:subsec:vicuna}
 
 
-O modelo \textit{Vicuna} demorou pouco mais do que 6 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, o que é pode ser um ponto negativo dependendo do projeto que se está executando, ele demorou um tempo consideravelmente maior se comparado com os modelos \textit{BERTs} e para a tarefa proposta no trabalho ambos realizaram uma simular em termos de volume de etiquetas atribuídas para as avaliações, ambos reconheceram como sendo positivas a grande parte, mais de 86\% das avaliações, e o segundo maior grupo como sendo as avaliações negativas, como observado na Figura~\ref{img:vicuna_pizza_distribuicao}.
+O modelo \textit{Vicuna} demorou pouco mais do que 6 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, o que pode ser um ponto negativo dependendo do projeto que se está executando. Ele demorou um tempo consideravelmente maior se comparado com os modelos \textit{BERTs} e para a tarefa proposta no trabalho ambos realizaram de forma similar em termos de volume de etiquetas atribuídas para as avaliações, ambos reconheceram como sendo positivas a grande parte, mais de 86\% das avaliações, e o segundo maior grupo como sendo as avaliações negativas, como observado na Figura~\ref{img:vicuna_pizza_distribuicao}.
 
 \begin{figure}
 	\centering
@@ -581,7 +574,7 @@ O modelo \textit{Vicuna} demorou pouco mais do que 6 horas para realizar a taref
 	\label{img:vicuna_pizza_distribuicao}
 \end{figure}
 
-Continuamos aqui com o mesmo comportamento de quantidade de avaliações com sentimento positivo brutalmente maior se comparado com os outros sentimentos, porém também temos agora o cenário onde o modelo não conseguiu realizar a tarefa com sucesso e atribuir uma etiqueta apropriada a avaliação, dessa forma elas foram etiquetadas com o valor \textit{UNKNOWN}, temos 1746(3.55\%) avaliações nesse estado, cenário que não temos com os modelos \textit{BERT}, que considerando a quantidade total de avaliações pode ser considerado um número baixo, porém se avaliarmos ano a ano, a quantidade de avaliações com esse valor de etiqueta acaba se tornando relevante, até mesmo em quantidade superiores aos outros sentimentos (neutro e negativo), como observado na Figura~\ref{img:vicuna_sentimento_ano}, mas mesmo assim o \textit{Vicuna} atribuiu algum sentimento para a maioria das avaliações, sendo o grupo de avaliações com problema na classificação o grupo com menor quantidade de avaliações.
+Continuamos aqui com o mesmo comportamento de quantidade de avaliações com sentimento positivo bem maior se comparado com os outros sentimentos. Porém, também temos agora o cenário em que o modelo não conseguiu realizar a tarefa com sucesso e atribuir uma etiqueta apropriada a avaliação. Dessa forma, elas foram etiquetadas com o valor \textit{UNKNOWN} e temos 1.746 (3.55\%) avaliações nesse estado, cenário que não temos com os modelos \textit{BERT}. Considerando a quantidade total de avaliações pode ser considerado um número baixo, porém se avaliarmos ano a ano, a quantidade de avaliações com esse valor de etiqueta acaba se tornando relevante, até mesmo em quantidade superiores aos outros sentimentos (neutro e negativo), como observado na Figura~\ref{img:vicuna_sentimento_ano}. Mesmo assim o \textit{Vicuna} atribuiu algum sentimento para a maioria das avaliações, sendo o grupo de avaliações com problema na classificação o grupo com menor quantidade de avaliações.
 
 \begin{figure}
 	\centering
@@ -590,7 +583,7 @@ Continuamos aqui com o mesmo comportamento de quantidade de avaliações com sen
 	\label{img:vicuna_sentimento_ano}
 \end{figure}
 
-Olhando especificamente para a distribuição por nota atribuída temos um comportamento ainda mais curioso ao observar a nota 3, onde todas as etiquetas possuem uma quantidade equivalente e bem próxima, o comportamento de notas 1 e 2, de possuir uma quantidade de avaliações com sentimento negativo superior as outras etiquetas juntas, e temos o mesmo comportamento para as notas 4 e 5, porém o sentimento que supera é o positivo, como observado pela Figura~\ref{img:vicuna_sentimento_nota}.
+Olhando especificamente para a distribuição por nota atribuída temos um comportamento ainda mais curioso ao observar a nota 3, em que todas as etiquetas possuem uma quantidade equivalente e bem próxima. O comportamento de notas 1 e 2 possui uma quantidade de avaliações com sentimento negativo superior as outras etiquetas juntas, e temos o mesmo comportamento para as notas 4 e 5, porém o sentimento que supera é o positivo, como observado pela Figura~\ref{img:vicuna_sentimento_nota}.
 
 \begin{figure}
 	\centering
@@ -599,7 +592,7 @@ Olhando especificamente para a distribuição por nota atribuída temos um compo
 	\label{img:vicuna_sentimento_nota}
 \end{figure}
 
-Os resultados indicam que o \textit{Vicuna} concordam com o modelo \textit{GPT} em quase 89\% das avaliações, conforme Figura~\ref{img:vicuna_vs_gpt}, mostrando uma alta taxa de concordância geral entre os modelos na identificação de sentimentos. Essa elevada consistência sugere que ambos os modelos são eficazes na tarefa, especialmente em relação às avaliações positivas.
+Os resultados indicam que o \textit{Vicuna} concorda com o modelo \textit{GPT} em quase 89\% das avaliações, conforme Figura~\ref{img:vicuna_vs_gpt}, mostrando uma alta taxa de concordância geral entre os modelos na identificação de sentimentos. Essa elevada consistência sugere que ambos os modelos são eficazes na tarefa, especialmente em relação às avaliações positivas.
 
 \begin{figure}
 	\centering
@@ -608,7 +601,7 @@ Os resultados indicam que o \textit{Vicuna} concordam com o modelo \textit{GPT} 
 	\label{img:vicuna_vs_gpt}
 \end{figure}
 
-No entanto, a Figura~\ref{img:heat_vicuna_vs_gpt} revela áreas de discordância, principalmente nas avaliações negativas, neutras e as que ambos não conseguiram classificar. Embora ambos os modelos concordem fortemente nas classificações positivas, com 40.425 avaliações coincidentes, há uma divergência considerável nas outras categorias, com destaque para as avaliações onde o \textit{Vicuna} classificou como neutro e o \textit{GPT} classificou como negativo. Isso sugere que os modelos podem ter abordagens diferentes para sentimentos mais ambíguos ou menos claros.
+No entanto, a Figura~\ref{img:heat_vicuna_vs_gpt} revela áreas de discordância, principalmente nas avaliações negativas, neutras e as que ambos não conseguiram classificar. Embora ambos os modelos concordem fortemente nas classificações positivas, com 40.425 avaliações coincidentes, há uma divergência considerável nas outras categorias, com destaque para as avaliações em que o \textit{Vicuna} classificou como neutro e o \textit{GPT} classificou como negativo. Isso sugere que os modelos podem ter abordagens diferentes para sentimentos mais ambíguos ou menos claros.
 
 \begin{figure}
 	\centering
@@ -623,11 +616,10 @@ No entanto, a Figura~\ref{img:heat_vicuna_vs_gpt} revela áreas de discordância
 
 %TODO revisar imagens
 
-O modelo \textit{GPT} 3.5 demorou pouco mais do que 4 horas e teve custo de pouco menos de 11 dólares para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, além de ser um modelo pago e privado, o que é pode ser um ponto negativo dependendo do projeto que se está executando, ele demorou um tempo consideravelmente maior se comparado com os modelos \textit{BERTs} e para a tarefa proposta no trabalho ambos realizaram uma simular em termos de volume de etiquetas atribuídas para as avaliações, ambos reconheceram como sendo positivas a grande parte, mais de 84\% das avaliações, e o segundo maior grupo como sendo as avaliações negativas.
+O modelo \textit{GPT} 3.5 demorou pouco mais do que 4 horas e teve custo de pouco menos de 11 dólares para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações. Além de ser um modelo pago e privado, o que é pode ser um ponto negativo dependendo do projeto que se está executando, ele demorou um tempo consideravelmente maior se comparado com os modelos \textit{BERTs} e para a tarefa proposta no trabalho ambos realizaram de forma similar em termos de volume de etiquetas atribuídas para as avaliações, ambos reconheceram como sendo positivas a grande parte, mais de 84\% das avaliações, e o segundo maior grupo como sendo as avaliações negativas. Outra grande desvantagem do \textit{GPT} é que se faz necessário uso de rede de internet nesse caso, por conta do modelo ser executado na nuvem da OpenAI, que acaba por gerar exposição desnecessária dos dados se comparado com modelos abertos que podem ser executados sem a necessidade de utilização da internet.
 
-Outra grande desvantagem do \textit{GPT} é que se faz necessário uso de rede de internet nesse caso, por conta do modelo ser executado na nuvem da OpenAI, que acaba por gerar exposição desnecessária dos dados se comparado com modelos abertos que podem ser executados sem a necessidade de utilização da internet.
 
-Utilizando o modelo \textit{GPT} 3.5 para realizar a tarefa de análise de sentimentos do conteúdo textual das avaliações obtemos a distribuição conforme Figura~\ref{img:gpt_pizza_distribuicao}, onde 84.77\% das avaliações, ou seja, 41721 avaliações foram classificadas como tendo um sentimento positivo, isso representa um número próximo das avaliações que receberam como nota 4 ou 5, 6128 e 38347 avaliações respectivamente, porém fica fácil notar na Figura~\ref{img:gpt_sentimento_nota} que mesmo a grande maioria das avaliações com essa nota atribuída ainda existem avaliações com sentimentos diferentes e até mesmo avaliações em quais a etiqueta atribuída não foi identificável, sendo assim marcadas como com a etiqueta \textit{UNKNOWN}, que foram classificadas dessa forma por conta do modelo não conseguiu realizar a tarefa que lhe foi atribuída e produzir resposta maior ou mais detalhada sobre a etiqueta, e como o interesse é em classificações simples e diretas a etiqueta atribuída não foi identificável, mas diferente do que aconteceu com o \textit{Vicuna}, o \textit{GPT} teve mais dificuldade e não foi possível identificar o sentimento atribuído para mais avaliações do que o seu concorrente(1803 vs 1746), sendo o grupo de avaliações com problema na classificação um grupo com maior quantidade de avaliações, 1803(3.66\%) se comparado com o grupo de sentimento neutro, 1103(2.24\%).
+Utilizando o modelo \textit{GPT} 3.5 para realizar a tarefa de análise de sentimentos do conteúdo textual das avaliações obtemos a distribuição conforme Figura~\ref{img:gpt_pizza_distribuicao}, em que 84.77\% das avaliações, ou seja, 41.721 avaliações foram classificadas como tendo um sentimento positivo. Isso representa um número próximo das avaliações que receberam como nota 4 ou 5, 6.128 e 38.347 avaliações respectivamente. Porém, fica fácil notar na Figura~\ref{img:gpt_sentimento_nota} que mesmo a grande maioria das avaliações com essa nota atribuída ainda existem avaliações com sentimentos diferentes e até mesmo avaliações nas quais a etiqueta atribuída não foi identificável, sendo assim marcadas como com a etiqueta \textit{UNKNOWN}, que foram classificadas dessa forma por conta do modelo não conseguiu realizar a tarefa que lhe foi atribuída e produzir resposta maior ou mais detalhada sobre a etiqueta. E como o interesse é em classificações simples e diretas a etiqueta atribuída não foi identificável. Mas diferente do que aconteceu com o \textit{Vicuna}, o \textit{GPT} teve mais dificuldade e não foi possível identificar o sentimento atribuído para mais avaliações do que o seu concorrente (1803 vs 1746), sendo o grupo de avaliações com problema na classificação um grupo com maior quantidade de avaliações, 1803 (3.66\%) se comparado com o grupo de sentimento neutro, 1103 (2.24\%).
 
 \begin{figure}
 	\centering
@@ -652,9 +644,9 @@ Utilizando o modelo \textit{GPT} 3.5 para realizar a tarefa de análise de senti
 \subsection{OpenChat}
 \label{sec:resultados:subsec:openchat}
 
-O modelo OpenChat demorou aproximadamente 9 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, por ser um modelo menor é esperado que seu desempenho seja inferior se comparado com os anteriores, seu tamanho menor pode ser também um ponto positivo por conta de serem necessários uma menor quantidade de memória de vídeo para carregar o modelo e conseguir realizar a execução do mesmo, ele demorou um tempo consideravelmente maior se comparado com todas as outras abordagens do projeto e para a tarefa proposta no trabalho a atribuição ainda foi simular, reconheceu como sendo positivas a grande parte, aproximadamente 83\% das avaliações, porém o grande destaque está no segundo maior grupo, que é o das avaliações que não foram possíveis classificar, com pouco mais de 11\%, que pode ser observado na Figura~\ref{img:openchat_pizza_distribuicao}.
+O modelo OpenChat demorou aproximadamente 9 horas para realizar a tarefa de atribuição de etiqueta para cada uma das avaliações, por ser um modelo menor é esperado que seu desempenho seja inferior se comparado com os anteriores. Seu tamanho menor pode ser também um ponto positivo por conta de ser necessário uma menor quantidade de memória para carregar o modelo e conseguir realizar a execução do mesmo. Esse modelo demorou um tempo consideravelmente maior se comparado com todas as outras abordagens do projeto e para a tarefa proposta no trabalho a atribuição ainda foi similar, reconheceu como sendo positivas a grande parte, aproximadamente 83\% das avaliações. Porém, o grande destaque está no segundo maior grupo, que é o das avaliações que não foram possíveis classificar, com pouco mais de 11\%, que pode ser observado na Figura~\ref{img:openchat_pizza_distribuicao}.
 
-É perceptível que o modelo do OpenChat não conseguiu executar um bom trabalho com o texto utilizado para iniciar a tarefa se comparado com os outros LLMs, porém ele matem o comportamento esperado de ter um número de avaliações com sentimento positivo bastante destoante dos outros grupos.
+É perceptível que o modelo do OpenChat não conseguiu executar um bom trabalho com o texto utilizado para iniciar a tarefa se comparado com os outros LLMs, porém ele mantém o comportamento esperado de ter um número de avaliações com sentimento positivo bastante destoante dos outros grupos.
 
 \begin{figure}
 	\centering
@@ -677,7 +669,7 @@ O modelo OpenChat demorou aproximadamente 9 horas para realizar a tarefa de atri
 	\label{img:openchat_sentimento_nota}
 \end{figure}
 
-O OpenChat tem uma um tempo de execução superior se comparado com os outros \textit{LLMs} e ainda maior se comparado com os \textit{BERTs} e foi também o modelo que teve maior dificuldade para executar a tarefa de forma consistente, tivemos uma grande quantidade de avaliações classificadas como \textit{UNKNOWN}, 5568 avaliações pouco mais de 11\%, quando comparado com os outros modelos notamos que existe uma concordância satisfatória quando ele identifica o sentimento porém o problema é quando isso não é possível, foram quase 18\% das avaliações classificadas de forma diferente quando comparamos OpenChat com \textit{Vicuna} ou com GPT, Figura~\ref{img:openchat_vs_vicuna} e Figura~\ref{img:openchat_vs_gpt} respectivamente, valor bastante superior se consideramos que a comparação de \textit{Vicuna} e GPT divergiram em apenas 11\% das avaliações classificadas, Figura~\ref{img:vicuna_vs_gpt}, e fenômeno similar se olharmos a divergência dos \textit{BERTs} e os GPT que também discordam em 11\% das avaliações, Figura~\ref{img:bert_vs_gpt}.
+O OpenChat tem uma um tempo de execução superior se comparado com os outros \textit{LLMs} e ainda maior se comparado com os \textit{BERTs} e foi também o modelo que teve maior dificuldade para executar a tarefa de forma consistente. Tivemos uma grande quantidade de avaliações classificadas como \textit{UNKNOWN}, 5568 avaliações pouco mais de 11\%, quando comparado com os outros modelos notamos que existe uma concordância satisfatória quando ele identifica o sentimento porém o problema é quando isso não é possível, foram quase 18\% das avaliações classificadas de forma diferente quando comparamos OpenChat com \textit{Vicuna} ou com GPT, Figura~\ref{img:openchat_vs_vicuna} e Figura~\ref{img:openchat_vs_gpt} respectivamente, valor bastante superior se consideramos que a comparação de \textit{Vicuna} e GPT divergiram em apenas 11\% das avaliações classificadas, Figura~\ref{img:vicuna_vs_gpt}, e fenômeno similar se olharmos a divergência dos \textit{BERTs} e os GPT que também discordam em 11\% das avaliações, Figura~\ref{img:bert_vs_gpt}.
 
 
 \begin{figure}
@@ -694,11 +686,11 @@ O OpenChat tem uma um tempo de execução superior se comparado com os outros \t
 	\label{img:openchat_vs_gpt}
 \end{figure}
 
-Isso pode ser devido ao OpenChat ser o menor modelo aqui utilizado entre os \textit{LLMs} ou também devido ao OpenChat ter dificuldades para trabalhar com o texto utilizado no início da tarefa e que possivelmente gerou alguma dificuldade com o sentimento positivo, que foi o sentimento identificado pelo GPT com o maior número dentre as avaliações classificadas pelo OpenChat com \textit{UNKNOWN}, ele parece ter também grande dificuldade de identificar avaliações com sentimento negativo quando comparamos ele com o GPT, como observamos na Figura~\ref{img:heat_openchat_vs_gpt} a grande variação de classificação do OpenChat das avaliações em que o GPT atribuiu a etiqueta de sentimento negativo.
+Isso pode ser devido ao OpenChat ser o menor modelo aqui utilizado entre os \textit{LLMs} ou também devido ao OpenChat ter dificuldades para trabalhar com o texto utilizado no início da tarefa e que possivelmente gerou alguma dificuldade com o sentimento positivo, que foi o sentimento identificado pelo GPT com o maior número dentre as avaliações classificadas pelo OpenChat com \textit{UNKNOWN}. Ele parece ter também grande dificuldade de identificar avaliações com sentimento negativo quando comparamos ele com o GPT, como observamos na Figura~\ref{img:heat_openchat_vs_gpt} a grande variação de classificação do OpenChat das avaliações em que o GPT atribuiu a etiqueta de sentimento negativo.
 
-E comparando OpenChat com o \textit{Vicuna} o comportamento segue similar, ainda observamos a dificuldade do OpenChat em classificar as avaliações onde o \textit{Vicuna} atribuiu a etiqueta de sentimento positivo, porém é perceptível que as avaliações onde o \textit{Vicuna} classificou como negativo o OpenChat teve menor dificuldade em classificá-las quando consideramos essa mesma comparação com o GPT.
+E comparando OpenChat com o \textit{Vicuna} o comportamento segue similar, e ainda observamos a dificuldade do OpenChat em classificar as avaliações em que o \textit{Vicuna} atribuiu a etiqueta de sentimento positivo. Porém, é perceptível que as avaliações em  que o \textit{Vicuna} classificou como negativo o OpenChat teve menor dificuldade em classificá-las quando consideramos essa mesma comparação com o GPT.
 
-E o mesmo se repete para a comparação com os modelos \textit{BERTs} grande dificuldade de atribuir classificação para os modelos consentimento positivo aqui ainda notamos um aumento na discrepância quando o \textit{BERT} classifica com o neutro temos o OpenChat classificando essas avaliações em maior quantidade como possuindo sentimento positivo eu mesmo segue para a classificação de sentimento negativo OpenChat realiza uma distribuição seguindo o comportamento na comparação com os outros modelos.
+E o mesmo se repete para a comparação com os modelos \textit{BERTs} grande dificuldade de atribuir classificação para os modelos consentimento positivo. Aqui ainda notamos um aumento na discrepância quando o \textit{BERT} classifica com o neutro temos o OpenChat classificando essas avaliações em maior quantidade como possuindo sentimento positivo. O mesmo segue para a classificação de sentimento negativo OpenChat que realiza uma distribuição seguindo o comportamento na comparação com os outros modelos.
 
 \begin{figure}
 	\centering
@@ -721,4 +713,4 @@ E o mesmo se repete para a comparação com os modelos \textit{BERTs} grande dif
 	\label{img:heat_openchat_vs_bert}
 \end{figure}
 
-Analisando algumas das classificações que o OpenChat realizou, especificamente contendo o texto \textit{Sem palavras}, temos o total de 7 avaliações com o mesmo texto, todas com uma nota de 5 estrelas atribuída pelo usuário, que não foi levada em consideração no momento de análise, o que é interessante notar é que o GPT classifica todas como sendo de sentimento neutro, já o \textit{Vicuna} classifica como sendo sentimento positivo, porém o OpenChat classifica 5 como tendo o sentimento positivo e as outras duas como sendo de sentimento neutro, o que pode indicar que o ambiente de testes não estava devidamente configurado para que a reprodutividade com esse modelo fosse algo consistente ou que o modelo tem certa inconsistência.
+Analisando algumas das classificações que o OpenChat realizou, especificamente contendo o texto \textit{Sem palavras}, temos o total de 7 avaliações com o mesmo texto, todas com uma nota de 5 estrelas atribuída pelo usuário, que não foi levada em consideração no momento de análise. O que é interessante notar é que o GPT classifica todas como sendo de sentimento neutro, já o \textit{Vicuna} classifica como sendo sentimento positivo, porém o OpenChat classifica 5 como tendo o sentimento positivo e as outras duas como sendo de sentimento neutro, o que pode indicar que o ambiente de testes não estava devidamente configurado para que a reprodutividade com esse modelo fosse algo consistente ou que o modelo tem certa inconsistência.
