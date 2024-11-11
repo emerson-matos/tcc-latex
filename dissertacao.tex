@@ -102,13 +102,11 @@
 % Folha de rosto (o * indica que haverá a ficha bibliográfica)
 \imprimirfolhaderosto*
 
-
-
 % Imprimir Ficha Catalografica
 \include{pretextual/catalografica}
 
 % Inserir Folha de Aprovação
-\include{pretextual/assinaturas}
+% \include{pretextual/assinaturas}
 
 % Dedicatória
 \include{pretextual/dedicatoria}
@@ -117,7 +115,7 @@
 \include{pretextual/agradecimentos}
 
 % Epígrafe
-\include{pretextual/epigrafe}
+% \include{pretextual/epigrafe}
 
 % Resumo e Abstract
 \include{pretextual/resumos}
@@ -129,7 +127,7 @@
 
 % Lista de tabelas
 \pdfbookmark[0]{\listtablename}{lot}
-\listoftables
+\listoftables*
 \cleardoublepage
 
 % Lista de abreviaturas e siglas
@@ -149,15 +147,13 @@
 	\item[VADER] Valence Aware Dictionary and sEntiment Reasoner
 \end{siglas}
 
-\begin{comment}
 % Lista de símbolos
-%\begin{simbolos}
-%	\item[$ \Gamma $] Letra grega Gama
-%	\item[$ \Lambda $] Lambda
-%	\item[$ \zeta $] Letra grega minúscula zeta
-%	\item[$ \in $] Pertence
-%\end{simbolos}
-\end{comment}
+% \begin{simbolos}
+	% \item[$ \Gamma $] Letra grega Gama
+	% \item[$ \Lambda $] Lambda
+	% \item[$ \zeta $] Letra grega minúscula zeta
+	% \item[$ \in $] Pertence
+% \end{simbolos}
 
 % Inserir o SUMÁRIO
 \pdfbookmark[0]{\contentsname}{toc}
