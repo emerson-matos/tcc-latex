@@ -98,7 +98,7 @@ Por esse motivo ao se utilizar a data relativa passamos a ter dificuldade com as
 	\label{table:review_per_year}
 \end{table}
 
-Considerando todas as avaliações obtidas podemos observar na Tabela~\ref{table:review_per_year} que temos uma discrepância na quantidade e é perceptível a divisão no período de 2017/2018. E dessa forma foi definido que serão utilizadas apenas avaliações posteriores a 2018, conforme ilustrado no trecho de código listado a seguir:
+Considerando todas as avaliações obtidas podemos observar na Tabela~\ref{table:review_per_year} que temos uma discrepância na quantidade e é perceptível a divisão no período de 2017/2018. E, dessa forma, foi definido que serão utilizadas apenas avaliações posteriores a 2018, conforme ilustrado no trecho de código listado a seguir:
 
 \lstinputlisting[language=Python,caption=Filtros aplicados ao dataset de avalições]{extras/code/review_filter.py}
 
@@ -238,7 +238,7 @@ Com a Figura~\ref{img:relplot_ano_rating} podemos notar que a variação da nota
 		\multicolumn{3}{c|}{\textbf{nota}}                     &
 		\multicolumn{1}{c|}{\textbf{estrelas}}                                                                            \\ \cline{2-7}
 		\multicolumn{1}{|l|}{}                                 &
-		\multicolumn{1}{c}{\textbf{rotulo}}                    &
+		\multicolumn{1}{c}{\textbf{rótulo}}                    &
 		\multicolumn{1}{c|}{\textbf{quantidade}}               &
 		\multicolumn{1}{c}{\textbf{média}}                     &
 		\multicolumn{1}{c}{\textbf{min}}                       &
@@ -254,7 +254,7 @@ Com a Figura~\ref{img:relplot_ano_rating} podemos notar que a variação da nota
 		                                                       & \textbf{True}  & 6232  & 4.480424 & 4.2 & 4.6 & 4.701059 \\ \hline
 		\multirow{2}{*}{\textbf{SE}}                           & \textbf{False} & 2448  & 4.300000 & 4.3 & 4.3 & 4.000000 \\
 		                                                       & \textbf{True}  & 2846  & 4.300000 & 4.3 & 4.3 & 4.000000 \\ \hline
-	\end{tabular}\caption{Quantidade de avaliações por estado e por rotulo -- indicando o que será e o que não será analisado}
+	\end{tabular}\caption{Quantidade de avaliações por estado e por rótulo -- indicando o que será e o que não será analisado}
 	\label{table:distribuicao_review_por_estado}
 \end{table}
 
@@ -432,7 +432,7 @@ Considerando a nuvem de palavras filtrada apenas por adjetivos, a Figura~\ref{im
 	\end{minipage}
 \end{figure}
 
-Outra forma de análise é o agrupamento de \textit{tokens} em unigramas na Figura~\ref{img:unigramas}, bigramas na Figura~\ref{img:bigramas} e os trigramas na Figura~\ref{img:trigramas} presentes em todas as avaliações. E dessa forma temos exatamente a classificação de frequência dos \textit{tokens} no córpus de estudo.
+Outra forma de análise é o agrupamento de \textit{tokens} em unigramas na Figura~\ref{img:unigramas}, bigramas na Figura~\ref{img:bigramas} e os trigramas na Figura~\ref{img:trigramas} presentes em todas as avaliações. E dessa forma temos exatamente a classificação de frequência dos \textit{tokens} no corpus de estudo.
 
 Entre os unigramas, Figura~\ref{img:unigramas}, temos uma lista com alguns dos \textit{tokens} mais frequentes, alguns chegando a passar a contagem de utilização de mais de 10.000 vezes, como é o caso de 'lugar', sendo seguindo ainda que próximo por 'comida', 'excelente' e 'atendimento', sendo este último com uma frequência próxima de 8500 vezes. Ainda em relação aos unigramas também podemos levar em consideração a sua frequência com a evolução do tempo na Figura~\ref{img:rank_unigramas}, e algo com grande destaque é a palavra 'lugar' que está entre o top 10 entre todo o período da análise, flutuando entre as cinco primeiras posições. 'tio' é um unigrama que merece atenção, por não aparecer na nuvem de palavras de unigramas, porém se faz presente no ranking se observarmos individualmente os anos ele aparece em décimo lugar no ano de 2022, indícios de uma possível atração local bem conhecida, substituindo então o unigrama 'praia', que se fazia presente no ranking até 2021 na nona colocação.
 
@@ -474,7 +474,7 @@ Para destaque entre os trigramas na Figura~\ref{img:trigramas} a frequência dim
 \subsection[BERT]{BERT}
 \label{sec:resultados:subsec:bert}
 
-O tempo de execução médio, após 5 execuções cada, para que a análise de todo o córpus fosse realizada, foi o seguinte:
+O tempo de execução médio, após 5 execuções cada, para que a análise de todo o corpus fosse realizada, foi o seguinte:
 
 \begin{itemize}
 	\item philschmid/distilbert-base-multilingual-cased-sentiment: 3min e 37s
@@ -513,7 +513,7 @@ Também conseguimos notar que quanto maior a nota, maior a quantidade de avalia�
 	\label{img:sentimento_nota_bert}
 \end{figure}
 
-Porém, avaliando de forma individual cada um dos modelos, podemos notar uma grande discrepância entre eles, com a afinação mais eficiente para esse córpus sendo o do \textit{citizenlab}, considerando que eficiência aqui representa a maior número de avaliações classificadas com \textit{score} superior aos outros, como notamos na Figura~\ref{img:rinha_de_berts}, modelo esse que levou menos de 7 minutos para executar e classificar todo o córpus, seguido pelo \textit{philschmid} que levou cerca de 3 minutos e meio na média.
+Porém, avaliando de forma individual cada um dos modelos, podemos notar uma grande discrepância entre eles, com a afinação mais eficiente para esse corpus sendo o do \textit{citizenlab}, considerando que eficiência aqui representa a maior número de avaliações classificadas com \textit{score} superior aos outros, como notamos na Figura~\ref{img:rinha_de_berts}, modelo esse que levou menos de 7 minutos para executar e classificar todo o corpus, seguido pelo \textit{philschmid} que levou cerca de 3 minutos e meio na média.
 
 \begin{figure}
 	\centering
@@ -522,7 +522,7 @@ Porém, avaliando de forma individual cada um dos modelos, podemos notar uma gra
 	\label{img:rinha_de_berts}
 \end{figure}
 
-Nas Figuras~\ref{img:sentimento_phil} e~\ref{img:sentimento_citizenlab} conseguimos visualizar a classificação atribuída de forma individual por ambos os modelos, a versão de \textit{philschmid} e \textit{citizenlab} respectivamente, com o \textit{citizenlab} classificando um número maior de sentimentos positivos, porém com um número de sentimentos neutros e negativos similar. O mesmo não acontece com \textit{philschmid} que tem um número maior de sentimentos neutros em comparação direta, porém da mesma forma um número de sentimento positivo maior e desigual.
+Nas Figuras~\ref{img:sentimento_phil} e~\ref{img:sentimento_citizenlab}, conseguimos visualizar a classificação atribuída de forma individual por ambos os modelos, a versão de \textit{philschmid} e \textit{citizenlab} respectivamente, com o \textit{citizenlab} classificando um número maior de sentimentos positivos, porém com um número de sentimentos neutros e negativos similar. O mesmo não acontece com \textit{philschmid} que tem um número maior de sentimentos neutros em comparação direta, porém da mesma forma um número de sentimento positivo maior e desigual.
 
 \begin{figure}
 	\centering

@@ -16,13 +16,13 @@ O conjunto de dados foi selecionado considerando os hotéis localizados em todo 
 % https://developers.google.com/maps/apis-by-platform?hl=pt-br#web_service_apis
 A primeira etapa consiste em identificar os hotéis distribuídos no território brasileiro por estado na plataforma do \textit{Google Maps}. Essa tarefa foi automatizada por meio da utilização do serviço exposto do \textit{Google Maps} e a iteração foi realizada utilizando a biblioteca oficial do \textit{Google Maps} com a versão escrita em Java que está disponível publicamente no repositório do \citeonline{javaGoogleMapsService2022}.
 
-Para identificar os diversos hotéis, foi escrito um \emph{script} Kotlin \cite{scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e persistindo os dados obtidos.
+Para identificar os diversos hotéis, foi escrito um \emph{script} utilizando linguagem Kotlin~\cite{kotlin_lang:2024, scriptKotlinBuscarHoteis} que interage com a biblioteca supracitada para realizar a busca da lista de hotéis de forma automatizada, realizando buscas de forma sequencial considerando todos os estados brasileiros e persistindo os dados obtidos.
 
 O objetivo desta etapa foi identificar o maior número possível de hotéis disponíveis para consulta na plataforma e, em seguida, obter informações detalhadas de cada um, como quantidade de avaliações, nota atual e localização do estabelecimento. Com essa lista em mãos, foi possível selecionar os hotéis para o estudo.
 
 Para essa tarefa, utilizou-se a interface de \emph{Text Search Query}, que disponibiliza informações como nome do hotel, localização e identificador do hotel na plataforma. Essa interface permite realizar buscas aplicando filtros que restringem os resultados, como idioma de interesse, coordenadas e um raio de busca específico. Dessa forma, é possível obter resultados mais alinhados aos parâmetros fornecidos \cite{placesSearchText2023}.
 
-\lstinputlisting[language=java,caption=Fragmento de código da interface \textit{Google Maps} \emph{Text Search Query}]{extras/code/googlemaps-place-search.kt}
+% \lstinputlisting[language=java,caption=Fragmento de código da interface \textit{Google Maps} \emph{Text Search Query}]{extras/code/googlemaps-place-search.kt}
 
 O texto utilizado para a busca dos hotéis foi definido no seguinte modelo “frase + região”. Por exemplo, na frase “hotéis próximos ao Cristo Redentor”, a API deverá retornar informações básicas de hotéis cadastrados na plataforma próximos à região do Cristo Redentor. As regiões utilizadas foram os estados e capitais brasileiros.
 
@@ -31,16 +31,16 @@ Se necessário serão adicionados de forma manual hotéis em regiões brasileira
 Após obter a lista com as informações básicas, torna-se necessário acessar dados mais detalhados dos estabelecimentos. Para isso, foi utilizada a interface \emph{Place Details}, que permite obter essas informações na plataforma. Dentre os dados fornecidos por essa interface, apenas alguns são de interesse, como, por exemplo (mas não se limitando a): número de avaliações disponíveis, classificação atual na plataforma e quantidade de avaliações. Esses dados serão fundamentais na seleção dos hotéis que farão parte do estudo. No entanto, devido a uma limitação da plataforma, essa interface lista apenas 5 avaliações aleatórias por vez, o que inviabiliza sua utilização para a coleta de um grande número de avaliações.
 
 
-\lstinputlisting[language=java,caption=Fragmento de código da interface \textit{Google Maps} \emph{Place Details}]{extras/code/googlemaps-place-details.kt}
+% \lstinputlisting[language=java,caption=Fragmento de código da interface \textit{Google Maps} \emph{Place Details}]{extras/code/googlemaps-place-details.kt}
 
-Por conta da grande variedade de hotéis, o critério de escolha será composto por limitar a hotéis com disponibilidade de pacote \emph{All Inclusive} e na região nordeste. Posteriormente, essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações online disponíveis no \textit{Google Maps}, realizadas pelos usuários e os \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Os detalhes da escolha das avaliações são discutidos em \ref{cap:metodologia:sec:conjunto_dados:sec:pre_processamento}.
+Por conta da grande variedade de hotéis, o critério de escolha será composto por limitar a hotéis com disponibilidade de pacote \emph{All Inclusive} e na região nordeste. Posteriormente, essa lista irá servir como entrada para um \emph{Web Scraping} para buscar as avaliações online disponíveis no \textit{Google Maps}, realizadas pelos usuários e os \emph{Local Guides}~\cite{google2022localguides} registrados na plataforma. Os detalhes da escolha das avaliações são discutidos na Seção \ref{cap:metodologia:sec:conjunto_dados:sec:pre_processamento}.
 
 \subsection{Coleta de dados}
 \label{cap:metodologia:sec:conjunto_dados:sec:coleta_review}
 
-Já existe um \emph{script} escrito em Python \cite{gaspa93scrapper2023} que dado uma \emph{URL} do \textit{Google Maps}, utilizando Selenium, obtém um determinado número de avaliações. O \emph{script}, porém, estava defasado e pendente de atualização, um dos \emph{forks} existentes \citeonline{ryuuzakescrapper2023} estava também pouco mais atualizado, porém ainda não funcional.
+Já existe um \emph{script} escrito em Python~\cite{gaspa93scrapper2023} e um \emph{fork}~\cite{ryuuzakescrapper2023} que dado uma \emph{URL} do \textit{Google Maps}, utilizando Selenium, obtém um determinado número de avaliações.
 
-Utilizando esses projetos como base foi criado um novo \emph{fork} e então atualizei o \emph{script} para realizar o trabalho de obter as avaliações dos hotéis. O \emph{script} escrito em Python e as suas principais dependências eram de Selenium~\cite{selenium2023}, NumPy~\cite{harris2020array}, Pandas\cite{jeffreback20226702671} e Beautiful soup~\cite{richardson2007beautiful}. Utilizando docker~\cite{merkel2014docker} para execução do \emph{script} de forma concorrente, utilizando o Selenium e executando alguns \textit{drivers} do Google Chrome. Porém, para esse tipo de tarefa, o Selenium não é uma ferramenta eficiente e seu desempenho não é rápido. A busca das avaliações para apenas um hotel demorava aproximadamente 3h para executar e o sucesso da execução do \emph{script} com a utilização do Selenium depende diretamente da imutabilidade da interface visual do \textit{Google Maps}, o que torna esse formato não escalável dado a velocidade com que a interface do \textit{Google Maps} recebe atualizações. Durante a adaptação do \emph{script} para conseguir extrair corretamente as avaliações foram realizadas 10 tentativas de execução, no período de 09/2022 à 11/2022, com periodicidade aproximadamente semanal e aproximadamente a cada duas semanas a estrutura do \textit{Google Maps} mudava, estrutura essa que é parte fundamental para que a execução obtivesse sucesso, e dessa forma o \emph{script} precisava passar por nova atualização para que a nova estrutura fosse de conhecimento, existiam inclusive alguns testes no formato A/B onde alguns estabelecimentos possuíam estrutura da página do \textit{Google Maps} diferente de outros, aumentando ainda mais a complexidade de manter o \emph{script} funcional.
+Utilizando esses projetos como base foi criado um novo e realizadas algumas adaptações para adaqua-lo a tarefa do trabalho de obter as avaliações dos hotéis. O \emph{script} escrito em Python e as suas principais dependências eram de Selenium~\cite{selenium2023}, NumPy~\cite{harris2020array}, Pandas\cite{jeffreback20226702671} e Beautiful soup~\cite{richardson2007beautiful}. Utilizando docker~\cite{merkel2014docker} para execução do \emph{script} de forma concorrente, utilizando o Selenium e executando alguns \textit{drivers} do Google Chrome. Porém, para tipo de tarefa aqui executada, o Selenium não apresentou um desempenho satisfatório, pois a busca de avaliações para apenas um hotel demorava aproximadamente 3h para executar e o sucesso da execução do \emph{script} com a utilização do Selenium depende diretamente da imutabilidade da interface visual do \textit{Google Maps}, interface essa que recebe diferentes modificações ao longo do tempo pelo time que o mantém, o que dificulta manter o \emph{script} funcional dado a quantidade de modificações em um mês a interface do \textit{Google Maps} recebe. Durante a adaptação do \emph{script} para conseguir extrair corretamente as avaliações foram realizadas 10 tentativas de execução, no período de 09/2022 à 11/2022, com periodicidade aproximadamente semanal e aproximadamente a cada duas semanas a estrutura do \textit{Google Maps} mudava, estrutura essa que é parte fundamental para que a execução obtivesse sucesso, e dessa forma o \emph{script} precisava passar por nova atualização para que a nova estrutura fosse de conhecimento, existiam inclusive alguns testes no formato A/B onde alguns estabelecimentos possuíam estrutura da página do \textit{Google Maps} diferente de outros, aumentando ainda mais a complexidade de manter o \emph{script} funcional.
 
 O \emph{script} possui uma dependência muito forte com a parte estrutural da página e dessa forma qualquer mudança em \emph{tags HTML} e/ou as classes \emph{CSS} da página dos estabelecimentos no \textit{Google Maps}, características de um \emph{WebScrapper}, que dificulta a manutenção e limita a sua capacidade de reutilização.
 
@@ -50,7 +50,7 @@ Baseado no \emph{script} do \emph{WebScrapper} existe um repositório que utiliz
 \subsection{Pré-processamento dos dados}
 \label{cap:metodologia:sec:conjunto_dados:sec:pre_processamento}
 
-Após capturar as avaliações é necessário realizar alguns filtros e tratamentos para que a análise de sentimentos consiga resultar algo concreto. Dessa forma foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideração na análise. Assim foram definidos alguns critérios para realização de filtro.
+Após capturar as avaliações é necessário realizar alguns filtros e tratamentos para que a análise de sentimentos consiga resultar algo concreto. Dessa forma, foram definidos critérios de filtro para ter uma lista final com as avaliações a serem levadas em consideração na análise. Assim foram definidos alguns critérios para realização de filtro.
 
 Os critérios são a avaliação precisa possuir conteúdo textual e este por sua vez precisa então possuir 3 ou mais caracteres, não ser traduzido e será realizado filtro de período, que será definido posteriormente.
 
@@ -101,7 +101,7 @@ Os critérios são a avaliação precisa possuir conteúdo textual e este por su
 	\label{tab:estrutura_review}
 \end{table}
 
-Cada uma das avaliações é composta por 18 campos com informações com formatos diferentes e descritos na tabela \ref{tab:estrutura_review}.
+Cada uma das avaliações é composta por 18 campos com informações com formatos diferentes e descritos na Tabela \ref{tab:estrutura_review}.
 
 Dentre os 18 campos, estaremos interessados apenas em alguns deles, sendo:
 
@@ -123,7 +123,7 @@ E adicionaremos algumas novas colunas para:
 
 Para construir as colunas de tempo (mes\_avaliacao, ano\_avaliacao e mes\_ano\_avaliacao) é necessário realizar um tratamento de data relativa de quando a avaliação foi submetida, que é representado por relative\_date, com o retrieval\_date que representa o momento em que a avaliação foi obtida, o seguinte trecho de código foi utilizado para realizar o tratamento:
 
-\lstinputlisting[language=Python,caption=Código utilizado para tratar a data relativa]{extras/code/from_relative_date_to_timestamp.py}
+% \lstinputlisting[language=Python,caption=Código utilizado para tratar a data relativa]{extras/code/from_relative_date_to_timestamp.py}
 
 \section{Análise dos Dados}
 \label{cap:metodologia:sec:analise_dados}
@@ -134,9 +134,9 @@ Os modelos foram pré treinados em conjuntos de dados rotulados para reconhecer 
 
 Embora essa abordagem simplificada não leve em consideração todos os aspectos sutis da linguagem humana, ela proporciona uma compreensão geral dos sentimentos expressos pelos usuários. Essas etiquetas podem ser úteis para avaliações rápidas e gerais de sentimentos em um grande volume de dados, permitindo uma análise inicial e rápida das tendências gerais de satisfação dos clientes em relação aos hotéis.
 
-Para a análise de sentimentos, os textos das avaliações foram alimentados em modelos baseados em \textit{BERT} já pre treinados, processados utilizando a biblioteca \textit{Transformers} em \textit{Python}. Esses modelos foram pre treinados em diferentes conjuntos de dados rotulados, explicitados em suas respectivas páginas referências, e utilizados para classificar o sentimento das avaliações em categorias como positivo, negativo ou neutro.
+Para a análise de sentimentos, os textos das avaliações foram alimentados em modelos baseados em \textit{BERT} já pré treinados, processados utilizando a biblioteca \textit{Transformers} em \textit{Python}. Esses modelos foram pre treinados em diferentes conjuntos de dados rotulados, explicitados em suas respectivas páginas referências, e utilizados para classificar o sentimento das avaliações em categorias como positivo, negativo ou neutro.
 
-Foram selecionados 5 modelos \textit{BERT} para serem utilizados, escolhidos com base no ranking disponibilizado pelo \textit{hugging face}, sendo eles:
+Foram selecionados 5 modelos \textit{BERT} para serem utilizados, escolhidos com base no ranking disponibilizado pelo \textit{Hugging Face}, sendo eles:
 
 \begin{itemize}
 	\item philschmid/distilbert-base-multilingual-cased-sentiment \cite{Sanh2019DistilBERTAD}
